@@ -247,8 +247,9 @@
 	        const alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ-";
 	        let result="";
 	        gridButtons.forEach(button=>{
-		        const cleanId=button.id.split('_');
-		        const idNum=parseInt(cleanId.replace("lip",""),10);
+		    	const cleanId=button.id.split('_');
+		        const idNum=parseInt(cleanId[0].replace("lip",""),10);
+		        result += alphabet[idNum-1]||"";
 	        })
 	        try{
 		        const handle=await window.showSaveFilePicker({
@@ -261,7 +262,7 @@
 		        const writable=await handle.createWritable();
 		        await writable.write(result);
 		        await writable.close();
-	        }catch(err){}
+	        }catch(err){console.log(err)}
         }
         const load=async()=>{
 	        try{
