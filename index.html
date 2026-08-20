@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link rel='icon' href='i.png'>
+    <style>
+        .d{
+          padding:30px;
+          border-radius:20px;
+          width:40%;
+          background:linear-gradient(50deg, black 0%, gray 100%);
+          box-shadow:5px 10px lightgray;
+          font-family:"Nunito",system-ui;
+          text-align:center;
+          font-size:3vw;
+          font-weight:700;
+        }
+        body{
+            background-image:url("chisel.png");
+            background-size:fill;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chisel</title>
+</head>
+<body>
+    <script src="inject.js"></script>
+    <div class="content">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p style='color:white' class='d'>Welcome to Chisel's Website.</p>
+    <p style='color:white;font-size:30px;' class='d'>Find me on <a href="https://scratch.mit.edu/users/Programmer_Error">Scratch</a>, <a href="https://abbr.itch.io">itch.io</a>, <a href="https://bloxd.io/player/diqu">bloxd.io</a>, or <a href="https://www.roblox.com/users/7125427738/profile">Roblox</a>. My Geometry Dash account is @ah0p.</p>
+    </div>
+    <script>
+    str=`@Programmer_Error's Site `
+    interval=[setInterval(function(){str=str.substring(1)+str.charAt(0);document.title=str},200)]
+    </script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link rel='icon' href='i.png'>
+    <style>
+        .d{
+          padding:30px;
+          border-radius:20px;
+          width:70%;
+          background:linear-gradient(50deg, black 0%, gray 100%);
+          box-shadow:5px 10px lightgray;
+          font-family:"Nunito",system-ui;
+          text-align:center;
+          font-size:3vw;
+          font-weight:700;
+        }
+        body{
+            background-image:url("chisel.png");
+            background-size:fill;
+        }
+        .lipgrid{
+            background:lightgray;
+            border-radius:10px;
+            border:none;
+            display:grid;
+            margin:0 auto;
+            justify-content:left;
+            grid-template-columns:auto auto auto auto;
+            grid-template-rows:5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw ;
+        }
+        .addgrid{
+            background:lightgray;
+            border-radius:10px;
+            border:none;
+            display:grid;
+            margin:0 auto;
+            justify-content:center;
+            grid-template-columns:6vw 6vw 6vw 6vw 6vw;
+            grid-template-rows:5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw 5vw ;
+        }
+        .handle{
+            padding:20px;
+            background:gray;
+            border-radius:20px;
+            display:grid;
+            margin:0 auto;
+            justify-content:center;
+            grid-template-columns:auto auto auto;
+            gap:20px;
+        }
+        .horiz{
+            padding:20px;
+            background:gray;
+            border-radius:20px;
+            display:grid;
+            margin:0 auto;
+            justify-content:center;
+            grid-template-rows:auto auto auto;
+        }
+        .g{
+            border:none;
+            background-size:contain;
+            background-origin:content-box;
+            background-size:100% 100%;
+            background-repeat:no-repeat;
+            width:5vw;
+            height:4vw;
+            border-radius:10px;
+            margin:10px;
+            padding:10px;
+        }
+        .a{
+            background-size:contain;
+            background-origin:content-box;
+            background-size:100% 100%;
+            background-repeat:no-repeat;
+            background-position:center;
+            border:none;
+            width:5vw;
+            height:4vw;
+            border-radius:10px;
+            margin:10px;
+            padding:10px;
+        }
+        .bt{
+            border:none;
+            background-size:contain;
+            background-origin:content-box;
+            background-size:100% 100%;
+            background-repeat:no-repeat;
+            background-position:center;
+            height:5vw;
+            border-radius:10px;
+            margin:10px;
+            padding:15px;
+            font-size:40px;
+            font-family:"Baloo 2",sans-serif,system-ui;
+        }
+        .big{
+            background-image:url('1.svg');
+            background-size:contain;
+            background-origin:content-box;
+            background-size:100% 100%;
+            background-repeat:no-repeat;
+            background-position:center;
+            border:none;
+            width:25vw;
+            height:25vw;
+            border-radius:10px;
+            margin:10px;
+            padding:15px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chisel</title>
+</head>
+<body>
+    <script src="inject.js"></script>
+    <div class="content">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p style='color:white' class='d'>Welcome to Chisel's Lip-Sync Editor.</p>
+    <div class="horiz">
+        <div class="h">
+            <button class="bt" onclick="sync.startTime=null;play();sync();">Run</button>
+            <button class="bt" onclick="save()">Save</button>
+            <button class="bt" onclick="load()">Load</button>
+            <button class="bt" onclick="button()">Select Audio</button>
+        </div>
+        <div class="handle">
+            <img class="big">
+            <div class="lipgrid">
+            </div>
+            <div class="addgrid">
+                <button class="a" id="add4"></button>
+                <button class="a" id="add9"></button>
+                <button class="a" id="add22"></button>
+                <button class="a" id="add23"></button>
+                <button class="a" id="add20"></button>
+                <button class="a" id="add7"></button>
+                <button class="a" id="add24"></button>
+                <button class="a" id="add21"></button>
+                <button class="a" id="add3"></button>
+                <button class="a" id="add2"></button>
+                <button class="a" id="add11"></button>
+                <button class="a" id="add13"></button>
+                <button class="a" id="add8"></button>
+                <button class="a" id="add17"></button>
+                <button class="a" id="add10"></button>
+                <button class="a" id="add25"></button>
+                <button class="a" id="add19"></button>
+                <button class="a" id="add6"></button>
+                <button class="a" id="add26"></button>
+                <button class="a" id="add14"></button>
+                <button class="a" id="add1"></button>
+                <button class="a" id="add12"></button>
+                <button class="a" id="add16"></button>
+                <button class="a" id="add18"></button>
+                <button class="a" id="add27"></button>
+                <button class="a" id="add15"></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        str=`Lip-Sync `
+        interval=[setInterval(function(){str=str.substring(1)+str.charAt(0);document.title=str},200)]
+        const timeline=document.querySelector('.lipgrid');
+		timeline.innerHTML="";
+        let loadedSequence=[];
+        let uniqueCounter=0;
+        document.addEventListener('click',function(e){
+            if(e.target&&e.target.matches('.g')){
+                loadedSequence=loadedSequence.filter(id=>id!==e.target.id);
+                e.target.remove()
+            }
+            if(e.target&&e.target.matches('.a')){
+                const g=document.querySelector('.lipgrid')
+                if(g){
+                    const n=e.target.cloneNode(true)
+                    n.className='g'
+                    n.id=n.id.replace('add','lip')+'_'+uniqueCounter++
+                    g.appendChild(n)
+                    loadedSequence.push(n.id)
+                }
+            }
+        })
+        const b=document.querySelectorAll('.lipgrid button, .addgrid button')
+        b.forEach(a=>{
+            const r=a.id.replace(/lip|add/, '')
+            a.style.backgroundImage=`url(${r}.svg)`
+        })
+        let audioCtx=null;
+        let audioBuffer=null;
+        async function button(){
+	        const options={
+	   	        types:[{
+			        description:"Audio Files",
+			        accept:{'audio/mpeg':['.mp3']}
+		        }]
+	        }
+	        const [fileHandle]=await window.showOpenFilePicker(options);
+	        const fileData=await fileHandle.getFile();
+	        const arrayBuffer=await fileData.arrayBuffer();
+	        audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+	        audioBuffer=await audioCtx.decodeAudioData(arrayBuffer);
+        }
+        const play=()=>{
+	        if(audioCtx&&audioBuffer){
+		        const source=audioCtx.createBufferSource();
+		        source.buffer=audioBuffer;
+		        source.connect(audioCtx.destination);
+		        sync.startTime=performance.now();
+		        source.start(0);
+	        }
+        }
+        let startTime=0;
+        let syncLoop=null;
+        const sync=(T)=>{
+	        const bigDisplay=document.querySelector('.big');
+	        const gridButtons=document.querySelectorAll('.lipgrid button');
+	        if(!sync.startTime)sync.startTime=performance.now();
+            const elapsed=performance.now()-sync.startTime
+	        const frameIndex=Math.floor((elapsed/1000)*15);
+	        if(frameIndex<loadedSequence.length){
+		        const currentTargetId=loadedSequence[frameIndex];
+		        const sourceButton=document.getElementById(currentTargetId);
+		        if(sourceButton){
+			        const img=window.getComputedStyle(sourceButton).backgroundImage;
+			        bigDisplay.style.backgroundImage=img;
+		        }
+		        syncLoop=requestAnimationFrame(sync);
+	        }else{
+		        sync.startTime=null;
+		        cancelAnimationFrame(syncLoop);
+	        }
+        }
+        const save=async()=>{
+	        const gridButtons=document.querySelectorAll('.lipgrid button');
+	        const alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ-";
+	        let result="";
+	        gridButtons.forEach(button=>{
+		        const cleanId=button.id.split('_');
+		        const idNum=parseInt(cleanId.replace("lip",""),10);
+	        })
+	        try{
+		        const handle=await window.showSaveFilePicker({
+			        suggestedName:"animation.lse",
+			        types:[{
+				        description:"LSE Files",
+				        accept:{'text/plain':['.lse']}
+			        }]
+		        })
+		        const writable=await handle.createWritable();
+		        await writable.write(result);
+		        await writable.close();
+	        }catch(err){}
+        }
+        const load=async()=>{
+	        try{
+		        const [handle]=await window.showOpenFilePicker({
+			        types:[{
+				        description:"LSE Files",
+				        accept:{'text/plain':['.lse']}
+			        }]
+		        });
+		        const file=await handle.getFile();
+		        const text=await file.text();
+		        const alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ-";
+		        const timeline=document.querySelector('.lipgrid');
+		        timeline.innerHTML="";
+		        loadedSequence=[];
+		        uniqueCounter=0;
+		        for(let char of text.trim()){
+			        const index=alphabet.indexOf(char);
+			        if(index!==-1){
+				        const idNum=index+1;
+				        const uniqueId=`lip${idNum}_${uniqueCounter++}`;
+				        loadedSequence.push(uniqueId);
+				        const frameBtn=document.createElement('button');
+				        frameBtn.className="g";
+				        frameBtn.id=uniqueId;
+				        frameBtn.style.backgroundImage=`url("${idNum}.svg")`;
+				        timeline.appendChild(frameBtn);
+			        }
+		        }
+	        }catch(err){}
+        };
+    </script>
+</body>
+</html>
