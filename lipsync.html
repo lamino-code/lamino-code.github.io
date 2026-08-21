@@ -116,7 +116,7 @@
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chisel</title>
+    <title>Lip-Sync</title>
 </head>
 <body>
     <script src="inject.js"></script>
@@ -127,7 +127,7 @@
     <br>
     <br>
     <br>
-    <p style='color:white' class='d'>Lamino's Lip-Sync Editor.</p>
+    <p style='color:white' class='d'>Lamino's Lip-Sync Editor</p>
     <div class="horiz">
         <div class="h">
             <button class="bt" onclick="sync.startTime=null;play();sync();">Run</button>
@@ -170,8 +170,6 @@
         </div>
     </div>
     <script>
-        str=`Lip-Sync `
-        interval=[setInterval(function(){str=str.substring(1)+str.charAt(0);document.title=str},200)]
         const timeline=document.querySelector('.lipgrid');
 		timeline.innerHTML="";
         let loadedSequence=[];
