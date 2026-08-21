@@ -42,6 +42,9 @@ const styles = `
         align-items: center;
         gap: 10px;
     }
+    body{
+        background:white;
+    }
 `;
 
 const styleSheet = document.createElement("style");
