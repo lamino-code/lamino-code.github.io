@@ -96,7 +96,7 @@
             font-family:"Baloo 2",sans-serif,system-ui;
         }
         .big{
-            background-image:url('1.svg');
+            background-image:url('lip-sync/1.svg');
             background-size:contain;
             background-origin:content-box;
             background-size:100% 100%;
@@ -189,7 +189,7 @@
         const b=document.querySelectorAll('.lipgrid button, .addgrid button')
         b.forEach(a=>{
             const r=a.id.replace(/lip|add/, '')
-            a.style.backgroundImage=`url(${r}.svg)`
+            a.style.backgroundImage=`url(lip-sync/${r}.svg)`
         })
         let audioCtx=null;
         let audioBuffer=null;
@@ -282,7 +282,7 @@
 				        const frameBtn=document.createElement('button');
 				        frameBtn.className="g";
 				        frameBtn.id=uniqueId;
-				        frameBtn.style.backgroundImage=`url("${idNum}.svg")`;
+				        frameBtn.style.backgroundImage=`url("lip-sync/${idNum}.svg")`;
 				        timeline.appendChild(frameBtn);
 			        }
 		        }
