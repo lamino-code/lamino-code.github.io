@@ -52,7 +52,6 @@ document.head.appendChild(styleSheet);
 document.body.insertAdjacentHTML("afterbegin", `
     <div class="row">
         <a class="b" href="index.html">Home</a>
-        <a class="b" href="imagedump.html">Images</a>
         <a class="b" href="lipsync.html">Lip-Sync Editor</a>
     </div>
 `);
