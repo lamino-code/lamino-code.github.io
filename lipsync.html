@@ -115,9 +115,9 @@
     <p style='color:white' class='d'>Lamino's Lip-Sync Editor</p>
     <div class="horiz">
         <div class="h">
-            <button class="bt" onclick="sync.startTime=null;play();sync();">Run</button>
-            <button class="bt" onclick="save()">Save</button>
-            <button class="bt" onclick="load()">Load</button>
+            <button class="bt" onclick="if(audioCtx=null){button()};sync.startTime=null;play();sync();">Test</button>
+            <button class="bt" onclick="save()">Export</button>
+            <button class="bt" onclick="load()">Import</button>
             <button class="bt" onclick="button()">Select Audio</button>
         </div>
         <div class="handle">
