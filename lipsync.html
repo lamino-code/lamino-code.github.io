@@ -86,13 +86,12 @@
         }
         .bt{
             border:2px solid rgba(255,255,255,0.6);
-			background:none;
-			border-radius:10px;
-			color:white;
+            background-origin:content-box;
+            background-size:100% 100%;
+            background-repeat:no-repeat;
+            background-position:center;
+            width:5vw;
             height:5vw;
-			font-family:"Nunito",system-ui;
-			font-weight:800;
-			font-size:4vw;
         }
         .big{
             background-image:url('lip-sync/1.svg');
@@ -115,10 +114,10 @@
     <p style='color:white' class='d'>Lamino's Lip-Sync Editor</p>
     <div class="horiz">
         <div class="h">
-            <button class="bt" onclick="if(!audioBuffer){button()};sync.startTime=null;play();sync();">Test</button>
-            <button class="bt" onclick="save()">Export</button>
-            <button class="bt" onclick="load()">Import</button>
-            <button class="bt" onclick="button()">Select Audio</button>
+            <button class="bt" style="background-image:url('run.svg');" onclick="if(!audioBuffer){button()};sync.startTime=null;play();sync();"></button>
+            <button class="bt" style="background-image:url('download.svg');" onclick="save()"></button>
+            <button class="bt" style="background-image:url('upload.svg');" onclick="load()"></button>
+            <button class="bt" style="background-image:url('audio.svg');" onclick="button()"></button>
         </div>
         <div class="handle">
             <img class="big">
