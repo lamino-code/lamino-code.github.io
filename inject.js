@@ -43,7 +43,7 @@ const styles = `
         gap: 10px;
     }
     body{
-        background:white;
+        background:dodgerblue;
     }
 `;
 
