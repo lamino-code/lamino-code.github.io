@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link rel='icon' href='i.png'>
+    <style>
+        .d{
+          padding:30px;
+          border-radius:20px;
+          width:70%;
+          background:linear-gradient(50deg, black 0%, gray 100%);
+          box-shadow:5px 10px lightgray;
+          font-family:"Nunito",system-ui;
+          text-align:center;
+          font-size:3vw;
+          font-weight:700;
+        }
+        .fe{
+            border-radius:10px;
+            border:4px solid lightgray;
+            display:grid;
+            margin:0 auto;
+            justify-content:left;
+            grid-template-columns:auto auto auto auto;
+            grid-template-rows:4.5vw 4.5vw 4.5vw 4.5vw 4.5vw 4.5vw 4.5vw;
+			height:30vw; 
+			overflow-y:auto;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Projects</title>
+</head>
+<body>
+    <script src="inject.js"></script>
+    <div class="content">
+    <br>
+    <p style='color:white' class='d'>Scratch Master's Featured Projects</p>
+    <div class="fe">
+        <a href="https://scratch.mit.edu/users/Programmer_Error"><img></a>
+    </div>
+    <script>
+        a=document.querySelectorAll(".fe")
+        a.children.forEach(b=>{console.log(b);b.children[0].src='https://i.ytimg.com/vi/k4SN9qO-too/hqdefault.jpg'})
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const styles = `
+let t=`
     .b:active{
         transform: scale(0.8);
     }
@@ -46,16 +46,14 @@ const styles = `
         background:dodgerblue;
     }
 `;
-
-const styleSheet = document.createElement("style");
-styleSheet.textContent = styles;
-document.head.appendChild(styleSheet);
-
-// 2. Inject the HTML navigation bar at the top of the body
+const s=document.createElement("style");
+s.textContent=t;
+document.head.appendChild(s);
 document.body.insertAdjacentHTML("afterbegin", `
     <div class="row">
         <a class="b" href="index.html">Home</a>
         <a class="b" href="lipsync.html">Lip-Sync Editor</a>
         <a class="b" href="aga.html">Anti-Griefing Agency (Bloxd)</a>
+        <a class="b" href="featured.html">Featured Projects (Scratch)</a>
     </div>
 `);
