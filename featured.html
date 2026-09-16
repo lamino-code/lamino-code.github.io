@@ -39,11 +39,11 @@
     <br>
     <p style='color:white' class='d'>Scratch Master's Featured Projects</p>
     <div class="fe" id="fe">
-        <a href="https://scratch.mit.edu/users/Programmer_Error"><img></a>
+        <a href="https://scratch.mit.edu/projects/227976173"><img></a>
     </div>
     <script>
         a=document.getElementById("fe")
-        Array.from(a.children).forEach(b=>{console.log(b);b.children[0].src='https://i.ytimg.com/vi/k4SN9qO-too/hqdefault.jpg'})
+        Array.from(a.children).children.forEach(b=>{console.log(b);b.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${b.href.slice(33,b.href.length-1)}.png`})
     </script>
 </body>
 </html>
