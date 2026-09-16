@@ -43,7 +43,7 @@
     </div>
     <script>
         a=document.getElementById("fe")
-        Array.from(a.children).children.forEach(b=>{console.log(b);b.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${b.href.slice(33,b.href.length-1)}.png`})
+        Array.from(a.children).forEach(b=>{console.log(b);b.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${b.href.slice(33,b.href.length-1)}.png`})
     </script>
 </body>
 </html>
