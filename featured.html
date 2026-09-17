@@ -17,7 +17,8 @@
           font-size:3vw;
           font-weight:700;
         }
-        .fe{
+        .container{
+            width:90%;
             border-radius:10px;
             border:4px solid lightgray;
             display:grid;
@@ -38,14 +39,18 @@
     <div class="content">
     <br>
     <p style='color:white' class='d'>Scratch Master's Featured Projects</p>
-    <div class="fe" id="fe">
-		<a href="https://scratch.mit.edu/projects/1180951523"><img></a>
-        <a href="https://scratch.mit.edu/projects/1316859114"><img></a>
-        <a href="https://scratch.mit.edu/projects/1370340557"><img></a>
-        <a href="https://scratch.mit.edu/projects/632326191"><img></a>
+    <div class='container' id="fe">
     </div>
     <script>
-        Array.from(document.getElementById("fe").children).forEach(b=>b.firstElementChild.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${b.href.slice(33)}.png`);
+        featured=[1180951523,1316859114,1370340557,632326191,1000]
+        for(let i in featured.slice(-5)){
+            let e=document.createElement("a")
+            e.parentElement=document.getElementById('fe')
+            e.href=`https://scratch.mit.edu/projects/${featured[i]}`
+            let child=document.createElement("img")
+            child.parentElement=e
+            child.src = `https://uploads.scratch.mit.edu/projects/thumbnails/${featured[i]}.png`
+        }
     </script>
 </body>
 </html>
