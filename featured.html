@@ -40,16 +40,16 @@
     <div class='container' id="fe">
     </div>
     <script>
-        featured=[1180951523,1316859114,1370340557,632326191,1000,1000000]
+        featured=[1180951523,1316859114,1370340557,632326191]
         for(let i in featured){
-            let e=document.createElement("a")
-            document.getElementById('fe').appendChild(e)
-            e.href=`https://scratch.mit.edu/projects/${featured[i]}`
             let c=document.createElement("img")
-            e.appendChild(c)
+            document.getElementById('fe').appendChild(c)
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${featured[i]}.png`
-            c.style.width = '20vw'
-            c.style.padding = "10%"
+            c.style.width='20vw'
+            c.style.padding="10%"
+            let e=document.createElement("a")
+            c.appendChild(e)
+            e.href=`https://scratch.mit.edu/projects/${featured[i]}`
         }
     </script>
 </body>
