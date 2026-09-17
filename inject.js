@@ -18,8 +18,9 @@ let t=`
         font-size: 20px;
         border-radius: 0.5em;
         transition: transform 0.5s ease;
-        border: 4px solid black;
-        padding: 10px;
+        border: 3px solid brown;
+        padding: 8px;
+        height:50px;
     }
     .row {
         display: flex;
