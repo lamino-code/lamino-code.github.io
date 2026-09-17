@@ -42,14 +42,15 @@
     <div class='container' id="fe">
     </div>
     <script>
-        featured=[1180951523,1316859114,1370340557,632326191,1000]
-        for(let i in featured.slice(-5)){
+        featured=[1180951523,1316859114,1370340557,632326191,1000,100000]
+        for(let i in featured){
             let e=document.createElement("a")
             document.getElementById('fe').appendChild(e)
             e.href=`https://scratch.mit.edu/projects/${featured[i]}`
-            let child=document.createElement("img")
+            let c=document.createElement("img")
             e.appendChild(child)
-            child.src = `https://uploads.scratch.mit.edu/projects/thumbnails/${featured[i]}.png`
+            c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${featured[i]}.png`
+            c.style.width = '20vw'
         }
     </script>
 </body>
