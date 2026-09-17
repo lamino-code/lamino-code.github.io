@@ -18,31 +18,38 @@
           font-weight:700;
         }
         .container{
-            background:orange;
+            background:black;
             box-shadow:4px 4px 4px rgba(0,0,0,0.4);
             border-radius:10px;
-            border:4px solid lightgray;
+            border:4px solid orange;
             justify-content:center;
 	    align-items:center;
             display:inline-grid;
             grid-template-rows:repeat(5,min-content);
             grid-template-columns:repeat(5,min-content);
-            gap:10px;
+            gap:20px;
 	    padding:50px;
         }
+	.project:hover{transform:scale(1.1);border:6px solid white;}
+	.j:hover{transform:scale(1.1);color:white;}
         .project{
-            background:brown;
+	    transition:transform 0.4s ease-in, border 0.8s ease-out;
+            background:orange;
             width:300px;
-            box-shadow:2px 2px 4px brown;
+            border:4px solid orange;
             border-radius:10px;
         }
-	.j, a{
+	.j{
+	    transition:transform 0.4s ease, color 0.4s ease;
+	    display:block;
 	    text-decoration:none;
+	    font-weight:900;
             font-family:'Nunito',sans-serif;
-            font-size:40px;
-	    color:white;
-	    text-shadow:1px 1px 3px black;
+            font-size:50px;
+	    color:orange;
+	    text-align:center;
 	}
+	a{text-decoration:none;}
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
