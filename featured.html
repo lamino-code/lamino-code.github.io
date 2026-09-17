@@ -34,7 +34,7 @@
         .project{
 	    transition:transform 0.4s ease-in, border 0.8s ease-out;
             background:orange;
-            width:300px;
+            width:200px;
             border:4px solid orange;
             border-radius:10px;
         }
@@ -44,8 +44,18 @@
 	    text-decoration:none;
 	    font-weight:900;
             font-family:'Nunito',sans-serif;
-            font-size:50px;
+            font-size:20px;
 	    color:orange;
+	    text-align:center;
+	}
+    .k{
+	    transition:transform 0.4s ease, color 0.4s ease;
+	    display:block;
+	    text-decoration:none;
+	    font-weight:900;
+            font-family:'Nunito',sans-serif;
+            font-size:20px;
+	    color:rgb(75, 62, 39);
 	    text-align:center;
 	}
 	a{text-decoration:none;}
@@ -55,29 +65,52 @@
     <title>Featured Projects</title>
 </head>
 <body>
-    <script src="inject.js"></script>
     <div class="content">
+        <script src="inject.js"></script>
     <br>
     <p style='color:white' class='d'>Scratch Master's Featured Projects</p>
     <div class='container' id="fe">
     </div>
     <script>
-        featured=[1180951523,1316859114,1370340557,632326191,980280062]
-        for(let i in featured){
+    (async () => {
+        let featured=[1180951523,1316859114,1370340557,632326191];
+        let rep;let json;let temp;
+        let referenceLink;
+        let data;
+        let getData = (async function(id){
+            rep = await fetch(`https://api.scratch.mit.edu/projects/${id}/`)
+                if(rep.ok){
+                    return await rep.json()
+                }
+            });
+        for(let i of featured){
+            referenceLink = `https://scratch.mit.edu/projects/${i}`
             let c=document.createElement("img")
             c.className="project"
-            c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${featured[i]}.png`
+            c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${i}.png`
             let e=document.createElement("a")
-            e.href=`https://scratch.mit.edu/projects/${featured[i]}`
+            e.href=referenceLink
             document.getElementById('fe').appendChild(e)
             e.appendChild(c)
+        data = await getData(i)
 	    let f=document.createElement("a")
-            f.href=`https://scratch.mit.edu/projects/${featured[i]}`
-            f.text=`${featured[i]}`
+            f.href=referenceLink
+            temp = `${i}`
+            if(rep.ok)temp = `${data.title}`
+            f.text=temp
 	    f.className=`j`
             document.getElementById('fe').appendChild(f)
             e.appendChild(f)
+        let g = document.createElement("a")
+            g.href = `https://scratch.mit.edu/users/${data.author.username}`
+            g.target = "_blank"
+            temp = 'by nobody'
+            if(rep.ok)temp = `${data.author.username}`
+            g.text = temp
+            g.className = `j k`
+            e.appendChild(g)
         }
+    })()
     </script>
 </body>
 </html>
