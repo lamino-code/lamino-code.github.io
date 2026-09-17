@@ -41,10 +41,11 @@
     <div class="fe" id="fe">
 		<a href="https://scratch.mit.edu/projects/1180951523"><img></a>
         <a href="https://scratch.mit.edu/projects/1316859114"><img></a>
+        <a href="https://scratch.mit.edu/projects/1370340557"><img></a>
+        <a href="https://scratch.mit.edu/projects/632326191"><img></a>
     </div>
     <script>
-        a=document.getElementById("fe")
-        Array.from(a.children).forEach(b=>b.firstElementChild.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${b.href.slice(33)}.png`);
+        Array.from(document.getElementById("fe").children).forEach(b=>b.firstElementChild.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${b.href.slice(33)}.png`);
     </script>
 </body>
 </html>
