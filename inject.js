@@ -15,7 +15,7 @@ let t=`
         font-weight: 700;
         font-family: "Nunito", sans-serif, system-ui;
         color: rgb(13, 25, 35);
-        font-size: 20px;
+        font-size: 30px;
         border-radius: 0.5em;
         transition: transform 0.5s ease;
         border: 3px solid brown;
@@ -54,7 +54,7 @@ document.body.insertAdjacentHTML("afterbegin", `
     <div class="row">
         <a class="b" href="index.html">Home</a>
         <a class="b" href="lipsync.html">Lip-Sync Editor</a>
-        <a class="b" href="aga.html">Anti-Griefing Agency (Bloxd)</a>
-        <a class="b" href="featured.html">Featured Projects (Scratch)</a>
+        <a class="b" href="aga.html">AGA</a>
+        <a class="b" href="featured.html">Featured Projects</a>
     </div>
 `);
