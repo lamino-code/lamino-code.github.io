@@ -15,7 +15,7 @@ let t=`
         font-weight: 700;
         font-family: "Nunito", sans-serif, system-ui;
         color: rgb(13, 25, 35);
-        font-size: 40px;
+        font-size: 20px;
         border-radius: 0.5em;
         transition: transform 0.5s ease;
         border: 4px solid black;

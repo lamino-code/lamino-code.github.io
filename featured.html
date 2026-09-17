@@ -45,10 +45,10 @@
         featured=[1180951523,1316859114,1370340557,632326191,1000]
         for(let i in featured.slice(-5)){
             let e=document.createElement("a")
-            e.parentElement=document.getElementById('fe')
+            document.getElementById('fe').appendChild(e)
             e.href=`https://scratch.mit.edu/projects/${featured[i]}`
             let child=document.createElement("img")
-            child.parentElement=e
+            e.appendChild(child)
             child.src = `https://uploads.scratch.mit.edu/projects/thumbnails/${featured[i]}.png`
         }
     </script>
