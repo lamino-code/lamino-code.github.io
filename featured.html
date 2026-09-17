@@ -36,7 +36,7 @@
             box-shadow:2px 2px 4px brown;
             border-radius:10px;
         }
-	a{
+	.j, a{
 	    text-decoration:none;
             font-family:'Nunito',sans-serif;
             font-size:40px;
@@ -68,6 +68,7 @@
 	    let f=document.createElement("a")
             f.href=`https://scratch.mit.edu/projects/${featured[i]}`
             f.text=`${featured[i]}`
+	    f.className=`j`
             document.getElementById('fe').appendChild(f)
             e.appendChild(f)
         }
