@@ -52,13 +52,17 @@
         featured=[1180951523,1316859114,1370340557,632326191]
         for(let i in featured){
             let c=document.createElement("img")
-            c.class="project"
+            c.className="project"
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${featured[i]}.png`
             let e=document.createElement("a")
             e.href=`https://scratch.mit.edu/projects/${featured[i]}`
             document.getElementById('fe').appendChild(e)
             e.appendChild(c)
-            e.style.margin="0"
+	        let f=document.createElement("a")
+            f.href=`https://scratch.mit.edu/projects/${featured[i]}`
+            f.text=`${featured[i]}`
+            document.getElementById('fe').appendChild(f)
+            f.appendChild(c)
         }
     </script>
 </body>
