@@ -3,7 +3,7 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 <link rel='icon' href='i.png'>
     <style>
         .d{
@@ -24,6 +24,7 @@
             justify-content:center;
             display:grid;
             grid-template-rows:repeat(5, 1fr);
+            grid-template-columns:repeat(5, 1fr);
             gap: 4px;
         }
     </style>
@@ -45,6 +46,7 @@
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${featured[i]}.png`
             c.style.width='20vw'
             c.style.padding="10%"
+            c.style.borderRadius="10px"
             let e=document.createElement("a")
             e.href=`https://scratch.mit.edu/projects/${featured[i]}`
             document.getElementById('fe').appendChild(e)
