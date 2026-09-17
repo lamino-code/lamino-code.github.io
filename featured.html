@@ -18,7 +18,6 @@
           font-weight:700;
         }
         .container{
-            width:90vw;
             border-radius:10px;
             border:4px solid lightgray;
             margin:0 auto;
@@ -43,13 +42,14 @@
         featured=[1180951523,1316859114,1370340557,632326191]
         for(let i in featured){
             let c=document.createElement("img")
-            document.getElementById('fe').appendChild(c)
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${featured[i]}.png`
             c.style.width='20vw'
             c.style.padding="10%"
             let e=document.createElement("a")
-            c.appendChild(e)
             e.href=`https://scratch.mit.edu/projects/${featured[i]}`
+            document.getElementById('fe').appendChild(e)
+            e.appendChild(c)
+            e.style.margin="0"
         }
     </script>
 </body>
