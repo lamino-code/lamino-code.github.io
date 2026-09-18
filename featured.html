@@ -185,7 +185,8 @@
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
     	query=e.target.value.toLowerCase().trim();
-    	update(query)
+    	await update(query)
+		console.log(JSON.stringify(cache).length)
 	})};
 	(async()=>{await cacheProjects();update("")})();
     </script>
