@@ -40,7 +40,7 @@
 			display: flex;
     		flex-direction: row;
             gap:15px;
-	    	padding:20px;
+	    	padding:10px;
         }
 	.j:hover{color:white;}
     .project{
@@ -48,7 +48,8 @@
         width:200px;
         border:4px solid orange;
 		border-radius:10px;
-		grid-template-columns:repeat(1,min-content);
+		display:flex;
+		flex-direction:column;
     }
 	.j{
 	    transition:color 0.4s ease;
@@ -70,6 +71,7 @@
 	    color:rgb(175, 162, 139);
 	    text-align:center;
 	}
+	body{width:100%;margin:0;}
 	a{text-decoration:none;}
     </style>
     <meta charset="UTF-8">
@@ -108,7 +110,7 @@
 			card.appendChild(link)
             let c=document.createElement("img")
             c.className="project"
-			c.style.width="450px"
+			c.style.width="400px"
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${i}.png`
 			link.appendChild(c)
 			// PROJECT LINK
