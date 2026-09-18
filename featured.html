@@ -102,11 +102,9 @@
                     return await rep.json()
                 }
             });
-		empty=1
         for(let i of featured){
 			if(!cache[i]){data=await getData(i);cache={...cache,[i]:data}}else{data=cache[i]}
 			if(!cache[i]||cache[i]?.title.toLowerCase().includes(q)||!q){
-			empty=0
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
@@ -186,7 +184,7 @@
         projectauthor.appendChild(g)
         }
 	}
-	if(empty=1){emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.innerText="No projects found";container.appendChild(emp)}
+	if(!container.innerHTML){emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.color="white";emp.innerText="No projects found";container.appendChild(emp)}
     }
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
