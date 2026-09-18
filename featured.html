@@ -103,7 +103,8 @@
                 }
             });
         for(let i of featured){
-			if(!cache[i]||!cache[i].title.toLowerCase().includes(q))continue
+			if(!cache[i]){data=await getData(i);cache={...cache,[i]:data}}else{data=cache[i]}
+			if(!cache[i]||!cache[i]?.title.toLowerCase().includes(q))continue
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
@@ -135,7 +136,6 @@
 			let shared=document.createElement("div")
 			shared.className="project opacity stats"
 			card.appendChild(shared)
-		if(!cache[i]){data=await getData(i);cache={...cache,[i]:data}}else{data=cache[i]}
 		// AUTHOR PROFILE PICTURE
 		let projectauthor=document.createElement("div")
 		projectauthor.className="stats"
