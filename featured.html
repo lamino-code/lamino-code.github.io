@@ -35,8 +35,8 @@
 			background:rgba(245,170,40,0.7);
             justify-content:center;
 	    	align-items:center;
-			display: flex;
-    		flex-direction: row;
+			display:grid;
+            grid-template-columns:repeat(2,1fr);
             gap:15px;
 	    	padding:10px;
         }
@@ -129,6 +129,7 @@
 		// VIEWS
 		let views=document.createElement("p")
 		views.text=`${data.stats.views} views`
+		stats.appendChild(views)
 		// LINK TO USER
 	    let f=document.createElement("a")
             f.href=referenceLink
