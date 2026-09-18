@@ -69,6 +69,7 @@
 	    text-align:center;
 		margin:0;
 	}
+	.desc{height:200px;text-overflow:ellipsis;overflow:hidden;width:100%;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:20;}
 	.m{width:100px;font-size:20px;}
 	.dt{width:300px;font-size:20px;}
 	a{text-decoration:none;}
@@ -139,6 +140,11 @@
 	    if(image){l.src=image;l.width=40}
 		l.style.borderRadius="5px"
 	    projectauthor.appendChild(l)
+		// DESCRIPTION
+		let desc=document.createElement("p")
+		desc.className="desc j"
+		desc.innerText=data.desc
+		info.appendChild(desc)
 		// VIEWS
 		let views=document.createElement("p")
 		views.className="j m"
