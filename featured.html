@@ -124,6 +124,10 @@
 			let stats=document.createElement("div")
 			stats.className="project stats"
 			card.appendChild(stats)
+			// SHARED
+			let shared=document.createElement("div")
+			shared.className="project stats"
+			card.appendChild(shared)
         data = await getData(i)
 		// AUTHOR PROFILE PICTURE
 		let linkuser=document.createElement("a")
@@ -150,6 +154,11 @@
 		favourites.className="j m"
 		favourites.innerText=`⭐${data.stats.favorites}`
 		stats.appendChild(favourites)
+		// CREATION DATE
+		let createdate=document.createElement("p")
+		createdate.className="j m"
+		createdate.innerText=data.history.created?`Created ${String(new Date(data.history.created).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}))}`:`Date unknown`
+		shared.appendChild(createdate)
 		// LINK TO USER
 	    let f=document.createElement("a")
             f.href=referenceLink
