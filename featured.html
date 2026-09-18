@@ -73,6 +73,7 @@
 		margin:0;
 	}
 	.m{width:100px;font-size:20px;}
+	.dt{width:350px;font-size:20px;}
 	a{text-decoration:none;}
     </style>
     <meta charset="UTF-8">
@@ -156,7 +157,7 @@
 		stats.appendChild(favourites)
 		// CREATION DATE
 		let createdate=document.createElement("p")
-		createdate.className="j m"
+		createdate.className="j dt"
 		createdate.innerText=data.history.created?`Created ${String(new Date(data.history.created).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}))}`:`Date unknown`
 		shared.appendChild(createdate)
 		// LINK TO USER
