@@ -184,7 +184,7 @@
 	}else{document.documentElement.style.setProperty('--rows','repeat(2,1fr)')}
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
-    	const query=e.target.value.toLowerCase().trim();
+    	query=e.target.value.toLowerCase().trim();
     	update(query)
 	})};
 	cacheProjects()
