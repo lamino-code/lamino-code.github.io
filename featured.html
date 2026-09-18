@@ -91,7 +91,8 @@
 	let cache={}
 	featured=[1380826278,980280062,1180951523,1316859114,1047970867];
 	container=document.getElementById('fe')
-	let cacheProjects=((async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}}}))()
+	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}}})
+	cacheProjects()
     update=async(q)=>{
 		container.innerHTML=""
         let rep;let json;let temp;
