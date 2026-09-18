@@ -186,7 +186,7 @@
 	}
 	if(!container.innerHTML){
 		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.width="500px";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp);
-	}else{document.documentElement.style.setProperty('--rows','repeat(1,2fr)')}
+	}else{document.documentElement.style.setProperty('--rows','repeat(2,1fr)')}
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
     	const query=e.target.value.toLowerCase().trim();
