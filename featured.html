@@ -32,7 +32,7 @@
 		.card{
 			border-radius:10px;
             border:4px solid orange;
-			background:rgba(245,170,40,0.7);
+			background:linear-gradient(70deg,rgba(1,1,1,0.8) 30%,rgba(245,170,40,0.7) 80%);
             justify-content:center;
 	    	align-items:center;
 			display:grid;
@@ -54,6 +54,7 @@
         border:4px solid orange;
 		border-radius:10px;
 		display:flex;
+		gap:10px;
 		flex-direction:row;
     }
 	.j{
@@ -102,6 +103,7 @@
 			let link=document.createElement("a")
 			referenceLink=`https://scratch.mit.edu/projects/${i}`
 			link.href=referenceLink
+			link.target = "_blank"
 			card.appendChild(link)
             let c=document.createElement("img")
             c.className="project"
@@ -119,7 +121,9 @@
         data = await getData(i)
 		// AUTHOR PROFILE PICTURE
 		let linkuser=document.createElement("a")
+		linkuser.style.color=`rgb(160,130,60)`
 		linkuser.href=`https://scratch.mit.edu/users/${data?.author?.username||"placeholder"}`
+		linkuser.target = "_blank"
 		info.appendChild(linkuser)
 	    let l=document.createElement("img")
 		let image=data?.author?.profile?.images?.["90x90"]
@@ -128,17 +132,17 @@
 		// VIEWS
 		let views=document.createElement("p")
 		views.className="j"
-		views.innerText=`👁️ ${data.stats.views}`
+		views.innerText=`👁️${data.stats.views}`
 		stats.appendChild(views)
 		// LOVES
 		let loves=document.createElement("p")
 		loves.className="j"
-		loves.innerText=`❤️ ${data.stats.loves}`
+		loves.innerText=`❤️${data.stats.loves}`
 		stats.appendChild(loves)
 		// FAVOURITES
 		let favourites=document.createElement("p")
 		favourites.className="j"
-		favourites.innerText=`⭐ ${data.stats.favorites}`
+		favourites.innerText=`⭐${data.stats.favorites}`
 		stats.appendChild(favourites)
 		// LINK TO USER
 	    let f=document.createElement("a")
