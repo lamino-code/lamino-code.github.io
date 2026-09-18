@@ -88,9 +88,9 @@
     <div class='container' id="fe">
     </div>
     <script>
-    update=async()=>{
+	let cache={}
+    update=async(q)=>{
         let featured=[1380826278,980280062,1180951523,1316859114,1047970867];
-		let cache={}
         let rep;let json;let temp;
 		let container=document.getElementById('fe')
         let referenceLink;
@@ -101,7 +101,7 @@
                     return await rep.json()
                 }
             });
-        for(let i of featured){
+        for(let i of featured.filter(i=>cache[i].title.includes(q)||!cache[featured[0]])){
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
@@ -182,6 +182,11 @@
         projectauthor.appendChild(g)
         }
     }
+	search=document.getElementById("search")
+	search.addEventListener('input',(e)=>{
+    	const query=e.target.value.toLowerCase().trim();
+    	update(query)
+	});
 	update()
     </script>
 </body>
