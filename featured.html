@@ -53,10 +53,11 @@
 	    display:block;
 	    text-decoration:none;
 	    font-weight:900;
-            font-family:'Nunito',sans-serif;
-            font-size:20px;
+        font-family:'Nunito',sans-serif;
+        font-size:20px;
 	    color:orange;
 	    text-align:center;
+		margin:0;
 	}
     .k{
 	    transition:color 0.4s ease;
@@ -131,6 +132,16 @@
 		views.className="j"
 		views.innerText=`${data.stats.views} views`
 		stats.appendChild(views)
+		// LOVES
+		let loves=document.createElement("p")
+		loves.className="j"
+		loves.innerText=`${data.stats.loves} loves`
+		stats.appendChild(loves)
+		// FAVOURITES
+		let loves=document.createElement("p")
+		favourites.className="j"
+		favourites.innerText=`${data.stats.favorites} favourites`
+		stats.appendChild(favourites)
 		// LINK TO USER
 	    let f=document.createElement("a")
             f.href=referenceLink
