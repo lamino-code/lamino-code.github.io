@@ -183,13 +183,12 @@
 		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.width="500px";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp);
 	}else{document.documentElement.style.setProperty('--rows','repeat(2,1fr)')}
 	search=document.getElementById("search")
-	query=''
 	search.addEventListener('input',(e)=>{
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	})};
 	cacheProjects()
-	setTimeout(update,50,query)
+	update(String(""))
     </script>
 </body>
 </html>
