@@ -104,7 +104,7 @@
             });
         for(let i of featured){
 			if(!cache[i]){data=await getData(i);cache={...cache,[i]:data}}else{data=cache[i]}
-			if(!cache[i]||!cache[i]?.title.toLowerCase().includes(q)||!q){
+			if(!cache[i]||cache[i]?.title.toLowerCase().includes(q)||!q){
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
