@@ -128,12 +128,13 @@
 	    linkuser.appendChild(l)
 		// VIEWS
 		let views=document.createElement("p")
+		views.className="j"
 		views.text=`${data.stats.views} views`
 		stats.appendChild(views)
 		// LINK TO USER
 	    let f=document.createElement("a")
             f.href=referenceLink
-            f.text=rep.ok?data.title:`no title`
+            f.innerText=rep.ok?data.title:`no title`
 	    	f.className=`j`
             info.appendChild(f)
             let g=document.createElement("a")
