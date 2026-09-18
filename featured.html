@@ -17,6 +17,7 @@
           font-size:3vw;
           font-weight:700;
         }
+		.opacity{background:rgba(0,0,0,0.5);}
         .container{
             background:rgba(0,0,0,0.7);
             border-radius:10px;
@@ -51,7 +52,6 @@
 		flex-direction:column;
     }
 	.stats{
-        background:rgba(0,0,0,0.5);
         width:fit-content;
 		border-radius:10px;
 		display:flex;
@@ -113,21 +113,21 @@
 			prjct.appendChild(link)
 			link.style.width="300px"
             let c=document.createElement("img")
-            c.className="project"
+            c.className="project opacity"
 			c.style.width="290px"
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${i}.png`
 			link.appendChild(c)
 			// INFO
 			let info=document.createElement("div")
-			info.className="project"
+			info.className="project opacity"
 			card.appendChild(info)
 			// STATS
 			let stats=document.createElement("div")
-			stats.className="project stats"
+			stats.className="project opacity stats"
 			card.appendChild(stats)
 			// SHARED
 			let shared=document.createElement("div")
-			shared.className="project stats"
+			shared.className="project opacity stats"
 			card.appendChild(shared)
         data = await getData(i)
 		// AUTHOR PROFILE PICTURE
