@@ -80,14 +80,16 @@
 </head>
 <body>
     <div class="content">
+		<input style='font-size:20px;font-family:"Nunito",sans-serif;border-radius:10px;width:50%;height:30px;padding:5px;' type="text" id="search" placeholder="Search">
         <script src="inject.js"></script>
     <br>
     <p style='color:white' class='d'>Scratch Master's Featured Projects</p>
     <div class='container' id="fe">
     </div>
     <script>
-    (async () => {
+    async function update()=>{
         let featured=[1380826278,980280062,1180951523,1316859114,1047970867];
+		let cache={}
         let rep;let json;let temp;
 		let container=document.getElementById('fe')
         let referenceLink;
@@ -130,7 +132,7 @@
 			let shared=document.createElement("div")
 			shared.className="project opacity stats"
 			card.appendChild(shared)
-        data = await getData(i)
+		if(!cache[i]){data=await getData(i);cache={...cache,[i]:data}}else{data=cache[i]}
 		// AUTHOR PROFILE PICTURE
 		let projectauthor=document.createElement("div")
 		projectauthor.className="stats"
@@ -178,7 +180,9 @@
         g.className=`j k`
         projectauthor.appendChild(g)
         }
-    })()
+    }
+	update()
+	
     </script>
 </body>
 </html>
