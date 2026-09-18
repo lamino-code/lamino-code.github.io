@@ -173,13 +173,13 @@
 		// LINK TO USER
 	    let f=document.createElement("a")
         f.href=referenceLink
-        f.innerText=rep.ok?data.title:`Title unavailable`
+        f.innerText=data?.title:`Title unavailable`
     	f.className=`j`
 		prjct.appendChild(f)
         let g=document.createElement("a")
         g.href=`https://scratch.mit.edu/users/${data.author.username}`
         g.target = "_blank"
-        g.text=rep.ok?data.author.username:`author not found`
+        g.text=data?.author?.username:`author not found`
         g.className=`j k`
         projectauthor.appendChild(g)
         }}
