@@ -97,7 +97,7 @@
 		container.innerHTML=""
 		let json;let temp;
         let referenceLink;
-        for(let i of featured){
+        for(let i of featured.sort((a,b)=>b-a){
 			data=cache[i]
 			if(data?.title.toLowerCase().includes(q)||(data?.author?.username.toLowerCase().includes(q)||!q){
 			// PROJECT CARD
