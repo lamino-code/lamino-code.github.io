@@ -91,6 +91,7 @@
 	let cache={}
 	featured=[1380826278,980280062,1180951523,1316859114,1047970867];
 	container=document.getElementById('fe')
+	let getData=(async function(id){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${id}/`)if(r.ok){return await rep.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}}})
 	cacheProjects()
     update=async(q)=>{
@@ -98,12 +99,6 @@
         let rep;let json;let temp;
         let referenceLink;
         let data;
-        let getData = (async function(id){
-            rep = await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${id}/`)
-                if(rep.ok){
-                    return await rep.json()
-                }
-            });
 		let fragment=document.createDocumentFragment();
         for(let i of featured){
 			data=cache[i]
