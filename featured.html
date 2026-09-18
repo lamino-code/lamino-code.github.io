@@ -68,7 +68,7 @@
 	    text-align:center;
 		margin:0;
 	}
-	.m{width:100px;}
+	.m{width:180px;font-size:30px;}
 	a{text-decoration:none;}
     </style>
     <meta charset="UTF-8">
@@ -152,6 +152,7 @@
 	    	f.className=`j`
             info.appendChild(f)
             let g=document.createElement("a")
+			g.style.color="white"
             g.href=`https://scratch.mit.edu/users/${data.author.username}`
             g.target = "_blank"
             g.text=rep.ok?data.author.username:`author not found`
