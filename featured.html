@@ -104,7 +104,7 @@
             });
         for(let i of featured){
 			if(!cache[i]){data=await getData(i);cache={...cache,[i]:data}}else{data=cache[i]}
-			if(!cache[i]||!cache[i]?.title.toLowerCase().includes(q))continue
+			if(!cache[i]||!cache[i]?.title.toLowerCase().includes(q)){
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
@@ -182,14 +182,14 @@
         g.text=rep.ok?data.author.username:`author not found`
         g.className=`j k`
         projectauthor.appendChild(g)
-        }
+        }}
     }
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
     	const query=e.target.value.toLowerCase().trim();
     	update(query)
 	});
-	update()
+	update('')
     </script>
 </body>
 </html>
