@@ -81,6 +81,7 @@
 </head>
 <body>
 	<p style='color:white' class='d'>Scratch Master's Featured Projects</p>
+	<p style='color:white' class='d'>Notes: Clicking a project redirects to the Turbowarp version.</p>
     <div class="content">
         <script src="inject.js"></script>
 		<input style='font-size:70px;font-family:"Nunito",sans-serif;border-radius:45px;width:80%;height:90px;padding:5px;' type="text" id="search" placeholder="Search">
@@ -109,7 +110,7 @@
 			prjct.className="project"
 			card.appendChild(prjct)
 			let link=document.createElement("a")
-			referenceLink=`https://scratch.mit.edu/projects/${i}`
+			referenceLink=`https://turbowarp.org/${i}`
 			link.href=referenceLink
 			link.target = "_blank"
 			prjct.appendChild(link)
