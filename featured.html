@@ -185,8 +185,8 @@
         g.className=`j k`
         projectauthor.appendChild(g)
         }
-		if(empty=1){emp=document.createElement("p");emp.innerText="No projects found";container.appendChild(emp)}
 	}
+	if(empty=1){emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.innerText="No projects found";container.appendChild(emp)}
     }
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
