@@ -102,9 +102,11 @@
                     return await rep.json()
                 }
             });
+		empty=1
         for(let i of featured){
 			if(!cache[i]){data=await getData(i);cache={...cache,[i]:data}}else{data=cache[i]}
 			if(!cache[i]||cache[i]?.title.toLowerCase().includes(q)||!q){
+			empty=0
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
@@ -182,7 +184,9 @@
         g.text=data?.author?.username||`author not found`
         g.className=`j k`
         projectauthor.appendChild(g)
-        }}
+        }
+		if(empty=1){emp=document.createElement("p");emp.innerText="No projects found";container.appendChild(emp)}
+	}
     }
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
