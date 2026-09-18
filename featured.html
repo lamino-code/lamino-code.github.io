@@ -91,22 +91,20 @@
 	let cache={}
 	featured=[1380826278,980280062,1180951523,1316859114,1047970867];
 	container=document.getElementById('fe')
-	let getData=(async function(id){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${id}/`);if(r.ok){return await r.json()}});
+	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}}})
 	cacheProjects()
     update=async(q)=>{
 		container.innerHTML=""
 		let json;let temp;
         let referenceLink;
-        let data;
-		let fragment=document.createDocumentFragment();
         for(let i of featured){
 			data=cache[i]
 			if(data?.title.toLowerCase().includes(q)||!q){
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
-			fragment.appendChild(card)
+			container.appendChild(card)
 			// PROJECT IMAGE
 			let prjct=document.createElement("div")
 			prjct.className="project"
@@ -166,7 +164,7 @@
 		// CREATION DATE
 		let createdate=document.createElement("p")
 		createdate.className="j dt"
-		createdate.innerText=data.history.created?`Created ${new Date(data.history.created).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}`:`Date unknown`
+		createdate.innerText=data?.history.created?`Created ${new Date(data?.history.created).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}`:`Date unknown`
 		shared.appendChild(createdate)
 		// LINK TO USER
 	    let f=document.createElement("a")
@@ -175,16 +173,15 @@
     	f.className=`j`
 		prjct.appendChild(f)
         let g=document.createElement("a")
-        g.href=`https://scratch.mit.edu/users/${data.author.username}`
+        g.href=`https://scratch.mit.edu/users/${data?.author.username}`
         g.target = "_blank"
         g.text=data?.author?.username||`author not found`
         g.className=`j k`
         projectauthor.appendChild(g)
         }
 	}
-	container.appendChild(fragment)
 	if(!container.innerHTML){
-		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.width="500px";emp.style.color="white";emp.innerText="No projects found";fragment.appendChild(emp);
+		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.width="500px";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp);
 	}else{document.documentElement.style.setProperty('--rows','repeat(2,1fr)')}
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
