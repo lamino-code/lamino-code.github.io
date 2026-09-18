@@ -82,7 +82,7 @@
 <body>
     <div class="content">
         <script src="inject.js"></script>
-		<input style='font-size:80px;font-family:"Nunito",sans-serif;border-radius:45px;width:80%;height:90px;padding:5px;' type="text" id="search" placeholder="Search">
+		<input style='font-size:70px;font-family:"Nunito",sans-serif;border-radius:45px;width:80%;height:90px;padding:5px;' type="text" id="search" placeholder="Search">
     <br>
     <p style='color:white' class='d'>Scratch Master's Featured Projects</p>
     <div class='container' id="fe">
@@ -90,7 +90,7 @@
     <script>
 	let cache={}
 	let container=document.getElementById('fe')
-	for(i of featured){data=await getData(i);cache={...cache,[i]:data}}
+	let cacheProjects=((async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}}}))()
     update=async(q)=>{
 		container.innerHTML=""
         let featured=[1380826278,980280062,1180951523,1316859114,1047970867];
