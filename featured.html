@@ -139,6 +139,7 @@
 	    let l=document.createElement("img")
 		let image=data?.author?.profile?.images?.["90x90"]
 	    if(image){l.src=image;l.width=200}
+		l.style.borderRadius="20px"
 	    linkuser.appendChild(l)
 		// VIEWS
 		let views=document.createElement("p")
