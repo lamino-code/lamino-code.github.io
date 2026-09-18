@@ -89,7 +89,7 @@
     </div>
     <script>
 	let cache={}
-	featured=[1380826278,980280062,1180951523,1316859114,1047970867];
+	featured=[1380826278,980280062,1180951523,1316859114,1047970867,1351101699];
 	container=document.getElementById('fe')
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}}})
