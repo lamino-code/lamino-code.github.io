@@ -117,8 +117,7 @@
         data = await getData(i)
 		// AUTHOR PROFILE PICTURE
 	    let l=document.createElement("img")
-	    if(data?.author?.profile?.images["90x90"]){l.src=data.author.profile.images["90x90"]}
-		l.width="200px"
+	    if(data?.author?.profile?.images.["90x90"]){l.src=data.author.profile.images["90x90"];l.style.width="200px"}
 	    info.appendChild(l)
 		// LINK TO USER
 	    let f=document.createElement("a")
