@@ -103,11 +103,14 @@
 			card.className="card"
 			container.appendChild(card)
 			// PROJECT IMAGE
+			let prjct=document.createElement("div")
+			prjct.className="project"
+			card.appendChild(prjct)
 			let link=document.createElement("a")
 			referenceLink=`https://scratch.mit.edu/projects/${i}`
 			link.href=referenceLink
 			link.target = "_blank"
-			card.appendChild(link)
+			prjct.appendChild(link)
 			link.style.width="300px"
             let c=document.createElement("img")
             c.className="project"
@@ -129,7 +132,6 @@
         data = await getData(i)
 		// AUTHOR PROFILE PICTURE
 		let linkuser=document.createElement("a")
-		linkuser.style.color=`rgb(160,130,60)`
 		linkuser.href=`https://scratch.mit.edu/users/${data?.author?.username||"placeholder"}`
 		linkuser.target = "_blank"
 		info.appendChild(linkuser)
@@ -156,21 +158,20 @@
 		// CREATION DATE
 		let createdate=document.createElement("p")
 		createdate.className="j dt"
-		createdate.innerText=data.history.created?`Created ${String(new Date(data.history.created).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}))}`:`Date unknown`
+		createdate.innerText=data.history.created?`Created ${new Date(data.history.created).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}`:`Date unknown`
 		shared.appendChild(createdate)
 		// LINK TO USER
 	    let f=document.createElement("a")
-            f.href=referenceLink
-            f.innerText=rep.ok?data.title:`no title`
-	    	f.className=`j`
-            info.appendChild(f)
-            let g=document.createElement("a")
-			g.style.color="rgb(240,200,70)"
-            g.href=`https://scratch.mit.edu/users/${data.author.username}`
-            g.target = "_blank"
-            g.text=rep.ok?data.author.username:`author not found`
-            g.className=`j k`
-            info.appendChild(g)
+        f.href=referenceLink
+        f.innerText=rep.ok?data.title:`no title`
+    	f.className=`j`
+		prjct.appendChild(f)
+        let g=document.createElement("a")
+        g.href=`https://scratch.mit.edu/users/${data.author.username}`
+        g.target = "_blank"
+        g.text=rep.ok?data.author.username:`author not found`
+        g.className=`j k`
+        info.appendChild(g)
         }
     })()
     </script>
