@@ -90,6 +90,7 @@
     <script>
 	let cache={}
 	let container=document.getElementById('fe')
+	for(i of featured){data=await getData(i);cache={...cache,[i]:data}}
     update=async(q)=>{
 		container.innerHTML=""
         let featured=[1380826278,980280062,1180951523,1316859114,1047970867];
@@ -104,8 +105,8 @@
             });
 		let fragment=document.createDocumentFragment();
         for(let i of featured){
-			if(!cache[i]){data=await getData(i);cache={...cache,[i]:data}}else{data=cache[i]}
-			if(!cache[i]||cache[i]?.title.toLowerCase().includes(q)||!q){
+			data=cache[i]
+			if(data?.title.toLowerCase().includes(q)||!q){
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
