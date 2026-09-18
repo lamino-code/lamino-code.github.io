@@ -89,11 +89,11 @@
     </div>
     <script>
 	let cache={}
-	let container=document.getElementById('fe')
+	featured=[1380826278,980280062,1180951523,1316859114,1047970867];
+	container=document.getElementById('fe')
 	let cacheProjects=((async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}}}))()
     update=async(q)=>{
 		container.innerHTML=""
-        let featured=[1380826278,980280062,1180951523,1316859114,1047970867];
         let rep;let json;let temp;
         let referenceLink;
         let data;
@@ -150,7 +150,7 @@
 		// DESCRIPTION
 		let desc=document.createElement("p")
 		desc.className="desc j"
-		desc.innerText=data.description||data.instructions||`No description available`
+		desc.innerText=data?.description||data?.instructions||`No description available`
 		info.appendChild(desc)
 		// VIEWS
 		let views=document.createElement("p")
