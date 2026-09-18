@@ -29,6 +29,14 @@
             gap:20px;
 	    	padding:20px;
         }
+		.card{
+            background:white;
+            justify-content:center;
+	    	align-items:center;
+            grid-template-columns:repeat(2,min-content);
+            gap:20px;
+	    	padding:20px;
+        }
 	.project:hover{transform:scale(1.1);border:6px solid white;}
 	.j:hover{transform:scale(1.1);color:white;}
         .project{
@@ -75,6 +83,7 @@
     (async () => {
         let featured=[1180951523,1316859114,1370340557,632326191];
         let rep;let json;let temp;
+		let container=document.getElementById('fe')
         let referenceLink;
         let data;
         let getData = (async function(id){
@@ -84,34 +93,45 @@
                 }
             });
         for(let i of featured){
+			// PROJECT CARD
+			let card=document.createElement("div")
+			card.className="card"
+			container.appendChild(card)
+			// PROJECT IMAGE
             referenceLink = `https://scratch.mit.edu/projects/${i}`
             let c=document.createElement("img")
             c.className="project"
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${i}.png`
+			card.appendChild(c)
+			// PROJECT LINK
             let e=document.createElement("a")
             e.href=referenceLink
-            document.getElementById('fe').appendChild(e)
-            e.appendChild(c)
+            container.appendChild(e)
+			// INFO
+			let info=document.createElement("div")
+			info.className="project"
+			card.appendChild(info)
         data = await getData(i)
+		// AUTHOR PROFILE PICTURE
 	    let l=document.createElement("img")
-	    if(data.author.profile.images["90x90"]){l.src=data.author.profile.images["90x90"]}
-	    e.appendChild(l)
+	    if(data?.author?.profile?.images["90x90"]){l.src=data.author.profile.images["90x90"]}
+	    info.appendChild(l)
+		// LINK TO USER
 	    let f=document.createElement("a")
             f.href=referenceLink
             temp = `${i}`
             if(rep.ok)temp = `${data.title}`
             f.text=temp
-	    f.className=`j`
-            document.getElementById('fe').appendChild(f)
-            e.appendChild(f)
-            let g = document.createElement("a")
+	    	f.className=`j`
+            info.appendChild(f)
+            let g=document.createElement("a")
             g.href=`https://scratch.mit.edu/users/${data.author.username}`
             g.target = "_blank"
-            temp = 'by nobody'
-            if(rep.ok)temp = `${data.author.username}`
-            g.text = temp
-            g.className = `j k`
-            e.appendChild(g)
+            temp='author not found'
+            if(rep.ok)temp=`${data.author.username}`
+            g.text=temp
+            g.className=`j k`
+            info.appendChild(g)
         }
     })()
     </script>
