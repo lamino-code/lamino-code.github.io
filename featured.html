@@ -104,7 +104,7 @@
             referenceLink = `https://scratch.mit.edu/projects/${i}`
             let c=document.createElement("img")
             c.className="project"
-			c.style.height="500px"
+			c.style.width="400px"
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${i}.png`
 			card.appendChild(c)
 			// PROJECT LINK
@@ -118,7 +118,7 @@
         data = await getData(i)
 		// AUTHOR PROFILE PICTURE
 		let linkuser=document.createElement("a")
-		linkuser.href=`https://scratch.mit.edu/users/${data.author.username}`
+		linkuser.href=`https://scratch.mit.edu/users/${data?.author?.username||"placeholder"}`
 		info.appendChild(linkuser)
 	    let l=document.createElement("img")
 		let image=data?.author?.profile?.images?.["90x90"]
