@@ -93,7 +93,6 @@
 	container=document.getElementById('fe')
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}}})
-	cacheProjects()
     update=async(q)=>{
 		container.innerHTML=""
 		let json;let temp;
@@ -188,6 +187,7 @@
     	const query=e.target.value.toLowerCase().trim();
     	update(query)
 	})};
+	cacheProjects()
 	update('')
     </script>
 </body>
