@@ -46,8 +46,7 @@
         width:200px;
         border:4px solid orange;
 		border-radius:10px;
-		display:flex;
-		flex-direction:column;
+		grid-template-columns:repeat(2,1fr);
     }
 	.j{
 	    transition:color 0.4s ease;
@@ -114,6 +113,10 @@
 			let info=document.createElement("div")
 			info.className="project"
 			card.appendChild(info)
+			// STATS
+			let stats=document.createElement("div")
+			stats.className="project"
+			card.appendChild(stats)
         data = await getData(i)
 		// AUTHOR PROFILE PICTURE
 		let linkuser=document.createElement("a")
@@ -123,20 +126,19 @@
 		let image=data?.author?.profile?.images?.["90x90"]
 	    if(image){l.src=image;l.width=200}
 	    linkuser.appendChild(l)
+		// VIEWS
+		let views=document.createElement("p")
+		views.text=`${data.stats.views} views`
 		// LINK TO USER
 	    let f=document.createElement("a")
             f.href=referenceLink
-            temp = `${i}`
-            if(rep.ok)temp = `${data.title}`
-            f.text=temp
+            f.text=rep.ok?data.title:`no title`
 	    	f.className=`j`
             info.appendChild(f)
             let g=document.createElement("a")
             g.href=`https://scratch.mit.edu/users/${data.author.username}`
             g.target = "_blank"
-            temp='author not found'
-            if(rep.ok)temp=`${data.author.username}`
-            g.text=temp
+            g.text=rep.ok?data.author.username:`author not found`
             g.className=`j k`
             info.appendChild(g)
         }
