@@ -24,7 +24,7 @@
             justify-content:center;
 	    	align-items:center;
             display:grid;
-            grid-template-columns:repeat(2,1fr);
+            grid-template-columns:var(--rows,repeat(2,1fr));
             gap:10px;
 	    	padding:10px;
         }
@@ -184,8 +184,8 @@
         projectauthor.appendChild(g)
         }
 	}
-	if(!container.innerHTML){emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.width:"500px";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp)}
-    }
+	if(!container.innerHTML){document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.width:"500px";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp)}
+    }else{document.documentElement.style.setProperty('--rows','repeat(1,2fr)')}
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
     	const query=e.target.value.toLowerCase().trim();
