@@ -25,9 +25,9 @@
             justify-content:center;
 	    	align-items:center;
             display:inline-grid;
-            grid-template-columns:repeat(4,min-content);
+            grid-template-columns:repeat(2,min-content);
             gap:20px;
-	    	padding:50px;
+	    	padding:20px;
         }
 	.project:hover{transform:scale(1.1);border:6px solid white;}
 	.j:hover{transform:scale(1.1);color:white;}
@@ -93,6 +93,9 @@
             document.getElementById('fe').appendChild(e)
             e.appendChild(c)
         data = await getData(i)
+	    let l=document.createElement("img")
+	    if(data.author.profile.images["90x90"]){l.src=data.author.profile.images["90x90"]}
+	    e.appendChild(l)
 	    let f=document.createElement("a")
             f.href=referenceLink
             temp = `${i}`
@@ -101,8 +104,8 @@
 	    f.className=`j`
             document.getElementById('fe').appendChild(f)
             e.appendChild(f)
-        let g = document.createElement("a")
-            g.href = `https://scratch.mit.edu/users/${data.author.username}`
+            let g = document.createElement("a")
+            g.href=`https://scratch.mit.edu/users/${data.author.username}`
             g.target = "_blank"
             temp = 'by nobody'
             if(rep.ok)temp = `${data.author.username}`
