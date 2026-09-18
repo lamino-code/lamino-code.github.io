@@ -78,7 +78,7 @@
         let referenceLink;
         let data;
         let getData = (async function(id){
-            rep = await fetch(`https://api.scratch.mit.edu/projects/${id}/`)
+            rep = await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${id}/`)
                 if(rep.ok){
                     return await rep.json()
                 }
