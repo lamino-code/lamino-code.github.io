@@ -187,8 +187,7 @@
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	})};
-	(async()=>{await cacheProjects()})();
-	setTimeout(update,100,"")
+	(async()=>{await cacheProjects();update("")})();
     </script>
 </body>
 </html>
