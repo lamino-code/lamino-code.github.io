@@ -131,14 +131,17 @@
 			card.appendChild(shared)
         data = await getData(i)
 		// AUTHOR PROFILE PICTURE
+		let projectauthor=document.createElement("div")
+		projectauthor.className="stats"
+		info.appendChild(projectauthor)
 		let linkuser=document.createElement("a")
 		linkuser.href=`https://scratch.mit.edu/users/${data?.author?.username||"placeholder"}`
 		linkuser.target = "_blank"
-		info.appendChild(linkuser)
+		projectauthor.appendChild(linkuser)
 	    let l=document.createElement("img")
 		let image=data?.author?.profile?.images?.["90x90"]
-	    if(image){l.src=image;l.width=240}
-		l.style.borderRadius="10px"
+	    if(image){l.src=image;l.width=40}
+		l.style.borderRadius="5px"
 	    linkuser.appendChild(l)
 		// VIEWS
 		let views=document.createElement("p")
