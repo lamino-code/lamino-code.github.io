@@ -89,10 +89,11 @@
     </div>
     <script>
 	let cache={}
+	let container=document.getElementById('fe')
     update=async(q)=>{
+		container.innerHTML=""
         let featured=[1380826278,980280062,1180951523,1316859114,1047970867];
         let rep;let json;let temp;
-		let container=document.getElementById('fe')
         let referenceLink;
         let data;
         let getData = (async function(id){
@@ -101,7 +102,8 @@
                     return await rep.json()
                 }
             });
-        for(let i of featured.filter(i=>cache[i].title.includes(q)||!cache[featured[0]])){
+        for(let i of featured){
+			if(!cache[i]||!cache[i].title.toLowerCase().includes(q))continue
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
