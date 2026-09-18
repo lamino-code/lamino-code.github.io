@@ -68,6 +68,7 @@
 	    text-align:center;
 		margin:0;
 	}
+	.m{width:100px;}
 	a{text-decoration:none;}
     </style>
     <meta charset="UTF-8">
@@ -131,17 +132,17 @@
 	    linkuser.appendChild(l)
 		// VIEWS
 		let views=document.createElement("p")
-		views.className="j"
+		views.className="j m"
 		views.innerText=`👁️${data.stats.views}`
 		stats.appendChild(views)
 		// LOVES
 		let loves=document.createElement("p")
-		loves.className="j"
+		loves.className="j m"
 		loves.innerText=`❤️${data.stats.loves}`
 		stats.appendChild(loves)
 		// FAVOURITES
 		let favourites=document.createElement("p")
-		favourites.className="j"
+		favourites.className="j m"
 		favourites.innerText=`⭐${data.stats.favorites}`
 		stats.appendChild(favourites)
 		// LINK TO USER
