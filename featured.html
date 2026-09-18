@@ -184,7 +184,7 @@
         projectauthor.appendChild(g)
         }
 	}
-	if(!container.innerHTML){emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.color="white";emp.innerText="No projects found";container.appendChild(emp)}
+	if(!container.innerHTML){emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp)}
     }
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
