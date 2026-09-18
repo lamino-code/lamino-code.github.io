@@ -82,7 +82,7 @@
 <body>
     <div class="content">
         <script src="inject.js"></script>
-		<input style='font-size:20px;font-family:"Nunito",sans-serif;border-radius:45px;width:80%;height:90px;padding:5px;' type="text" id="search" placeholder="Search">
+		<input style='font-size:80px;font-family:"Nunito",sans-serif;border-radius:45px;width:80%;height:90px;padding:5px;' type="text" id="search" placeholder="Search">
     <br>
     <p style='color:white' class='d'>Scratch Master's Featured Projects</p>
     <div class='container' id="fe">
@@ -102,13 +102,14 @@
                     return await rep.json()
                 }
             });
+		let fragment=document.createDocumentFragment();
         for(let i of featured){
 			if(!cache[i]){data=await getData(i);cache={...cache,[i]:data}}else{data=cache[i]}
 			if(!cache[i]||cache[i]?.title.toLowerCase().includes(q)||!q){
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
-			container.appendChild(card)
+			fragment.appendChild(card)
 			// PROJECT IMAGE
 			let prjct=document.createElement("div")
 			prjct.className="project"
@@ -183,9 +184,10 @@
         g.className=`j k`
         projectauthor.appendChild(g)
         }
+		container.appendChild(fragment)
 	}
 	if(!container.innerHTML){
-		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.width="500px";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp);
+		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.width="500px";emp.style.color="white";emp.innerText="No projects found";fragment.appendChild(emp);
 	}else{document.documentElement.style.setProperty('--rows','repeat(2,1fr)')}
 	search=document.getElementById("search")
 	search.addEventListener('input',(e)=>{
