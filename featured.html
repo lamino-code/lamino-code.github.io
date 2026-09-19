@@ -110,6 +110,10 @@
 			<option value="ff">Most Popular</option>
     		<option value="lp">Least Popular</option>
 			<option value="best">Best</option>
+			<option value="mf">Most Favourites</option>
+    		<option value="lf">Least Favourites</option>
+			<option value="ml">Most Loves</option>
+    		<option value="ll">Least Loves</option>
 		</select>
 		</div>
     <br>
@@ -126,7 +130,7 @@
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let getAuth=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/users/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
-	let cacheAuth=(async function(){for(i of featured.map(j=>cache[j]?.author?.username)){data=await getAuth(i);ath={...ath,[data.username]:data}};localStorage.setItem('authors',JSON.stringify(ath));})
+	let cacheAuth=(async function(){for(i of featured.map(j=>cache[j].author.username)){data=await getAuth(i);ath={...ath,[data.username]:data}};localStorage.setItem('authors',JSON.stringify(ath));})
 	parseDate=a=>Date.parse(cache[a]?.history?.created)||0
 	views=a=>cache[a]?.stats?.views||0
 	loves=a=>cache[a]?.stats?.loves||0
@@ -221,7 +225,7 @@
        	authdiv.appendChild(g)
 		// COUNTRY
 		let country=document.createElement("p")
-        country.innerText=ath[data?.author.username]?.profile.country||`Country unknown`
+        country.innerText=ath[data.author.username]?.profile.country||`Country unknown`
         country.className=`j k`
        	authdiv.appendChild(country)
         }
@@ -250,6 +254,18 @@
 		}
 		if(d==="best"){
 			return c.sort((a,b)=>(views(a)/loves(a))-(views(b)/loves(b)))
+		}
+		if(d==="mf"){
+			return c.sort((a,b)=>faves(b)-faves(a)))
+		}
+		if(d==="lf"){
+			return c.sort((a,b)=>faves(a)-faves(b)))
+		}
+		if(d==="ml"){
+			return c.sort((a,b)=>loves(b)-loves(a)))
+		}
+		if(d==="ll"){
+			return c.sort((a,b)=>loves(a)-loves(b)))
 		}
 	}
 	let srt=document.getElementById("sortbutton");
