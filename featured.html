@@ -129,8 +129,8 @@
 	document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="7vw";emp.style.textAlign="center";emp.style.width="60vw";emp.style.color="white";emp.innerText="Loading...";container.appendChild(emp);
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let getAuth=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/users/${i}/`);if(r.ok){return await r.json()}});
-	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
-	let cacheAuth=(async function(){for(i of featured.map(j=>cache[j].author.username)){data=await getAuth(i);ath={...ath,[data.username]:data}};localStorage.setItem('authors',JSON.stringify(ath));})
+	let cacheProjects=(async function(){for(i of featured){data=await getData(i);progress.value++;cache={...cache,[i]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
+	let cacheAuth=(async function(){for(i of featured.map(j=>cache[j].author.username)){data=await getAuth(i);progress.value++;ath={...ath,[data.username]:data}};localStorage.setItem('authors',JSON.stringify(ath));})
 	parseDate=a=>Date.parse(cache[a]?.history?.created)||0
 	views=a=>cache[a]?.stats?.views||0
 	loves=a=>cache[a]?.stats?.loves||0
@@ -231,7 +231,19 @@
         }
 	}
 	if(!container.innerHTML){
-		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="7vw";emp.style.textAlign="center";emp.style.width="60vw";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp);
+		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');
+		emp=document.createElement("p");
+		emp.style.fontFamily=`"Nunito",sans-serif`;
+		emp.style.fontSize="7vw";
+		emp.style.textAlign="center";
+		emp.style.width="60vw";
+		emp.style.color="white";
+		emp.innerText="No projects found";
+		container.appendChild(emp);
+		progress=document.createElement("progress");
+		progress.max=16
+		progress.value=0;
+		container.appendChild(progress);
 	}else{document.documentElement.style.setProperty('--rows','repeat(2,1fr)')}
 	}
 	search=document.getElementById("search")
