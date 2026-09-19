@@ -125,7 +125,7 @@
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let getAuth=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/users/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
-	let cacheAuth=(async function(){for(i of featured.map(j=>cache[j].author.username)){data=await getAuth(i);ath={...ath,[i?.author?.username]:data}};localStorage.setItem('authors',JSON.stringify(ath));})
+	let cacheAuth=(async function(){for(i of featured.map(j=>cache[j].author.username)){data=await getAuth(i);ath={...ath,[data.username]:data}};localStorage.setItem('authors',JSON.stringify(ath));})
 	parseDate=a=>Date.parse(cache[a]?.history?.created)||0
 	views=a=>cache[a]?.stats?.views||0
 	query=''
