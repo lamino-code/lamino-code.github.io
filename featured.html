@@ -99,7 +99,7 @@
 	container=document.getElementById('fe')
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
-	parseDate=a=>Date.parse(cache[a]?.history?created||0)
+	parseDate=a=>Date.parse(cache[a]?.history?.created||0)
     update=async(q)=>{
 		container.innerHTML=""
 		let json;let temp;
@@ -196,7 +196,7 @@
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	});
-	sortFeatured=(c,b)=>{if(b="dateDescending"){return c.sort((a,b)=>parseDate(b)-parseDate(a))}}
+	sortFeatured=(c,d)=>{if(d="dateDescending"){return c.sort((a,b)=>parseDate(b)-parseDate(a))}}
 	(async()=>{
 		if(!tmp||Object.keys(cache).length==0||Number(localStorage.getItem("refresh"))<Date.now()-600000){
 			cache={};await cacheProjects();localStorage.setItem("refresh",Date.now())
