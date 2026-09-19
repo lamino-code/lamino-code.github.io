@@ -52,6 +52,14 @@
 		display:inline-flex;
 		flex-direction:column;
     }
+	.author{
+        width:5vw;
+		align-items:center;
+		justify-content:center;
+		gap:0.6vw;
+		display:flex;
+		flex-direction:column;
+    }
 	.stats{
         width:fit-content;
 		border-radius:0.6vw;
@@ -109,10 +117,13 @@
     <script>
 	let tmp=localStorage.getItem('featured')
 	let cache=tmp?JSON.parse(tmp):{}
-	featured=[1380826278,980280062,1180951523,1316859114,1047970867,1351101699];
+	featured=[1380826278,980280062,1180951523,1316859114,1047970867];
 	container=document.getElementById('fe')
+	document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="7vw";emp.style.textAlign="center";emp.style.width="60vw";emp.style.color="white";emp.innerText="Loading...";container.appendChild(emp);
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
+	let getAuth=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/users/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
+	let cacheAuth=(async function(){for(i of cache){data=await getAuth(i);cache={...cache,[i?.author?.username]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
 	parseDate=a=>Date.parse(cache[a]?.history?.created)||0
 	views=a=>cache[a]?.stats?.views||0
 	query=''
@@ -195,12 +206,19 @@
         f.innerText=data?.title||`Title unavailable`
     	f.className=`j`
 		prjct.appendChild(f)
+		let authdiv=document.createElement("div")
+		projectauthor.appendChild(authdiv)
         let g=document.createElement("a")
         g.href=`https://scratch.mit.edu/users/${data?.author.username}`
         g.target = "_blank"
         g.text=data?.author?.username||`author not found`
         g.className=`j k`
-        projectauthor.appendChild(g)
+       	authdiv.appendChild(g)
+		// COUNTRY
+		let country=document.createElement("p")
+        g.text=data[data?.author.username].profile.country||`Country unknown`
+        g.className=`j k`
+       	authdiv.appendChild(g)
         }
 	}
 	if(!container.innerHTML){
@@ -232,7 +250,7 @@
 	});
 	(async()=>{
 		if(!tmp||Object.keys(cache).length==0||Number(localStorage.getItem("refresh"))<Date.now()-600000){
-			cache={};await cacheProjects();localStorage.setItem("refresh",Date.now())
+			cache={};await cacheProjects();await cacheAuth();localStorage.setItem("refresh",Date.now())
 		};update("")})();
     </script>
 </body>
