@@ -89,7 +89,8 @@
     <div class='container' id="fe">
     </div>
     <script>
-	let cache=Object(localStorage.getItem('featured')||{})
+	let tmp=localStorage.getItem('featured')
+	let cache=tmp?JSON.parse(tmp):{}
 	featured=[1380826278,980280062,1180951523,1316859114,1047970867,1351101699];
 	container=document.getElementById('fe')
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
@@ -189,7 +190,7 @@
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	});
-	(async()=>{if(!cache){await cacheProjects()};update("")})();
+	(async()=>{if(Object.keys(tmp).length===0){await cacheProjects()};update("")})();
     </script>
 </body>
 </html>
