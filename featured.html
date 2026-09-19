@@ -140,7 +140,7 @@
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let getAuth=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/users/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);progress.value++;cache={...cache,[i]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
-	let cacheAuth=(async function(){for(i of featured.map(j=>cache[j].author.username)){data=await getAuth(i);progress.value++;ath={...ath,[data.username]:data}};localStorage.setItem('authors',JSON.stringify(ath));})
+	let cacheAuth=(async function(){for(i of featured.map(j=>cache[j]?.author.username)){data=await getAuth(i);progress.value++;ath={...ath,[data?.username]:data}};localStorage.setItem('authors',JSON.stringify(ath));})
 	parseDate=a=>Date.parse(cache[a]?.history?.created)||0
 	views=a=>cache[a]?.stats?.views||0
 	loves=a=>cache[a]?.stats?.loves||0
@@ -152,7 +152,7 @@
         let referenceLink;
         for(let i of sortFeatured(featured,srt.value)){
 			data=cache[i]
-			if(data?.title.toLowerCase().includes(q)||data?.author?.username.toLowerCase().includes(q)||ath[data?.author?.username].profile.country.toLowerCase().includes(q)||!q){
+			if(data?.title.toLowerCase().includes(q)||data?.author?.username.toLowerCase().includes(q)||ath[data?.author?.username]?.profile.country.toLowerCase().includes(q)||!q){
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
@@ -237,7 +237,7 @@
        	authdiv.appendChild(g)
 		// COUNTRY
 		let country=document.createElement("p")
-        country.innerText=ath[data.author.username]?.profile.country||`Country unknown`
+        country.innerText=ath[data?.author.username]?.profile.country||`Country unknown`
         country.className=`j k`
        	authdiv.appendChild(country)
         }
