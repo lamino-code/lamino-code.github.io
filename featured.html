@@ -218,7 +218,7 @@
        	authdiv.appendChild(g)
 		// COUNTRY
 		let country=document.createElement("p")
-        country.text=ath[data.author.username].profile.country
+        country.innerText=ath[data.author.username]?.profile.country:`Country unknown`
         country.className=`j k`
        	authdiv.appendChild(country)
         }
