@@ -126,7 +126,14 @@
 	let ath=tmpa?JSON.parse(tmpa):{}
 	featured=[1380826278,980280062,1180951523,1316859114,1047970867,1351101699,1381941303,1380457093];
 	container=document.getElementById('fe')
-	document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="7vw";emp.style.textAlign="center";emp.style.width="60vw";emp.style.color="white";emp.innerText="Loading...";container.appendChild(emp);
+	document.documentElement.style.setProperty('--rows','repeat(1,1fr)');
+	emp=document.createElement("p");
+	emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="7vw";emp.style.textAlign="center";emp.style.width="60vw";emp.style.color="white";emp.innerText="Loading...";
+	container.appendChild(emp);
+	progress=document.createElement("progress");
+	progress.max=16
+	progress.value=0;
+	container.appendChild(progress);
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let getAuth=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/users/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);progress.value++;cache={...cache,[i]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
@@ -240,10 +247,6 @@
 		emp.style.color="white";
 		emp.innerText="No projects found";
 		container.appendChild(emp);
-		progress=document.createElement("progress");
-		progress.max=16
-		progress.value=0;
-		container.appendChild(progress);
 	}else{document.documentElement.style.setProperty('--rows','repeat(2,1fr)')}
 	}
 	search=document.getElementById("search")
