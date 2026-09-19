@@ -142,7 +142,7 @@
         let referenceLink;
         for(let i of sortFeatured(featured,srt.value)){
 			data=cache[i]
-			if(data?.title.toLowerCase().includes(q)||data?.author?.username.toLowerCase().includes(q)||!q){
+			if(data?.title.toLowerCase().includes(q)||data?.author?.username.toLowerCase().includes(q)||ath[data?.author?.username].profile.country.toLowerCase().includes(q)||!q){
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
