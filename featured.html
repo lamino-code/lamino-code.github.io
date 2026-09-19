@@ -104,7 +104,7 @@
 		container.innerHTML=""
 		let json;let temp;
         let referenceLink;
-        for(let i of sortFeatured(featured,"dateDescending")){
+        for(let i of sortFeatured(featured,sorts[toggle])){
 			data=cache[i]
 			if(data?.title.toLowerCase().includes(q)||data?.author?.username.toLowerCase().includes(q)||!q){
 			// PROJECT CARD
@@ -196,7 +196,10 @@
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	});
-	sortFeatured=(c,d)=>{if(d==="dateDescending"){return c.sort((a,b)=>parseDate(b)-parseDate(a))}}
+	toggle=0
+	sorts=["dd","da"]
+	sort=()=>{toggle++;toggle=toggle%2;update(query)}
+	sortFeatured=(c,d)=>{if(d==="dd"){return c.sort((a,b)=>parseDate(b)-parseDate(a))};if(d==="da"){return c.sort((a,b)=>parseDate(a)-parseDate(b))}
 	(async()=>{
 		if(!tmp||Object.keys(cache).length==0||Number(localStorage.getItem("refresh"))<Date.now()-600000){
 			cache={};await cacheProjects();localStorage.setItem("refresh",Date.now())
