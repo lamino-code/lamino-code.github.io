@@ -14,7 +14,7 @@
           box-shadow:5px 10px lightgray;
           font-family:"Nunito",system-ui;
           text-align:center;
-          font-size:2vw;
+          font-size:4vw;
           font-weight:700;
         }
 		.opacity{background:rgba(0,0,0,0.5);}
@@ -166,10 +166,10 @@
 			link.href=referenceLink
 			link.target = "_blank"
 			prjct.appendChild(link)
-			link.style.width="14vw"
+			link.style.width="calc(15vw/1.1)"
             let c=document.createElement("img")
             c.className="project opacity"
-			c.style.width="14vw"
+			c.style.width="calc(15vw/1.1)"
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${i}.png`
 			link.appendChild(c)
 			// INFO
