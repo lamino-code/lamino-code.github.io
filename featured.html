@@ -120,7 +120,7 @@
 	let cache=tmp?JSON.parse(tmp):{}
 	let tmpa=localStorage.getItem('authors')
 	let ath=tmpa?JSON.parse(tmpa):{}
-	featured=[1380826278,980280062,1180951523,1316859114,1047970867,1351101699,1381941303,1381941303,1380457093];
+	featured=[1380826278,980280062,1180951523,1316859114,1047970867,1351101699,1381941303,1380457093];
 	container=document.getElementById('fe')
 	document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="7vw";emp.style.textAlign="center";emp.style.width="60vw";emp.style.color="white";emp.innerText="Loading...";container.appendChild(emp);
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
