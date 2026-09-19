@@ -87,7 +87,7 @@
 		background-position: right 0.8vw center;
 		background-size: 2vw;
 	}
-	.search{font-size:2vw;font-family:"Nunito",sans-serif;border-radius:2vw;width:30vw;height:3vw;padding:5px;}
+	.search{font-size:2vw;font-family:"Nunito",sans-serif;border-radius:2vw;width:30vw;height:3vw;padding:0.2vw;}
 	.desc{overflow-y:auto;overflow-x:hidden;height:10vw;width:15vw;}
 	.m{width:4.5vw;font-size:1vw;}
 	.dt{width:15vw;font-size:1vw;}
@@ -103,13 +103,13 @@
 		<p style='color:white' class='d'>Scratch Master's Featured Projects</p>
 		<p style='color:white' class='d'>Notes: Clicking a project redirects to the Turbowarp version.</p>
 		<div style='display:flex;flex-direction:row;'>
-		<input class="search" type="text" id="search" placeholder="Search">
+		<input class="search" style="height:2vw;" type="text" id="search" placeholder="Search">
 		<select id='sortbutton' class="search chevron">
 			<option value="dd">Newest First</option>
     		<option value="da">Oldest First</option>
 			<option value="ff">Most Popular</option>
     		<option value="lp">Least Popular</option>
-			<option value='lv'>Love/View Ratio</option>
+			<option value="best">Best</option>
 		</select>
 		</div>
     <br>
@@ -129,7 +129,8 @@
 	let cacheAuth=(async function(){for(i of featured.map(j=>cache[j].author.username)){data=await getAuth(i);ath={...ath,[data.username]:data}};localStorage.setItem('authors',JSON.stringify(ath));})
 	parseDate=a=>Date.parse(cache[a]?.history?.created)||0
 	views=a=>cache[a]?.stats?.views||0
-		lovetoview=a=>((cache[a]?.stats?.loves+cache[a]?.stats?.favorites)/2)||0
+	loves=a=>cache[a]?.stats?.loves||0
+	faves=a=>cache[a]?.stats?.favorites||0
 	query=''
     update=async(q)=>{
 		container.innerHTML=""
@@ -247,8 +248,8 @@
 		if(d==="lp"){
 			return c.sort((a,b)=>views(a)-views(b))
 		}
-		if(d==="lv"){
-			return c.sort((a,b)=>lovetoview(b)-lovetoview(a))
+		if(d==="best"){
+			return c.sort((a,b)=>(views(a)/loves(a))-(views(b)/loves(b)))
 		}
 	}
 	let srt=document.getElementById("sortbutton");
