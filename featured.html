@@ -190,7 +190,7 @@
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	});
-	(async()=>{if(!tmp||Object.keys(cache).length==0){await cacheProjects()};localStorage.setItem("refresh",Date.now());update("")})();
+	(async()=>{if(!tmp||Object.keys(cache).length==0||Number(localStorage.getItem("refresh"))<Date.now()-600000){cache="";await cacheProjects()};localStorage.setItem("refresh",Date.now());update("")})();
     </script>
 </body>
 </html>
