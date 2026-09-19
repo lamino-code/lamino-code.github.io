@@ -192,8 +192,9 @@
 		projectauthor.className="stats"
 		info.appendChild(projectauthor)
 	    let l=document.createElement("img")
-		let image=data?.author?.profile?.images?.["90x90"]
-	    if(image){l.src=image;l.style.width="2vw"}
+		l.src=data?.author?.profile?.images?.["90x90"];
+		l.style.width="2vw";
+		l.style.height="2vw"
 		l.style.borderRadius="0.4vw"
 	    projectauthor.appendChild(l)
 		// DESCRIPTION
