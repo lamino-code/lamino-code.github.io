@@ -218,9 +218,9 @@
        	authdiv.appendChild(g)
 		// COUNTRY
 		let country=document.createElement("p")
-        g.text=authorData[data?.author.username]?.profile?.country||`Country unknown`
-        g.className=`j k`
-       	authdiv.appendChild(g)
+        country.text=authorData[data?.author.username]?.profile?.country
+        country.className=`j k`
+       	authdiv.appendChild(country)
         }
 	}
 	if(!container.innerHTML){
