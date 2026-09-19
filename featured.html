@@ -26,7 +26,7 @@
             display:grid;
             grid-template-columns:var(--rows,repeat(2,1fr));
             gap:0.6vw;
-	    	padding:0.6vw;
+	    	padding:1vw;
         }
 		.card{
 			border-radius:0.8vw;
@@ -131,8 +131,10 @@
 	emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="7vw";emp.style.textAlign="center";emp.style.width="60vw";emp.style.color="white";emp.innerText="Loading...";
 	container.appendChild(emp);
 	progress=document.createElement("progress");
-	progress.max=16
+	progress.max=featured.length*2
 	progress.value=0;
+	progress.style.width="100%"
+	progress.style.height="20vw"
 	container.appendChild(progress);
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let getAuth=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/users/${i}/`);if(r.ok){return await r.json()}});
