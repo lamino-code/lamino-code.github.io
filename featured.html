@@ -7,14 +7,14 @@
 <link rel='icon' href='i.png'>
     <style>
         .d{
-          padding:2vw;
+          padding:3vw;
           border-radius:20px;
           width:70%;
           background:linear-gradient(50deg, black 0%, gray 100%);
           box-shadow:5px 10px lightgray;
           font-family:"Nunito",system-ui;
           text-align:center;
-          font-size:3vw;
+          font-size:4vw;
           font-weight:700;
         }
 		.opacity{background:rgba(0,0,0,0.5);}
@@ -25,8 +25,8 @@
 	    	align-items:center;
             display:grid;
             grid-template-columns:var(--rows,repeat(2,1fr));
-            gap:0.6vw;
-	    	padding:1vw;
+            gap:0.8vw;
+	    	padding:1.4vw;
         }
 		.card{
 			border-radius:0.8vw;
@@ -37,8 +37,8 @@
 	    	align-items:center;
 			display:grid;
             grid-template-columns:repeat(2,16vw);
-            gap:0.6vw;
-	    	padding:0.6vw;
+            gap:0.8vw;
+	    	padding:0.8vw;
         }
 	.j:hover{color:white;}
     .project{
@@ -46,9 +46,9 @@
         width:15vw;
 		align-items:center;
 		justify-content:center;
-		border-radius:0.6vw;
-		gap:0.6vw;
-		padding:0.3vw;
+		border-radius:0.8vw;
+		gap:0.8vw;
+		padding:0.4vw;
 		display:inline-flex;
 		flex-direction:column;
     }
@@ -56,15 +56,15 @@
         width:5vw;
 		align-items:center;
 		justify-content:center;
-		gap:0.6vw;
+		gap:0.8vw;
 		display:flex;
 		flex-direction:column;
     }
 	.stats{
         width:fit-content;
-		border-radius:0.6vw;
+		border-radius:0.8vw;
 		display:flex;
-		gap:0.6vw;
+		gap:0.8vw;
 		flex-direction:row;
 		align-items:center center;
     }
@@ -74,23 +74,23 @@
 	    text-decoration:none;
 	    font-weight:900;
         font-family:'Nunito',sans-serif;
-        font-size:1vw;
+        font-size:1.4vw;
 	    color:orange;
 	    text-align:center;
 		margin:0;
 	}
 	.chevron{
     	appearance: none;
-		padding-right: 3vw !important;
+		padding-right: 4vw !important;
 		background-image:url('./chevron-down.svg');
 		background-repeat:no-repeat;
 		background-position: right 0.8vw center;
-		background-size: 2vw;
+		background-size: 3vw;
 	}
-	.search{font-size:2vw;font-family:"Nunito",sans-serif;border-radius:2vw;width:30vw;height:3vw;padding:0.2vw;}
+	.search{font-size:3vw;font-family:"Nunito",sans-serif;border-radius:3vw;width:30vw;height:4vw;padding:0.3vw;}
 	.desc{overflow-y:auto;overflow-x:hidden;height:10vw;width:15vw;}
-	.m{width:4.5vw;font-size:1vw;}
-	.dt{width:15vw;font-size:1vw;}
+	.m{width:4.5vw;font-size:1.4vw;}
+	.dt{width:15vw;font-size:1.4vw;}
 	a{text-decoration:none;}
     </style>
     <meta charset="UTF-8">
@@ -103,7 +103,7 @@
 		<p style='color:white' class='d'>Scratch Master's Featured Projects</p>
 		<p style='color:white' class='d'>Notes: Clicking a project redirects to the Turbowarp version.</p>
 		<div style='display:flex;flex-direction:row;'>
-		<input class="search" style="height:2vw;" type="text" id="search" placeholder="Search">
+		<input class="search" style="height:3vw;" type="text" id="search" placeholder="Search">
 		<select id='sortbutton' class="search chevron">
 			<option value="dd">Newest First</option>
     		<option value="da">Oldest First</option>
@@ -166,10 +166,10 @@
 			link.href=referenceLink
 			link.target = "_blank"
 			prjct.appendChild(link)
-			link.style.width="13vw"
+			link.style.width="14vw"
             let c=document.createElement("img")
             c.className="project opacity"
-			c.style.width="13vw"
+			c.style.width="14vw"
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${i}.png`
 			link.appendChild(c)
 			// INFO
@@ -191,7 +191,7 @@
 	    let l=document.createElement("img")
 		let image=data?.author?.profile?.images?.["90x90"]
 	    if(image){l.src=image;l.style.width="2.25vw"}
-		l.style.borderRadius="0.3vw"
+		l.style.borderRadius="0.4vw"
 	    projectauthor.appendChild(l)
 		// DESCRIPTION
 		let desc=document.createElement("p")
