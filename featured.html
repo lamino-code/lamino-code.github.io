@@ -87,7 +87,7 @@
 		<p style='color:white' class='d'>Notes: Clicking a project redirects to the Turbowarp version.</p>
 		<div style=`display:flex;flex-direction:row;`>
 		<input style='font-size:3vw;font-family:"Nunito",sans-serif;border-radius:2vw;width:50vw;height:5vw;padding:5px;' type="text" id="search" placeholder="Search">
-		<button id="sort" onclick='sort()' style='height:5vw;width:5vw;cursor:pointer;border:none;background:none;'><img style=`height:5vw;width:5vw;` src="./sort.svg"></button>
+		<button id="sort" onclick='sort()' style='height:5vw;width:5vw;cursor:pointer;border:none;background:none;'><img style='height:5vw;width:5vw;' src='./sort.svg'></button>
 		</div>
     <br>
     <div class='container' id="fe">
@@ -196,7 +196,7 @@
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	});
-	sortFeatured=(c,d)=>{if(d="dateDescending"){return c.sort((a,b)=>parseDate(b)-parseDate(a))}}
+	sortFeatured=(c,d)=>{if(d==="dateDescending"){return c.sort((a,b)=>parseDate(b)-parseDate(a))}}
 	(async()=>{
 		if(!tmp||Object.keys(cache).length==0||Number(localStorage.getItem("refresh"))<Date.now()-600000){
 			cache={};await cacheProjects();localStorage.setItem("refresh",Date.now())
