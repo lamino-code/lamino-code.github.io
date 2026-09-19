@@ -39,7 +39,7 @@
 			display:grid;
             grid-template-columns:repeat(2,18vw);
             gap:1vw;
-	    	padding:0.5vw;
+	    	padding:0.25vw;
         }
 	.j:hover{color:white;}
     .project{
@@ -164,7 +164,6 @@
 			card.appendChild(prjct)
 			let link=document.createElement("a")
 			referenceLink=`https://turbowarp.org/${i}`
-			link.style.opacity="0"
 			link.href=referenceLink
 			link.target = "_blank"
 			prjct.appendChild(link)
@@ -173,6 +172,7 @@
             c.className="project opacity"
 			c.style.width="18vw"
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${i}.png`
+			c.style.background:none;
 			link.appendChild(c)
 			// INFO
 			let info=document.createElement("div")
