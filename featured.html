@@ -189,7 +189,7 @@
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	});
-	(async()=>{if(cache){await cacheProjects()};update("")})();
+	(async()=>{if(!cache){await cacheProjects()};update("")})();
     </script>
 </body>
 </html>
