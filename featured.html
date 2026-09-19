@@ -86,8 +86,13 @@
 		<p style='color:white' class='d'>Scratch Master's Featured Projects</p>
 		<p style='color:white' class='d'>Notes: Clicking a project redirects to the Turbowarp version.</p>
 		<div style='display:flex;flex-direction:row;'>
-		<input style='font-size:3vw;font-family:"Nunito",sans-serif;border-radius:2vw;width:50vw;height:5vw;padding:5px;' type="text" id="search" placeholder="Search">
-		<button onclick='sort()' style='height:5vw;width:5vw;cursor:pointer;border:none;background:none;'><img style='height:5vw;width:5vw;' src='./sort.svg'></button>
+		<input style='font-size:3vw;font-family:"Nunito",sans-serif;border-radius:2vw;width:30vw;height:5vw;padding:5px;' type="text" id="search" placeholder="Search">
+		<select id='sortbutton' style='font-size:3vw;font-family:"Nunito",sans-serif;border-radius:2vw;width:30vw;height:5vw;padding:5px;'>
+			<option value="dd">Newest First</option>
+    		<option value="da">Oldest First</option>
+			<option value="ff">Famous First</option>
+    		<option value="lp">Least Popular</option>
+		</select>
 		</div>
     <br>
     <div class='container' id="fe">
@@ -99,13 +104,14 @@
 	container=document.getElementById('fe')
 	let getData=(async function(i){let r=await fetch(`https://proxy.corsfix.com/?https://api.scratch.mit.edu/projects/${i}/`);if(r.ok){return await r.json()}});
 	let cacheProjects=(async function(){for(i of featured){data=await getData(i);cache={...cache,[i]:data}};localStorage.setItem('featured',JSON.stringify(cache));})
-	parseDate=a=>Date.parse(cache[a]?.history?.created)||0;
+	parseDate=a=>Date.parse(cache[a]?.history?.created)||0
+	views=a=>cache[a]?.stats?.views||0
 	query=''
     update=async(q)=>{
 		container.innerHTML=""
 		let json;let temp;
         let referenceLink;
-        for(let i of sortFeatured(featured,sorts[toggle])){
+        for(let i of sortFeatured(featured,srt.value)){
 			data=cache[i]
 			if(data?.title.toLowerCase().includes(q)||data?.author?.username.toLowerCase().includes(q)||!q){
 			// PROJECT CARD
@@ -197,9 +203,6 @@
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	});
-	toggle=0
-	sorts=["dd","da"]
-	sort=()=>{toggle++;toggle=toggle%2;update(query)}
 	sortFeatured=(c,d)=>{
 		if(d==="dd"){
 			return c.sort((a,b)=>parseDate(b)-parseDate(a))
@@ -207,7 +210,17 @@
 		if(d==="da"){
 			return c.sort((a,b)=>parseDate(a)-parseDate(b))
 		}
+		if(d==="ff"){
+			return c.sort((a,b)=>views(b)-views(a))
+		}
+		if(d==="lp"){
+			return c.sort((a,b)=>views(a)-views(b))
+		}
 	}
+	let srt=document.getElementById("sortbutton");
+	srt.addEventListener("change",()=>{
+    	update(query);
+	});
 	(async()=>{
 		if(!tmp||Object.keys(cache).length==0||Number(localStorage.getItem("refresh"))<Date.now()-600000){
 			cache={};await cacheProjects();localStorage.setItem("refresh",Date.now())
