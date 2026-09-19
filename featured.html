@@ -190,7 +190,7 @@
     	query=e.target.value.toLowerCase().trim();
     	update(query)
 	});
-	(async()=>{if(Object.keys(tmp).length===0){await cacheProjects()};update("")})();
+	(async()=>{if(!tmp||Object.keys(tmp).length=0){await cacheProjects()};update("")})();
     </script>
 </body>
 </html>
