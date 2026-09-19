@@ -138,8 +138,8 @@
 		info.appendChild(projectauthor)
 	    let l=document.createElement("img")
 		let image=data?.author?.profile?.images?.["90x90"]
-	    if(image){l.src=image;l.width=40}
-		l.style.borderRadius="5px"
+	    if(image){l.src=image;l.style.width="2.25vw"}
+		l.style.borderRadius="0.3vw"
 	    projectauthor.appendChild(l)
 		// DESCRIPTION
 		let desc=document.createElement("p")
@@ -181,7 +181,7 @@
         }
 	}
 	if(!container.innerHTML){
-		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="60px";emp.style.textAlign="center";emp.style.width="500px";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp);
+		document.documentElement.style.setProperty('--rows','repeat(1,1fr)');emp=document.createElement("p");emp.style.fontFamily=`"Nunito",sans-serif`;emp.style.fontSize="7vw";emp.style.textAlign="center";emp.style.width="60vw";emp.style.color="white";emp.innerText="No projects found";container.appendChild(emp);
 	}else{document.documentElement.style.setProperty('--rows','repeat(2,1fr)')}
 	}
 	search=document.getElementById("search")
