@@ -290,7 +290,7 @@
     	update(query);
 	});
 	(async()=>{
-		if(!tmp||Object.keys(cache).length==0||Number(localStorage.getItem("refresh"))<Date.now()-600000){
+		if(!tmp||Object.keys(cache).length==0||(Date.now()-localStorage.getItem("refresh"))>60000){
 			cache={};await cacheProjects();await cacheAuth();localStorage.setItem("refresh",Date.now())
 		};update("")})();
     </script>
