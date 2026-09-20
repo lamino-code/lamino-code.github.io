@@ -60,6 +60,7 @@
 		gap:0.8vw;
 		flex-direction:row;
 		align-items:center center;
+		height:2vw;
     }
 	.j{
 	    transition:color 0.4s ease;
@@ -226,8 +227,6 @@
         g.href=`https://scratch.mit.edu/users/${data?.author.username}`
         g.target = "_blank"
         g.text=data?.author?.username||`author not found`
-		g.style.height="2vw"
-		g.style.textAlign="center"
         g.className=`j k`
        	projectauthor.appendChild(g)
 		// COUNTRY
