@@ -295,7 +295,7 @@
 			cache={};await cacheProjects();await cacheAuth();localStorage.setItem("refresh",Date.now())
 		};update("")})();
 	}else{
-		document.getElementById("navi").destroy();
+		document.getElementById("navi").remove();
 		iframe=document.createElement("iframe");
 		iframe.src=`https://scratch.mit.edu/projects/${projectid}/embed`;
 		iframe.allowtransparency="true";
