@@ -68,6 +68,7 @@
 	    display:block;
 	    text-decoration:none;
 	    font-weight:900;
+		line-height:1.3;
         font-family:'Nunito',sans-serif;
         font-size:0.9vw;
 	    color:orange;
@@ -225,7 +226,6 @@
 		prjct.appendChild(f)
         let g=document.createElement("a")
         g.href=`https://scratch.mit.edu/users/${data?.author.username}`
-		g.style.lineHeight="1"
         g.target = "_blank"
         g.text=data?.author?.username||`author not found`
         g.className=`j k`
