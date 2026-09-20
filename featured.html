@@ -17,9 +17,8 @@
           font-size:2.5vw;
           font-weight:700;
         }
-		.opacity{background:rgba(0,0,0,0.2);}
         .container{
-            background:rgba(0,0,0,0.7);
+            background:none;
             border-radius:0.8vw;
             justify-content:center;
 	    	align-items:center;
@@ -166,7 +165,7 @@
 			prjct.appendChild(link)
 			link.style.width="18vw"
             let c=document.createElement("img")
-            c.className="project opacity"
+            c.className="project"
 			c.style.width="17.3vw"
 			c.style.borderRadius="1vw"
             c.src=`https://uploads.scratch.mit.edu/projects/thumbnails/${i}.png`
@@ -174,15 +173,15 @@
 			link.appendChild(c)
 			// INFO
 			let info=document.createElement("div")
-			info.className="project opacity"
+			info.className="project"
 			card.appendChild(info)
 			// STATS
 			let stats=document.createElement("div")
-			stats.className="project opacity stats"
+			stats.className="project stats"
 			card.appendChild(stats)
 			// SHARED
 			let shared=document.createElement("div")
-			shared.className="project opacity stats"
+			shared.className="project stats"
 			card.appendChild(shared)
 		// AUTHOR PROFILE PICTURE
 		let projectauthor=document.createElement("div")
