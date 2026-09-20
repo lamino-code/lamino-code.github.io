@@ -59,7 +59,8 @@
 		display:flex;
 		gap:0.8vw;
 		flex-direction:row;
-		align-items:center center;
+		align-items:center;
+		align-content:center;
 		height:2vw;
     }
 	.j{
@@ -225,6 +226,7 @@
 		prjct.appendChild(f)
         let g=document.createElement("a")
         g.href=`https://scratch.mit.edu/users/${data?.author.username}`
+		g.style.lineHeight="1"
         g.target = "_blank"
         g.text=data?.author?.username||`author not found`
         g.className=`j k`
