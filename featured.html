@@ -28,11 +28,12 @@
 	    	padding:2vw;
         }
 		.card:hover{transform:scale(1.1) translateX(-2vw) translateY(-2vw);z-index:800;box-shadow:8px 8px 4px rgba(0,0,0,0.6)}
+		.premium{background:rgba(248, 241, 138, 0.9);}
 		.card{
 			transition:transform 0.8s ease, box-shadow 0.8s ease, z-index 0.8s ease-out;
 			border-radius:0.8vw;
             border:4px solid white;
-			background:rgb(20,50,140);
+			background:rgb(138, 182, 248);
             justify-content:center;
 	    	align-items:center;
 			display:grid;
@@ -66,7 +67,7 @@
 		line-height:1.3;
         font-family:'Nunito',sans-serif;
         font-size:0.9vw;
-		text-shadow:2px 2px 4px black;
+		text-shadow:1px 1px 4px rgba(0,0,0,0.4);
 	    color:white;
 	    text-align:center;
 		margin:0;
@@ -114,7 +115,7 @@
 <body>
     <div id="content" class="content">
         <script src="inject.js"></script>
-		<p style='color:white' class='d'>Scratch Master's Featured Projects</p>
+		<p id="pagetitle" style='color:white' class='d'>Scratch Master's Featured Projects</p>
 		<div id="navi" style='display:flex;flex-direction:row;'>
 		<input class="search" style="height:3vw;" type="text" id="search" placeholder="Search">
 		<select id='sortbutton' class="search chevron">
@@ -166,20 +167,21 @@
 		container.innerHTML=""
 		let json;let temp;
         let referenceLink;
+		let links;let images;
         for(let i of sortFeatured(featured,srt.value)){
 			data=cache[i]
 			if(data?.title.toLowerCase().includes(q)||data?.author?.username.toLowerCase().includes(q)||ath[data?.author?.username]?.profile.country.toLowerCase().includes(q)||(data?.description||data?.instructions).toLowerCase().includes(q)||!q){
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
-			if(data.stats.views/data.stats.loves<6){card.style.background="dodgerblue"}
+			if(data.stats.views/data.stats.loves<6){card.className="premium card"}
 			container.appendChild(card)
 			// PROJECT IMAGE
 			let prjct=document.createElement("div")
 			prjct.className="project"
 			card.appendChild(prjct)
 			let link=document.createElement("a")
-			referenceLink=`https://lamino-code.github.io/featured?project=${i}`
+			referenceLink=`?project=${i}`
 			link.href=referenceLink
 			link.target = "_blank"
 			prjct.appendChild(link)
@@ -277,20 +279,11 @@
     	update(query)
 	});
 	sortFeatured=(c,d)=>{
-		if(d==="dd"){
-			return c.sort((a,b)=>parseDate(b)-parseDate(a))
-		}
-		if(d==="da"){
-			return c.sort((a,b)=>parseDate(a)-parseDate(b))
-		}
-		if(d==="ff"){
-			return c.sort((a,b)=>views(b)-views(a))
-		}
-		if(d==="lp"){
-			return c.sort((a,b)=>views(a)-views(b))
-		}
-		if(d==="best"){
-			return c.sort((a,b)=>(views(a)/loves(a))-(views(b)/loves(b)))
+		if(d==="dd"){return c.sort((a,b)=>parseDate(b)-parseDate(a))}
+		if(d==="da"){return c.sort((a,b)=>parseDate(a)-parseDate(b))}
+		if(d==="ff"){return c.sort((a,b)=>views(b)-views(a))}
+		if(d==="lp"){return c.sort((a,b)=>views(a)-views(b))}
+		if(d==="best"){return c.sort((a,b)=>(views(a)/loves(a))-(views(b)/loves(b)))
 		}
 		if(d==="mf"){
 			return c.sort((a,b)=>faves(b)-faves(a))
@@ -316,8 +309,30 @@
 	}else{
 		data=cache[projectid]
 		container=document.getElementById("content")
+		document.getElementById("pagetitle").innerText="Scratch Project Viewer"
 		document.getElementById("navi").remove();
 		document.getElementById("fe").remove();
+		links=document.createElement('div')
+		links.style.width=`70vw`
+		links.style.height=`10vw`
+		links.style.border="2px solid white"
+		links.style.padding="1vw"
+		images=[document.createElement('a'),document.createElement('a')]
+		other=[document.createElement('img'),document.createElement('img')]
+		other[0].src=`./turbosvg.png`
+		other[1].src=`./scratchpng.png`
+		images[0].href=`https://turbowarp.org/${projectid}`
+		images[0].appendChild(other[0])
+		images[1].href=`https://scratch.mit.edu/projects/${projectid}`
+		images[1].appendChild(other[1])
+		for(let j of other){
+			j.style.width=`10vw`
+			j.style.height=`10vw`
+		}
+		for(let j of images){
+		links.appendChild(j)
+		}
+		container.appendChild(links)
 		ult=document.createElement("div")
 		ult.className=("ult")
 		container.appendChild(ult)
