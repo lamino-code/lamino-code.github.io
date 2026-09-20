@@ -160,7 +160,7 @@
 			prjct.className="project"
 			card.appendChild(prjct)
 			let link=document.createElement("a")
-			referenceLink=`https://scratch.mit.edu/projects/${i}`
+			referenceLink=`https://lamino-code.github.io/featured?project=${i}`
 			link.href=referenceLink
 			link.target = "_blank"
 			prjct.appendChild(link)
@@ -300,8 +300,8 @@
 		iframe=document.createElement("iframe");
 		iframe.src=`https://scratch.mit.edu/projects/${projectid}/embed`;
 		iframe.allowtransparency="true";
-		iframe.width="485";
-		iframe.height="402";
+		iframe.style.width="80vw";
+		iframe.height="58vw";
 		iframe.frameborder="0";
 		iframe.scrolling="no"
 		document.getElementById("content").appendChild(iframe)
