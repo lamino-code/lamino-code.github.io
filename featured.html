@@ -115,7 +115,6 @@
     <script>
 	let params=new URLSearchParams(window.location.search)
 	let projectid=params.get("project")
-	if(!projectid){
 	const countryCodes={"afghanistan":"af","albania":"al","algeria":"dz","andorra":"ad","angola":"ao","argentina":"ar","armenia":"am","australia":"au","austria":"at","azerbaijan":"az","bahamas":"bs","bahrain":"bh","bangladesh":"bd","barbados":"bb","belarus":"by","belgium":"be","belize":"bz","benin":"bj","bhutan":"bt","bolivia":"bo","bosnia":"ba","botswana":"bw","brazil":"br","brunei":"bn","bulgaria":"bg","cambodia":"kh","cameroon":"cm","canada":"ca","chile":"cl","china":"cn","colombia":"co","costa rica":"cr","croatia":"hr","cuba":"cu","cyprus":"cy","czechia":"cz","czech republic":"cz","denmark":"dk","dominican republic":"do","ecuador":"ec","egypt":"eg","el salvador":"sv","estonia":"ee","ethiopia":"et","fiji":"fj","finland":"fi","france":"fr","gambia":"gm","georgia":"ge","germany":"de","ghana":"gh","greece":"gr","guatemala":"gt","haiti":"ht","honduras":"hn","hungary":"hu","iceland":"is","india":"in","indonesia":"id","iran":"ir","iraq":"iq","ireland":"ie","israel":"il","italy":"it","jamaica":"jm","japan":"jp","jordan":"jo","kazakhstan":"kg","kenya":"ke","kuwait":"kw","latvia":"lv","lebanon":"lb","libya":"ly","liechtenstein":"li","lithuania":"lt","luxembourg":"lu","madagascar":"mg","malaysia":"my","maldives":"mv","mali":"ml","malta":"mt","mexico":"mx","monaco":"mc","mongolia":"mn","morocco":"ma","mozambique":"mz","myanmar":"mm","namibia":"na","nepal":"np","netherlands":"nl","new zealand":"nz","nicaragua":"ni","nigeria":"ng","north korea":"kp","norway":"no","oman":"om","pakistan":"pk","panama":"pa","paraguay":"py","peru":"pe","philippines":"ph","poland":"pl","portugal":"pt","qatar":"qa","romania":"ro","russia":"ru","saudi arabia":"sa","senegal":"sn","serbia":"rs","singapore":"sg","slovakia":"sk","slovenia":"si","south africa":"za","south korea":"kr","korea":"kr","spain":"es","sri lanka":"lk","sudan":"sd","sweden":"se","switzerland":"ch","syria":"sy","taiwan":"tw","thailand":"th","tunisia":"tn","turkey":"tr","turkiye":"tr","ukraine":"ua","united arab emirates":"ae","uae":"ae","united kingdom":"gb","uk":"gb","britain":"gb","united states":"us","usa":"us","america":"us","uruguay":"uy","uzbekistan":"uz","venezuela":"ve","vietnam":"vn","yemen":"ye","zambia":"zm","zimbabwe":"zw"};
 	countryCode=c=>countryCodes[c.toLowerCase()]||null
 	let tmp=localStorage.getItem('featured')
@@ -123,6 +122,7 @@
 	let tmpa=localStorage.getItem('authors')
 	let ath=tmpa?JSON.parse(tmpa):{}
 	featured=[1380826278,980280062,1180951523,1316859114,1047970867,1351101699,1381941303,1380457093];
+	if(!projectid){
 	container=document.getElementById('fe')
 	document.documentElement.style.setProperty('--rows','repeat(1,1fr)');
 	emp=document.createElement("p");
