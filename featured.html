@@ -295,6 +295,8 @@
 			cache={};await cacheProjects();await cacheAuth();localStorage.setItem("refresh",Date.now())
 		};update("")})();
 	}else{
+		data=cache[projectid]
+		container=document.getElementById("content")
 		document.getElementById("navi").remove();
 		document.getElementById("fe").remove();
 		iframe=document.createElement("iframe");
@@ -305,7 +307,24 @@
 		iframe.style.borderRadius="3vw"
 		iframe.frameborder="0";
 		iframe.scrolling="no"
-		document.getElementById("content").appendChild(iframe)
+		container.appendChild(iframe)
+		card=document.createElement("div")
+		card.className=("viewer")
+		container.appendChild(card)
+		let views=document.createElement("p")
+		views.className="j m"
+		views.innerText=`👁️${data?.stats.views}`
+		card.appendChild(views)
+		// LOVES
+		let loves=document.createElement("p")
+		loves.className="j m"
+		loves.innerText=`❤️${data?.stats.loves}`
+		card.appendChild(loves)
+		// FAVOURITES
+		let favourites=document.createElement("p")
+		favourites.className="j m"
+		favourites.innerText=`⭐${data?.stats.favorites}`
+		card.appendChild(favourites)
 	}
     </script>
 </body>
