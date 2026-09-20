@@ -81,9 +81,30 @@
 		background-position: right 0.8vw center;
 		background-size: 3vw;
 	}
+	.viewer{
+		width:20vw;
+		align-items:center;
+		justify-content:center;
+		border-radius:3vw;
+		gap:2vw;
+		padding:2vw;
+		display:flex;
+		flex-direction:column;
+		border:6px solid white;
+	}
+	.ult{
+		align-items:center;
+		justify-content:center;
+		border-radius:3vw;
+		gap:2vw;
+		padding:2vw;
+		display:flex;
+		flex-direction:row;
+	}
 	.search{font-size:2vw;font-family:"Nunito",sans-serif;border-radius:3vw;width:30vw;height:4vw;padding:0.3vw;}
 	.desc{overflow-y:auto;overflow-x:hidden;height:11.5vw;width:16vw;}
 	.m{width:5.5vw;font-size:1vw;}
+	.vi{font-size:5vw;}
 	.dt{width:17.3vw;font-size:1vw;}
 	a{text-decoration:none;}
     </style>
@@ -299,6 +320,9 @@
 		container=document.getElementById("content")
 		document.getElementById("navi").remove();
 		document.getElementById("fe").remove();
+		ult=document.createElement("div")
+		ult.className=("ult")
+		container.appendChild(ult)
 		iframe=document.createElement("iframe");
 		iframe.src=`https://scratch.mit.edu/projects/${projectid}/embed`;
 		iframe.allowtransparency="true";
@@ -307,22 +331,22 @@
 		iframe.style.borderRadius="3vw"
 		iframe.frameborder="0";
 		iframe.scrolling="no"
-		container.appendChild(iframe)
+		ult.appendChild(iframe)
 		card=document.createElement("div")
 		card.className=("viewer")
-		container.appendChild(card)
+		ult.appendChild(card)
 		let views=document.createElement("p")
-		views.className="j m"
+		views.className="j vi"
 		views.innerText=`👁️${data?.stats.views}`
 		card.appendChild(views)
 		// LOVES
 		let loves=document.createElement("p")
-		loves.className="j m"
+		loves.className="j vi"
 		loves.innerText=`❤️${data?.stats.loves}`
 		card.appendChild(loves)
 		// FAVOURITES
 		let favourites=document.createElement("p")
-		favourites.className="j m"
+		favourites.className="j vi"
 		favourites.innerText=`⭐${data?.stats.favorites}`
 		card.appendChild(favourites)
 	}
