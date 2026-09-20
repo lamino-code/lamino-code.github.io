@@ -151,8 +151,7 @@
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
-			let highlight=data.stats.views/data.stats.loves<6
-			if(highlight){card.style.background="black"}
+			if(data.stats.views/data.stats.loves<6){card.style.background="black"}
 			container.appendChild(card)
 			// PROJECT IMAGE
 			let prjct=document.createElement("div")
@@ -196,30 +195,25 @@
 		// DESCRIPTION
 		let desc=document.createElement("p")
 		desc.className="desc j"
-		if(highlight)desc.style.color="black"
 		desc.innerText=data?.description||data?.instructions||`No description available`
 		info.appendChild(desc)
 		// VIEWS
 		let views=document.createElement("p")
-		if(highlight)views.style.color="black"
 		views.className="j m"
 		views.innerText=`👁️${data?.stats.views}`
 		stats.appendChild(views)
 		// LOVES
 		let loves=document.createElement("p")
-		if(highlight)loves.style.color="black"
 		loves.className="j m"
 		loves.innerText=`❤️${data?.stats.loves}`
 		stats.appendChild(loves)
 		// FAVOURITES
 		let favourites=document.createElement("p")
-		if(highlight)favourites.style.color="black"
 		favourites.className="j m"
 		favourites.innerText=`⭐${data?.stats.favorites}`
 		stats.appendChild(favourites)
 		// CREATION DATE
 		let createdate=document.createElement("p")
-		if(highlight)createdate.style.color="black"
 		createdate.className="j dt"
 		createdate.innerText=data?.history.created?`Created ${new Date(data?.history.created).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}`:`Date unknown`
 		shared.appendChild(createdate)
@@ -227,14 +221,12 @@
 	    let f=document.createElement("a")
         f.href=referenceLink
         f.innerText=data?.title||`Title unavailable`
-		if(highlight)f.style.color="black"
     	f.className=`j`
 		prjct.appendChild(f)
         let g=document.createElement("a")
         g.href=`https://scratch.mit.edu/users/${data?.author.username}`
         g.target = "_blank"
         g.text=data?.author?.username||`author not found`
-		if(highlight)g.style.color="black"
         g.className=`j k`
        	projectauthor.appendChild(g)
 		// COUNTRY
@@ -242,7 +234,6 @@
 		country.src=`https://flagcdn.com/40x30/${countryCode(ath[data?.author.username]?.profile.country)}.png`
         country.style.width="2.6vw"
 		country.style.height="2vw"
-		if(highlight)country.style.color="black"
         country.className=`j k`
        	projectauthor.appendChild(country)
         }
