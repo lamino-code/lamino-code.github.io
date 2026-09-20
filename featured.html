@@ -131,7 +131,6 @@
     		<option value="ll">Least Loves</option>
 		</select>
 		</div>
-    <br>
     <div class='container' id="fe">
     </div>
     <script>
@@ -353,6 +352,7 @@
 		// DESC
 		let desc=document.createElement("p")
 		desc.className="vi j vd"
+		desc.style.fontSize="0.9vw"
 		desc.innerText=data?.description||data?.instructions
 		card.appendChild(desc)
 	}
