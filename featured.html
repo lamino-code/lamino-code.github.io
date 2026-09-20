@@ -28,12 +28,12 @@
 	    	padding:2vw;
         }
 		.card:hover{transform:scale(1.1) translateX(-2vw) translateY(-2vw);z-index:800;box-shadow:8px 8px 4px rgba(0,0,0,0.6)}
-		.premium{background:rgba(248, 241, 138, 0.9);}
+		.premium{background:linear-gradient(45deg,rgb(247, 152, 11) 80%,rgb(255, 227, 149) 85%,rgb(247, 152, 11) 90%);}
+		.regular{background:rgba(138, 182, 248, 0.9);}
 		.card{
 			transition:transform 0.8s ease, box-shadow 0.8s ease, z-index 0.8s ease-out;
 			border-radius:0.8vw;
             border:4px solid white;
-			background:rgb(138, 182, 248);
             justify-content:center;
 	    	align-items:center;
 			display:grid;
@@ -173,7 +173,7 @@
 			if(data?.title.toLowerCase().includes(q)||data?.author?.username.toLowerCase().includes(q)||ath[data?.author?.username]?.profile.country.toLowerCase().includes(q)||(data?.description||data?.instructions).toLowerCase().includes(q)||!q){
 			// PROJECT CARD
 			let card=document.createElement("div")
-			card.className="card"
+			card.className="regular card"
 			if(data.stats.views/data.stats.loves<6){card.className="premium card"}
 			container.appendChild(card)
 			// PROJECT IMAGE
@@ -337,7 +337,7 @@
 		ult.className=("ult")
 		container.appendChild(ult)
 		iframe=document.createElement("iframe");
-		iframe.src=`https://turbowarp.org/${projectid}/embed`;
+		iframe.src=`https://scratch.mit.edu/projects/${projectid}/embed`;
 		iframe.allowtransparency="true";
 		iframe.style.width="40vw";
 		iframe.style.height="33.1vw";
@@ -370,5 +370,6 @@
 		card.appendChild(desc)
 	}
     </script>
+</script>
 </body>
 </html>
