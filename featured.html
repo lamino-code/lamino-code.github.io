@@ -53,14 +53,6 @@
 		display:flex;
 		flex-direction:column;
     }
-	.author{
-        width:5vw;
-		align-items:center;
-		justify-content:center;
-		gap:0.8vw;
-		display:flex;
-		flex-direction:column;
-    }
 	.stats{
         width:fit-content;
 		border-radius:0.8vw;
@@ -121,6 +113,8 @@
     <div class='container' id="fe">
     </div>
     <script>
+	const countryCodes={"afghanistan":"af","albania":"al","algeria":"dz","andorra":"ad","angola":"ao","argentina":"ar","armenia":"am","australia":"au","austria":"at","azerbaijan":"az","bahamas":"bs","bahrain":"bh","bangladesh":"bd","barbados":"bb","belarus":"by","belgium":"be","belize":"bz","benin":"bj","bhutan":"bt","bolivia":"bo","bosnia":"ba","botswana":"bw","brazil":"br","brunei":"bn","bulgaria":"bg","cambodia":"kh","cameroon":"cm","canada":"ca","chile":"cl","china":"cn","colombia":"co","costa rica":"cr","croatia":"hr","cuba":"cu","cyprus":"cy","czechia":"cz","czech republic":"cz","denmark":"dk","dominican republic":"do","ecuador":"ec","egypt":"eg","el salvador":"sv","estonia":"ee","ethiopia":"et","fiji":"fj","finland":"fi","france":"fr","gambia":"gm","georgia":"ge","germany":"de","ghana":"gh","greece":"gr","guatemala":"gt","haiti":"ht","honduras":"hn","hungary":"hu","iceland":"is","india":"in","indonesia":"id","iran":"ir","iraq":"iq","ireland":"ie","israel":"il","italy":"it","jamaica":"jm","japan":"jp","jordan":"jo","kazakhstan":"kg","kenya":"ke","kuwait":"kw","latvia":"lv","lebanon":"lb","libya":"ly","liechtenstein":"li","lithuania":"lt","luxembourg":"lu","madagascar":"mg","malaysia":"my","maldives":"mv","mali":"ml","malta":"mt","mexico":"mx","monaco":"mc","mongolia":"mn","morocco":"ma","mozambique":"mz","myanmar":"mm","namibia":"na","nepal":"np","netherlands":"nl","new zealand":"nz","nicaragua":"ni","nigeria":"ng","north korea":"kp","norway":"no","oman":"om","pakistan":"pk","panama":"pa","paraguay":"py","peru":"pe","philippines":"ph","poland":"pl","portugal":"pt","qatar":"qa","romania":"ro","russia":"ru","saudi arabia":"sa","senegal":"sn","serbia":"rs","singapore":"sg","slovakia":"sk","slovenia":"si","south africa":"za","south korea":"kr","korea":"kr","spain":"es","sri lanka":"lk","sudan":"sd","sweden":"se","switzerland":"ch","syria":"sy","taiwan":"tw","thailand":"th","tunisia":"tn","turkey":"tr","turkiye":"tr","ukraine":"ua","united arab emirates":"ae","uae":"ae","united kingdom":"gb","uk":"gb","britain":"gb","united states":"us","usa":"us","america":"us","uruguay":"uy","uzbekistan":"uz","venezuela":"ve","vietnam":"vn","yemen":"ye","zambia":"zm","zimbabwe":"zw"};
+	countryCode=c=>countryCodes[c.toLowerCase()]||null
 	let tmp=localStorage.getItem('featured')
 	let cache=tmp?JSON.parse(tmp):{}
 	let tmpa=localStorage.getItem('authors')
@@ -228,19 +222,19 @@
         f.innerText=data?.title||`Title unavailable`
     	f.className=`j`
 		prjct.appendChild(f)
-		let authdiv=document.createElement("div")
-		projectauthor.appendChild(authdiv)
         let g=document.createElement("a")
         g.href=`https://scratch.mit.edu/users/${data?.author.username}`
         g.target = "_blank"
         g.text=data?.author?.username||`author not found`
         g.className=`j k`
-       	authdiv.appendChild(g)
+       	projectauthor.appendChild(g)
 		// COUNTRY
-		let country=document.createElement("p")
-        country.innerText=ath[data?.author.username]?.profile.country||`Country unknown`
+		let country=document.createElement("img")
+		country.src=`https://flagcdn.com/40x30/${countryCode(ath[data?.author.username]?.profile.country)}.png`
+        country.style.width="0.4vw"
+		country.style.height="0.3vw"
         country.className=`j k`
-       	authdiv.appendChild(country)
+       	projectauthor.appendChild(country)
         }
 	}
 	if(!container.innerHTML){
