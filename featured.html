@@ -92,7 +92,7 @@
     <title>Featured Projects</title>
 </head>
 <body>
-    <div class="content">
+    <div id="content" class="content">
         <script src="inject.js"></script>
 		<p style='color:white' class='d'>Scratch Master's Featured Projects</p>
 		<div id="navi" style='display:flex;flex-direction:row;'>
@@ -296,6 +296,7 @@
 		};update("")})();
 	}else{
 		document.getElementById("navi").remove();
+		document.getElementById("fe").remove();
 		iframe=document.createElement("iframe");
 		iframe.src=`https://scratch.mit.edu/projects/${projectid}/embed`;
 		iframe.allowtransparency="true";
@@ -303,6 +304,7 @@
 		iframe.height="402";
 		iframe.frameborder="0";
 		iframe.scrolling="no"
+		document.getElementById("content").appendChild(iframe)
 	}
     </script>
 </body>
