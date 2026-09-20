@@ -151,7 +151,7 @@
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
-			if(views(i)/loves(i)<12)card.style.background="orange"
+			if(data.stats.views/data.stats.loves<12)card.style.background="orange"
 			container.appendChild(card)
 			// PROJECT IMAGE
 			let prjct=document.createElement("div")
