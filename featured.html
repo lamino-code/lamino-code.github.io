@@ -83,7 +83,7 @@
 		background-size: 3vw;
 	}
 	.search{font-size:2vw;font-family:"Nunito",sans-serif;border-radius:3vw;width:30vw;height:4vw;padding:0.3vw;}
-	.desc{overflow-y:auto;overflow-x:hidden;height:11.5vw;width:16.3vw;}
+	.desc{overflow-y:auto;overflow-x:hidden;height:11.5vw;width:16vw;}
 	.m{width:5.5vw;font-size:1vw;}
 	.dt{width:17.3vw;font-size:1vw;}
 	a{text-decoration:none;}
@@ -151,7 +151,7 @@
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="card"
-			if(data?.stats.views>1000)card.style.background="linear-gradient(50deg,orange 85%,white 88%,white 93%,orange 95%)"
+			if(views(i)/loves(i)<12)card.style.background="orange"
 			container.appendChild(card)
 			// PROJECT IMAGE
 			let prjct=document.createElement("div")
