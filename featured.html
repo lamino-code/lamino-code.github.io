@@ -82,7 +82,7 @@
 		background-size: 3vw;
 	}
 	.viewer{
-		width:13vw;
+		width:25vw;
 		align-items:center;
 		justify-content:center;
 		border-radius:2vw;
@@ -103,7 +103,7 @@
 	}
 	.search{font-size:2vw;font-family:"Nunito",sans-serif;border-radius:3vw;width:30vw;height:4vw;padding:0.3vw;}
 	.desc{overflow-y:auto;overflow-x:hidden;height:11.5vw;width:16vw;}
-	.vd{overflow-y:auto;overflow-x:hidden;height:12vw;width:12vw;}
+	.vd{overflow-y:auto;overflow-x:hidden;height:12vw;width:24vw;}
 	.m{width:5.5vw;font-size:1vw;}
 	.vi{font-size:2vw;}
 	.dt{width:17.3vw;font-size:1vw;}
@@ -352,7 +352,7 @@
 		card.appendChild(favourites)
 		// DESC
 		let desc=document.createElement("p")
-		desc.className="vi vd"
+		desc.className="vi j vd"
 		desc.innerText=data?.description||data?.instructions
 		card.appendChild(desc)
 	}
