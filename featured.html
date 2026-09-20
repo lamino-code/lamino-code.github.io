@@ -226,13 +226,15 @@
         g.href=`https://scratch.mit.edu/users/${data?.author.username}`
         g.target = "_blank"
         g.text=data?.author?.username||`author not found`
+		g.style.height="2vw"
+		g.style.textAlign="center"
         g.className=`j k`
        	projectauthor.appendChild(g)
 		// COUNTRY
 		let country=document.createElement("img")
 		country.src=`https://flagcdn.com/40x30/${countryCode(ath[data?.author.username]?.profile.country)}.png`
-        country.style.width="0.4vw"
-		country.style.height="0.3vw"
+        country.style.width="2.6vw"
+		country.style.height="2vw"
         country.className=`j k`
        	projectauthor.appendChild(country)
         }
