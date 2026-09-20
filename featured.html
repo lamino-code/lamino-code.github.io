@@ -103,8 +103,9 @@
 	}
 	.search{font-size:2vw;font-family:"Nunito",sans-serif;border-radius:3vw;width:30vw;height:4vw;padding:0.3vw;}
 	.desc{overflow-y:auto;overflow-x:hidden;height:11.5vw;width:16vw;}
+	.vd{overflow-y:auto;overflow-x:hidden;height:12vw;width:12vw;}
 	.m{width:5.5vw;font-size:1vw;}
-	.vi{font-size:3vw;}
+	.vi{font-size:2vw;}
 	.dt{width:17.3vw;font-size:1vw;}
 	a{text-decoration:none;}
     </style>
@@ -349,6 +350,11 @@
 		favourites.className="j vi"
 		favourites.innerText=`⭐${data?.stats.favorites}`
 		card.appendChild(favourites)
+		// DESC
+		let desc=document.createElement("p")
+		desc.className="j vd"
+		desc.innerText=data?.description||data?.instructions
+		card.appendChild(desc)
 	}
     </script>
 </body>
