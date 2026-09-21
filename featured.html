@@ -326,7 +326,7 @@
 		images[0].appendChild(other[0])
 		images[1].href=`https://scratch.mit.edu/projects/${projectid}`
 		images[1].appendChild(other[1])
-		images[2].href=`https://forkphorus.github.io/embed.html?id=${projectid}&auto-start=true&light-content=false`
+		images[2].href=`https://forkphorus.github.io/#${projectid}`
 		images[2].appendChild(other[2])
 		for(let j of other){
 			j.style.width=`10vw`
@@ -340,7 +340,7 @@
 		ult.className=("ult")
 		container.appendChild(ult)
 		iframe=document.createElement("iframe");
-		iframe.src=`https://scratch.mit.edu/projects/${projectid}/embed`;
+		iframe.src=`https://forkphorus.github.io/embed.html?id=${projectid}&auto-start=true&light-content=false`;
 		iframe.allowtransparency="true";
 		iframe.style.width="40vw";
 		iframe.style.height="33.1vw";
