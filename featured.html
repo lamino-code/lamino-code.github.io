@@ -174,7 +174,7 @@
 			// PROJECT CARD
 			let card=document.createElement("div")
 			card.className="regular card"
-			if(data.stats.views/data.stats.loves<6){card.className="premium card"}
+			if(data?.author.username=="Programmer_Error"||data?.author.username=="JustAProjectMaker"){card.className="premium card"}
 			container.appendChild(card)
 			// PROJECT IMAGE
 			let prjct=document.createElement("div")
