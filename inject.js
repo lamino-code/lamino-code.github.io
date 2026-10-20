@@ -52,10 +52,10 @@ s.textContent=t;
 document.head.appendChild(s);
 document.body.insertAdjacentHTML("afterbegin", `
     <div class="row">
-        <a class="b" href="index.html">Home</a>
-        <a class="b" href="lipsync.html">Lip-Sync Editor</a>
-        <a class="b" href="aga.html">AGA</a>
-        <a class="b" href="featured.html">Featured Projects</a>
-        <a class="b" href="list/index.html">GD List</a>
+        <a class="b" href="/index.html">Home</a>
+        <a class="b" href="/lipsync.html">Lip-Sync Editor</a>
+        <a class="b" href="/aga.html">AGA</a>
+        <a class="b" href="/featured.html">Featured Projects</a>
+        <a class="b" href="/list/index.html">GD List</a>
     </div>
 `);
