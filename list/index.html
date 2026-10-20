@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>All Rated Levels List</title>
+        <link rel="icon" href="./SecretCoin.png">
+        <style>
+            body{
+                font-family:'Pusab';
+                background-color:rgb(20,20,20);
+                color:white;
+                text-align:center;
+                background-image:url(./bg.jpg);
+                background-size:cover;
+                background-position-y:5%
+            }
+            @font-face {
+                font-family:'Pusab';
+                src:url('./PUSAB___.otf') format("opentype");
+                font-weight:20px;
+                font-style:normal;
+            }
+            .face{
+                width:30px;
+                align-self:bottom;
+                padding-left:10px;
+                padding-right:10px;
+            }
+            #scoreTotal,#levelTotalFull{font-size:50px;font-family:"Pusab";margin:0px;}
+            #score{font-family:"Pusab";color:white;}
+            .navbtn{font-size:4em;}
+            .btn{font-size:30px;text-shadow:1px 1px 2px black;font-family:"Pusab";background-color:#ff2323;color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;transition:all 0.2s ease-out;}
+            #levels, #queue{display:flex;flex-wrap:wrap;gap:10px;}
+            #nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+        </style>
+    </head>
+    <body>
+        <h1 id="levelTotalFull">
+            <p style='font-size:0.8em'>All Rated Levels List (started october 16th)</p>
+            <span id='levelTotal'>0</span> levels in total ||
+            <span id="levelTotal2">0</span> levels selected
+        </h1>
+        <div id="nav">
+            <input type="text" id="search" style="height:70px;font-size:30px;border-radius:10px;width:400px;font-family:'Pusab'" placeholder="Search for a level..." oninput='display();updateColours()'>
+            <button id="selectAll" class="btn navbtn" style="height:70px;" onclick="invertColors()">invert</button>
+            <select class="btn navbtn" id="sort" style="width:400px;height:70px;" onchange="settings.sort=this.value;display();updateColours()">
+            <option value="dd">Difficulty Descending</option>
+            <option value="da">Difficulty Ascending</option>
+            <option value="aa">Alphabetical Ascending</option>
+            <option value="ad">Alphabetical Descending</option>
+            </select>
+            <button class="btn navbtn"><a href="./info" style="height:70px;text-decoration:none;color:white;font-size:50px">Info</a></button>
+        </div>
+        <p id="scoreTotal"><span id="score">0</span> points</p>
+        <div id="levels" style="height:600px;overflow-y:auto"></div>
+        <h1>Submissions</h1>
+        <div id="queue" style="height:600px;overflow-y:auto;">
+        </div>
+        <script>
+            sela=new Audio('./button.mp3')
+            let settings={sort:'dd'}
+            let filter=[]
+            let score=document.getElementById('score')
+            let div=document.getElementById('levels')
+            let nav=document.getElementById('nav') 
+            let levelTotal=document.getElementById('levelTotal')
+            let levelTotal2=document.getElementById('levelTotal2')
+            let queue = document.getElementById('queue')
+            const levels=[
+                 ["GRIEF",149992717],["Nautical Nightmares",138993732],"Artemis 13",[`delightful climb`,115206404],"Society","Thinking Space II","Amethyst","Flamewall",["Tidal Wave",86407629],'Green Bullet','ORBIT','Antarctic Lights',"Nullscapes",
+                 "Quanteuse processing",'BOOBAWAMBA','The Bloop','Every End','Ashley Wave Trials','Silent clubstep',["Cycles X",144087103],["Bloodbath",10565740],['Acu',61079355],["Red World",2374518],["CraZy",40945673],"Nine Circles","Against the God","Beautiful Chaos","B","Living Open","Wild West",
+                ['Green Demon',803536],["Starlit Glacier",59157925],"Platinum Adventure","Robotic Nightmares","Shiver","GD Randomizer","iS","Defeat your gubbus (Plat)","You've Been Trolled","Wave Wave",["BUSSIN",110715909],"Flappy Bird","How to Clutterfunk","Shock",'Cycles','OuterSpace',"First Race","PowerX","Wavelength","Tiktok ahh song",['Everybody Bounce',28166800],["Breakpoint",117863163],[`Shiver Me Timbers`,116871532],["Level Easy",11940],["LETs  RUN",31280642],
+                "Nexus (Hard)","Explorers", "Sonar","boogie","Free Stars","Destructive Auto","Auto Clubstep","Auto Electrodynamix",[`aUtO CycleS anD sam`,153233],["Auto Cycles",24453],["Cycles Auto (1)",158692],["Cycles Auto (2)",161116],["Cycles (Auto)",165024],["Grey World",114082],
+                "Youve been trolled (auto)","Autopilot","Hyperluminal","Dark Road"]
+            const submissions=['STEEP','STALEMATE','8o','CraZy II','CraZy III','Windy Landscape','Duelo Maestro','Acropolis','MikuMikuMikuMiku','hi',
+                'Poltergeist','Supersonic','Future Funk II','Ultimate Demon Mix','UltraSonic','Dark Travel','BuTiTi II','How to platformer','Invisible Deadlocked',
+                'Deadlocked v3','ICE Carbon Diablo X','SlaughterHouse','Dream Travel','Trip','Magma Bound','Throat of the World','Necropolis','Denouement','Game Time',
+                'love baba','pulsar','LightWave','Nine CircleX','Ultraviolet','I wanna be the guy','Kappa Boss Fight','Pyromaniac','ClubStep Nightmares',
+                'Beat Ninja','Leyak'
+            ]
+            for(let j of submissions){
+                let k = document.createElement('p')
+                k.classList = 'btn'
+                k.innerHTML = j
+                queue.appendChild(k)
+            }
+            standardize=a=>Array.isArray(a)?a[0]:a
+            const standardLevels=levels.map(j=>standardize(j))
+            const difficulty={
+                "ExtremeDemon":['Cycles X','Acu','GRIEF',"Delightful Climb","Nautical Nightmares","Artemis 13","Society","Thinking Space II",'Amethyst','Flamewall',
+                'Bloodbath','Red World','Tidal Wave','Nullscapes','ORBIT','antarctic lights','green bullet','boobawamba','quanteuse processing','every end','the bloop','silent clubstep',
+                'ashley wave trials'],
+                "HardDemon":['Nine Circles',"craZy"],
+                "MediumDemon":['Against the God','Beautiful Chaos','B','Living Open','starlit glacier'],
+                "EasyDemon":["green demon",'Platinum Adventure','iS','Wild West','Shiver'],
+                "Insane":['Robotic Nightmares','GD Randomizer','Defeat your gubbus (Plat)',`You've Been Trolled`,'Wave Wave','bussin'],
+                "Harder":['Cycles','Flappy Bird','Shock','First Race'],
+                "Hard":['PowerX','Wavelength','Tiktok ahh song','Nexus (Hard)','Free Stars',"How to clutterfunk","outerspace",'everybody bounce','shiver me timbers'],
+                "Normal":['lets  run','Level Easy','Breakpoint'],
+                "Easy":['Explorers','Sonar','boogie'],
+                "Auto":["Auto Cycles and Sam","Auto Cycles","Cycles (Auto)","Destructive Auto","Auto Electrodynamix","Auto Clubstep","Cycles Auto (1)","Cycles Auto (2)","Grey World","Youve been trolled (auto)","Autopilot","hyperluminal","dark road"]
+            }
+            levelTotal.innerHTML=`${standardLevels.length}`
+            change=n=>{
+                comp[n]^=1
+                process()
+                levelTotal2.innerHTML=`${Object.entries(comp).filter(i=>i[1]).length}`
+            }
+            findLevel=n=>Object.entries(difficulty).filter(j=>j[1].map(j=>j.toLowerCase()).includes(n.toLowerCase()))?.[0]?.[0]
+            process=()=>{
+                let points=0
+                for(let i in standardLevels){
+                    points+=comp[standardLevels[i]]?(i==0?300:(i<5?150:(i<10?100:(i<25?75:(i<40?40:(i<80?10:(i<120?5:0.2))))))):0
+                }
+                score.innerHTML=`${points}`
+                return points
+            }
+            invertColors=()=>{
+                for(let j of filter.map(i=>standardize(i))){
+                change(j)
+                updateColours()
+                }
+                sela.currentTime=0
+                sela.play()
+            }
+            let comp=Object.fromEntries(standardLevels.map(i=>[i,!1]))
+            updateColours=()=>{
+                let children = div.children
+                for(let i of children){
+                    i.style.background=comp[standardize(i.id)]?'#239923':'#ff2323'
+                }
+            }
+            display=()=>{
+                let search=document.getElementById('search').value.toLowerCase()
+                div.replaceChildren()
+                filter=levels.filter(i=>`${standardize(i)}`.toLowerCase().includes(search)||findLevel(standardize(i))?.toLowerCase()===search)
+                if(settings.sort=='aa'){
+                    filter=filter.sort((a,b)=>standardize(a).localeCompare(standardize(b)))
+                }
+                if(settings.sort=='ad'){
+                    filter=filter.sort((a,b)=>standardize(a).localeCompare(standardize(b))).toReversed()
+                }
+                if(settings.sort=='da'){
+                    filter=filter.toReversed()
+                }
+                if(settings.reversed){
+                    filter=filter.toReversed()
+                }
+                for(let i of filter){
+                    
+                    let b=document.createElement("button")
+                    let c=document.createElement("img")
+                    let d=document.createElement('a')
+                    c.src=`./difficulty-faces/${findLevel(standardize(i))||'NA'}.png`
+                    c.classList='face'
+                    b.id=standardize(i)
+                    b.classList="btn"
+                    b.innerHTML = standardize(i)
+                    if(Array.isArray(i)){b.innerHTML+=` <a style='color:white' href="https://gdbrowser.com/${i[1]}">(ID)</a>`}
+                    b.addEventListener("click",()=>{
+                        change(b.id)
+                        sela.currentTime=0
+                        sela.play()
+                        updateColours()
+                    })
+                    b.appendChild(c)
+                    div.appendChild(b)
+                }
+            }
+            display()
+        </script>
+    </body>
+</html>
