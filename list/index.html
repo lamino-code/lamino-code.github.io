@@ -9,7 +9,6 @@
                 background-color:rgb(20,20,20);
                 color:white;
                 text-align:center;
-                background-image:url(./bg.jpg);
                 background-size:cover;
                 background-position-y:5%
             }
@@ -29,7 +28,7 @@
             #score{font-family:"Pusab";color:white;}
             .navbtn{font-size:4em;}
             .btn{font-size:30px;text-shadow:1px 1px 2px black;font-family:"Pusab";background-color:#ff2323;color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;transition:all 0.2s ease-out;}
-            #levels, #queue{display:flex;flex-wrap:wrap;gap:10px;}
+            #levels, #queue{display:flex;flex-wrap:wrap;gap:6px 6px;margin:0px auto;}
             #nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
         </style>
     </head>
@@ -55,7 +54,9 @@
         <h1>Submissions</h1>
         <div id="queue" style="height:600px;overflow-y:auto;">
         </div>
+        <script src="../inject.js"></script>
         <script>
+            document.body.style.backgroundImage = 'url(./bg.jpg)'
             sela=new Audio('./button.mp3')
             let settings={sort:'dd'}
             let filter=[]
