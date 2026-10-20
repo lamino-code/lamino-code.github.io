@@ -56,6 +56,6 @@ document.body.insertAdjacentHTML("afterbegin", `
         <a class="b" href="lipsync.html">Lip-Sync Editor</a>
         <a class="b" href="aga.html">AGA</a>
         <a class="b" href="featured.html">Featured Projects</a>
-        <a class="b" href="list.html">GD List</a>
+        <a class="b" href="list/index.html">GD List</a>
     </div>
 `);
