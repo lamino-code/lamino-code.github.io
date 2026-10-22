@@ -17,11 +17,11 @@ s.textContent=`
         font-weight: 700;
         font-family: "Nunito", sans-serif, system-ui;
         color: rgb(13, 25, 35);
-        font-size: 30px;
+        font-size: 2vw;
         border-radius: 0.5em;
         transition: transform 0.5s ease;
         border: 3px solid brown;
-        padding: 8px;
+        padding:8px;
         height:50px;
     }
     .row{

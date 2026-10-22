@@ -24,11 +24,18 @@
                 padding-left:10px;
                 padding-right:10px;
             }
+            .wrap-around{
+                width:19%;
+                text-overflow:ellipsis;
+                overflow:hidden;
+            }
             #scoreTotal,#levelTotalFull{font-size:50px;font-family:"Pusab";margin:0px;}
             #score{font-family:"Pusab";color:white;}
             .navbtn{font-size:4em;}
-            .btn{font-size:30px;text-shadow:1px 1px 2px black;font-family:"Pusab";background-color:#ff2323;color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;transition:all 0.2s ease-out;}
-            #levels, #queue{display:flex;flex-wrap:wrap;gap:6px 6px;margin:0px auto;}
+            .btn{font-size:30px;text-shadow:1px 1px 2px black;font-family:"Pusab";background-color:#ff2323;
+            color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;
+            transition:all 0.2s ease-out;}
+            #levels, #queue{display:flex;flex-wrap:wrap;gap:6px 6px !important;margin:0px auto;}
             #nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
         </style>
     </head>
@@ -39,27 +46,32 @@
             <span id="levelTotal2">0</span> levels selected
         </h1>
         <div id="nav">
+            <div>
+                Page <span id="pageNo">1</span> of <span id="pageTotal">1</span>
+                <br>
+                <input style="cursor:pointer" id='pageSelect' type="range" min="1" value="1" step="1" oninput="document.getElementById('pageNo').innerText=`${this.value}`", onchange="settings.page=this.value;display();updateColours();">
+            </div>
             <input type="text" id="search" style="height:70px;font-size:30px;border-radius:10px;width:400px;font-family:'Pusab'" placeholder="Search for a level..." oninput='display();updateColours()'>
             <button id="selectAll" class="btn navbtn" style="height:70px;" onclick="invertColors()">invert</button>
-            <select class="btn navbtn" id="sort" style="width:400px;height:70px;" onchange="settings.sort=this.value;display();updateColours()">
-            <option value="dd">Difficulty Descending</option>
-            <option value="da">Difficulty Ascending</option>
-            <option value="aa">Alphabetical Ascending</option>
-            <option value="ad">Alphabetical Descending</option>
+            <select class="btn navbtn" id="sort" style="width:200px;height:70px;" onchange="settings.sort=this.value;display();updateColours()">
+            <option value="h">Hardest</option>
+            <option value="e">Easiest</option>
+            <option value="a">A-Z</option>
+            <option value="z">Z-A</option>
             </select>
-            <button class="btn navbtn"><a href="./info" style="height:70px;text-decoration:none;color:white;font-size:50px">Info</a></button>
+            <button class="btn navbtn" style="width:70px;"><a style="color:white;font-family:'Nunito';text-decoration:none;font-size:30px;" href="./info">i</a></button>
         </div>
         <p id="scoreTotal"><span id="score">0</span> points</p>
-        <div id="levels" style="height:600px;overflow-y:auto"></div>
+        <div id="pages" style="display:flex;flex-direction:row"><button><img src="./triangle.png"></button><div id="levels" style="height:fit-content;max-height:600px;overflow-y:auto;width:max-content;"></div></div>
         <h1>Submissions</h1>
-        <div id="queue" style="height:600px;overflow-y:auto;">
-        </div>
+        <div id="queue" style="height:600px;overflow-y:auto;"></div>
         <script src="../inject.js"></script>
         <script>
             document.body.style.backgroundImage = 'url(./bg.jpg)'
             sela=new Audio('./button.mp3')
-            let settings={sort:'dd'}
+            let settings={sort:'h',page:1,reversed:!1}
             let filter=[]
+            let pageSelect=document.getElementById('pageSelect')
             let score=document.getElementById('score')
             let div=document.getElementById('levels')
             let nav=document.getElementById('nav') 
@@ -72,12 +84,11 @@
                 ['Green Demon',803536],["Starlit Glacier",59157925],"Platinum Adventure","Robotic Nightmares","Shiver","GD Randomizer","iS","Defeat your gubbus (Plat)","You've Been Trolled","Wave Wave",["BUSSIN",110715909],"Flappy Bird","How to Clutterfunk","Shock",'Cycles','OuterSpace',"First Race","PowerX","Wavelength","Tiktok ahh song",['Everybody Bounce',28166800],["Breakpoint",117863163],[`Shiver Me Timbers`,116871532],["Level Easy",11940],["LETs  RUN",31280642],
                 "Nexus (Hard)","Explorers", "Sonar","boogie","Free Stars","Destructive Auto","Auto Clubstep","Auto Electrodynamix",[`aUtO CycleS anD sam`,153233],["Auto Cycles",24453],["Cycles Auto (1)",158692],["Cycles Auto (2)",161116],["Cycles (Auto)",165024],["Grey World",114082],
                 "Youve been trolled (auto)","Autopilot","Hyperluminal","Dark Road"]
-            const submissions=['STEEP','STALEMATE','8o','Windy Landscape','Duelo Maestro','Acropolis','MikuMikuMikuMiku','hi',
-                'Poltergeist','Supersonic','Future Funk II','Ultimate Demon Mix','UltraSonic','Dark Travel','BuTiTi II','How to platformer','Invisible Deadlocked',
-                'Deadlocked v3','ICE Carbon Diablo X','SlaughterHouse','Dream Travel','Trip','Magma Bound','Throat of the World','Necropolis','Denouement','Game Time',
-                'love baba','pulsar','LightWave','Nine CircleX','Ultraviolet','I wanna be the guy','Kappa Boss Fight','Pyromaniac','ClubStep Nightmares',
-                'Beat Ninja','Leyak'
-            ]
+            const submissions=[
+    "STEEP","STALEMATE","8o","Windy Landscape","Duelo Maestro","Acropolis","MikuMikuMikuMiku","hi","Poltergeist","Supersonic","Future Funk II","Ultimate Demon Mix","UltraSonic",
+    "Dark Travel","BuTiTi II","How to platformer","Invisible Deadlocked","Deadlocked v3","ICE Carbon Diablo X","SlaughterHouse","Dream Travel","Trip","Magma Bound","Throat of the World",
+    "Necropolis","Denouement","Game Time","love baba","pulsar","LightWave","Nine CircleX","Ultraviolet","I wanna be the guy","Kappa Boss Fight","Pyromaniac","ClubStep Nightmares","Beat Ninja",
+    "Leyak"]
             for(let j of submissions){
                 let k = document.createElement('p')
                 k.classList = 'btn'
@@ -139,36 +150,39 @@
                 let search=document.getElementById('search').value.toLowerCase()
                 div.replaceChildren()
                 filter=levels.filter(i=>`${standardize(i)}`.toLowerCase().includes(search)||findLevel(standardize(i))?.toLowerCase()===search)
-                if(settings.sort=='aa'){
+                if(settings.sort=='a'){
                     filter=filter.sort((a,b)=>standardize(a).localeCompare(standardize(b)))
                 }
-                if(settings.sort=='ad'){
+                if(settings.sort=='z'){
                     filter=filter.sort((a,b)=>standardize(a).localeCompare(standardize(b))).toReversed()
                 }
-                if(settings.sort=='da'){
+                if(settings.sort=='e'){
                     filter=filter.toReversed()
                 }
                 if(settings.reversed){
                     filter=filter.toReversed()
                 }
+                const maxPage=Math.ceil(filter.length/20)
+                const minPage=Math.min(maxPage,settings.page)
+                filter=filter.slice(settings.page*20-20,settings.page*20)
+                pageTotal.innerHTML=`${maxPage}`
+                pageSelect.max=`${maxPage}`
+                pageSelect.value=`${minPage}`
+                settings.page=minPage
+                pageNo.innerText=settings.page
                 for(let i of filter){
-                    
                     let b=document.createElement("button")
-                    let c=document.createElement("img")
-                    let d=document.createElement('a')
-                    c.src=`./difficulty-faces/${findLevel(standardize(i))||'NA'}.png`
-                    c.classList='face'
+                    let innerHTML=`${standardize(i)}<br><img src='./difficulty-faces/${findLevel(standardize(i))||'NA'}.png' class='face'>`
+                    if(Array.isArray(i)){innerHTML+=` <a style='color:white' href="https://gdbrowser.com/${i[1]}">#${levels.indexOf(i)+1}</a>`}else{innerHTML+=`#${levels.indexOf(i)+1}`}
                     b.id=standardize(i)
-                    b.classList="btn"
-                    b.innerHTML = standardize(i)
-                    if(Array.isArray(i)){b.innerHTML+=` <a style='color:white' href="https://gdbrowser.com/${i[1]}">(ID)</a>`}
+                    b.classList="btn wrap-around"
+                    b.innerHTML=innerHTML
                     b.addEventListener("click",()=>{
                         change(b.id)
                         sela.currentTime=0
                         sela.play()
                         updateColours()
                     })
-                    b.appendChild(c)
                     div.appendChild(b)
                 }
             }
