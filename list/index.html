@@ -25,20 +25,22 @@
                 padding-right:10px;
             }
             .wrap-around{
-                width:19%;
+                width:15%;
+                min-width:10vw;
                 text-overflow:ellipsis;
                 overflow:hidden;
             }
             #scoreTotal,#levelTotalFull{font-size:50px;font-family:"Pusab";margin:0px;}
             #score{font-family:"Pusab";color:white;}
             .navbtn{font-size:4em;}
-            .btn{border:2px solid white;font-size:30px;text-shadow:1px 1px 2px black;font-family:"Pusab";background-color:#ff2323;
+            .btn{border:2px solid white;font-size:30px;text-shadow:1px 1px 2px black;font-family:"Pusab";background-color:#a16d6d;
             color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;
             transition:all 0.2s ease-out;}
             #levels, #queue{display:flex;flex-wrap:wrap;gap:6px 6px !important;margin:0px auto;justify-content:center;}
             #levels{width:fit-content;}
             #nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
             .horizontal{display:flex;flex-direction:row;gap:10px;}
+            .vertical{display:flex;flex-direction:column;gap:10px;}
         </style>
     </head>
     <body>
@@ -52,36 +54,55 @@
             <input type="text" id="search" style="height:70px;font-size:30px;border-radius:10px;width:400px;font-family:'Pusab'" placeholder="Search for a level..." oninput='display();updateColours()'>
             <button id="selectAll" class="btn navbtn" style="height:70px;" onclick="invertColors()">invert</button>
             <select class="btn navbtn" id="sort" style="width:200px;height:70px;" onchange="settings.sort=this.value;display();updateColours()">
-            <option value="h">Hardest</option>
-            <option value="e">Easiest</option>
-            <option value="a">A-Z</option>
-            <option value="z">Z-A</option>
+                <option value="h">Hardest</option>
+                <option value="e">Easiest</option>
+                <option value="a">A-Z</option>
+                <option value="z">Z-A</option>
             </select>
-            <button class="btn navbtn" style="width:70px;"><a style="color:white;font-family:'Nunito';text-decoration:none;font-size:30px;" href="./info">i</a></button>
+            <a href='./info'>
+                <button class="btn navbtn" style="width:70px;font-family:'Nunito";>i</button>
+            </a>
+            <input type="color" id="bgColor1" style="height:70px;width:70px;border-radius:5px;padding:2px;" value="#a16d6d" onchange="changeTheme(0,this.value);audio();">
+            <input type="color" id="bgColor2" style="height:70px;width:70px;border-radius:5px;padding:2px;" value="#239923" onchange="changeTheme(1,this.value);audio();">
         </div>
         <div class="horizontal" style="justify-content:center;gap:100px;">
             <div>
-                <p style="font-size:30px;margin:0;">Page <span id="pageNo">1</span> of <span id="pageTotal">1</span></p>
-                <input style="cursor:pointer" id='pageSelect' type="range" min="1" value="1" step="1" oninput="document.getElementById('pageNo').innerText=`${this.value}`", onchange="settings.page=this.value;display();updateColours();">
+                <p style="font-size:30px;margin:0;">Page 
+                    <input style="cursor:pointer;height:60px;border-radius:10px;font-size:30px;font-family:'Pusab';width:70px;text-align:center" id='pageNo' type="number" value="1" maxlength="2" onchange="settings.page=this.value;display();updateColours();">
+                     of <span id="pageTotal">1</span></p>
             </div>
             <p id="scoreTotal"><span id="score">0</span> points</p></div>
         <div id="pages" style="display:flex;flex-direction:row">
-            <button id="left" onclick="if(changePage('left'))audio();" style="background:none;border:none;cursor:pointer;"><img src="./triangle.png" style="transform:scaleX(-1)"></button>
+            <div class="vertical">
+                <button id="left" onclick="if(changePage('left'))audio();" style="background:none;border:none;cursor:pointer;">
+                    <img src="./triangle.png" style="transform:scaleX(-1)">
+                </button>
+                <button id="left" onclick="if(changePage('left',!0))audio();" style="background:none;border:none;cursor:pointer;">
+                    <img src="./doubletriangle.png" style="transform:scaleX(-1)">
+                </button>
+            </div>
             <div id="levels" style="height:fit-content;max-height:600px;overflow-y:auto;width:max-content;"></div>
-            <button id="right" onclick="if(changePage('right'))audio();" style="background:none;border:none;cursor:pointer;"><img src="./triangle.png"></button></div>
+            <div class="vertical">
+                <button id="right" onclick="if(changePage('right'))audio();" style="background:none;border:none;cursor:pointer;">
+                    <img src="./triangle.png">
+                </button>
+                <button id="right" onclick="if(changePage('right',!0))audio();" style="background:none;border:none;cursor:pointer;">
+                    <img src="./doubletriangle.png">
+                </button>
+            </div>
+    </div>
         <h1>Submissions</h1>
         <div id="queue" style="height:600px;overflow-y:auto;"></div>
         <script src="../inject.js"></script>
         <script>
             document.body.style.backgroundImage = 'url(./bg.jpg)'
             sela=new Audio('./button.mp3')
-            let settings={sort:'h',page:1,reversed:!1}
+            let settings={sort:'h',page:1,theme:['#a16d6d','#239923']}
             let filter=[]
             let fullFilter=[]
             let maxPage=0
             let minPage=0
             let downloader=document.getElementById('downloader')
-            let pageSelect=document.getElementById('pageSelect')
             let score=document.getElementById('score')
             let div=document.getElementById('levels')
             let nav=document.getElementById('nav') 
@@ -152,7 +173,7 @@
             updateColours=()=>{
                 let children = div.children
                 for(let i of children){
-                    i.style.background=comp[standardize(i.id)]?'#239923':'#ff2323'
+                    i.style.background=comp[standardize(i.id)]?settings.theme[1]:settings.theme[0]
                 }
             }
             display=()=>{
@@ -168,17 +189,12 @@
                 if(settings.sort=='e'){
                     filter=filter.toReversed()
                 }
-                if(settings.reversed){
-                    filter=filter.toReversed()
-                }
                 maxPage=Math.ceil(filter.length/20)
                 minPage=Math.min(maxPage,settings.page)
                 pageTotal.innerHTML=`${maxPage}`
-                pageSelect.max=`${maxPage}`
-                pageSelect.value=`${minPage}`
                 settings.page=minPage
                 if(minPage === 0 && maxPage > 0){settings.page=1}
-                pageNo.innerText=settings.page
+                pageNo.value=settings.page
                 fullFilter = filter
                 filter=filter.slice(settings.page*20-20,settings.page*20)
                 for(let i of filter){
@@ -196,22 +212,36 @@
                     div.appendChild(b)
                 }
             }
-            let changePage = function(id){
-                const oldPage = settings.page
+            changePage=(id,m)=>{
+                const oldPage=settings.page
                 if(id=='left'){
+                    if(!m){
                     settings.page=Math.max(1,settings.page-1)
+                    }else{
+                        settings.page=1
+                    }
                 }else{
-                    settings.page=Math.min(maxPage,settings.page+1)
+                    if(m){
+                        settings.page=maxPage
+                    }else{
+                        settings.page=Math.min(maxPage,settings.page+1)
+                    }
                 }
                 display()
                 updateColours()
                 return oldPage!=settings.page
             }
-            let txtText = `--- LEVELS ---\n`
-                txtText += levels.map(i=>`#${levels.indexOf(i)+1}. ${standardize(i)} - ID: ${Array.isArray(i)?i[1]:'N/A'} - DIFFICULTY - ${findLevel(standardize(i)) || 'Unknown'}`).join(`\n`)
+            changeTheme=(i,bgColor)=>{
+                settings.theme[i] = bgColor
+                if(i==0)document.querySelectorAll('.btn').forEach(j=>j.style.backgroundColor=bgColor)
+                updateColours()
+                return bgColor
+            }
+            let txtText=`--- LEVELS ---\n`
+            txtText += levels.map(i=>`#${levels.indexOf(i)+1}. ${standardize(i)} - ID: ${Array.isArray(i)?i[1]:'N/A'} - DIFFICULTY - ${findLevel(standardize(i)) || 'Unknown'}`).join(`\n`)
             levelTotal.innerHTML=`${standardLevels.length}`
-                txtText += `\n--- SUBMISSIONS ---\n`
-                txtText += submissions.map(i=>`#${submissions.indexOf(i)+1}. ${i}`).join(`\n`)
+            txtText+=`\n--- SUBMISSIONS ---\n`
+            txtText += submissions.map(i=>`#${submissions.indexOf(i)+1}. ${i}`).join(`\n`)
             downloader.href = URL.createObjectURL(new Blob([txtText], {type: 'text/plain'}));
             display()
         </script>
