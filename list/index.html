@@ -28,7 +28,7 @@
                 padding-right:10px;
             }
             .wrap-around{
-                width:15%;
+                width:19%;
                 min-width:10vw;
                 text-overflow:ellipsis;
                 overflow:hidden;
@@ -50,7 +50,7 @@
         <h1 id="levelTotalFull">
             <p style='font-size:0.8em'>All Rated Levels List (started october 16th)</p>
             <span id='levelTotal'>0</span> levels in total ||
-            <span id="levelTotal2">0</span> levels selected
+            <span id="levelTotal2">0</span> completed
         </h1>
         <div id="nav">
             <a id="downloader" download="AllRatedLevels.txt" style='text-decoration:none;' class="btn navbtn">Download List</a>
@@ -63,7 +63,7 @@
                 <option value="z">Z-A</option>
             </select>
             <a href='./info'>
-                <button class="btn navbtn" style="width:70px;font-family:'Nunito";>i</button>
+                <button class="btn navbtn" style="width:70px;font-family:'Nunito';">i</button>
             </a>
             <input type="color" id="bgColor1" style="height:70px;width:70px;border-radius:5px;padding:2px;" value="#a16d6d" onchange="changeTheme(0,this.value);audio();">
             <input type="color" id="bgColor2" style="height:70px;width:70px;border-radius:5px;padding:2px;" value="#239923" onchange="changeTheme(1,this.value);audio();">
@@ -114,16 +114,16 @@
             let queue = document.getElementById('queue')
             const levels=[
                  ["GRIEF",149992717],["Nautical Nightmares",138993732],"Artemis 13",[`delightful climb`,115206404],"Society","Thinking Space II","Amethyst","Flamewall",["Tidal Wave",86407629],'Green Bullet','ORBIT','Antarctic Lights',"Nullscapes",
-                 "Quanteuse processing",'BOOBAWAMBA','The Bloop','Every End','Ashley Wave Trials','Silent clubstep',["Cycles X",144087103],["Bloodbath",10565740],['Acu',61079355],["Red World",2374518],["CraZy III",73725400],["CraZy II",47620786],["CraZy",40945673],"Nine Circles","Against the God","Beautiful Chaos","B","Living Open","Wild West",
-                ['Green Demon',803536],["Starlit Glacier",59157925],"Platinum Adventure","Robotic Nightmares","Shiver","GD Randomizer","iS","Defeat your gubbus (Plat)","You've Been Trolled","Wave Wave",["BUSSIN",110715909],"Flappy Bird","How to Clutterfunk","Shock",'Cycles','OuterSpace',"First Race","PowerX","Wavelength","Tiktok ahh song",['Everybody Bounce',28166800],["Breakpoint",117863163],[`Shiver Me Timbers`,116871532],["Level Easy",11940],["LETs  RUN",31280642],
-                "Nexus (Hard)","Explorers", [`Disco Dungeon`,97638770], "Sonar","boogie","Free Stars","Destructive Auto","Auto Clubstep","Auto Electrodynamix",[`aUtO CycleS anD sam`,153233],["Auto Cycles",24453],["Cycles Auto (1)",158692],["Cycles Auto (2)",161116],["Cycles (Auto)",165024],["Grey World",114082],
+                 "Quanteuse processing",'BOOBAWAMBA','The Bloop','Every End','Ashley Wave Trials','Silent clubstep',['Ultra Paracosm',138704906],'Penumbral','Andromeda','KILLSTEALER','Subsuming Vortex','Anathema','Defeated Circles','Avernus','FOREST OF SPIKES','Acheron','Spectre','Menace','Abyss of Darkness','Tunnel of Despair','Kyouki','Sacrifice','Based After Based','cognitohazard','The Lightning Rod','Maniacal Chains','Slaughterhouse',["Cycles X",144087103],["Bloodbath",10565740],['Acu',61079355],["Red World",2374518],["CraZy III",73725400],["CraZy II",47620786],["CraZy",40945673],"Nine Circles","Against the God","Beautiful Chaos","B","Living Open","Wild West",
+                ['Green Demon',803536],["Starlit Glacier",59157925],["The Lightning Road",55520],"Platinum Adventure","Robotic Nightmares","Shiver","GD Randomizer",['invisible clubstep',1347537],"iS",["iSpyWithMyLittleEye",89886591],"Defeat your gubbus (Plat)","You've Been Trolled",["Shrimpire State",150769793],["BUSSIN",110715909],"Wave Wave",["Eastside",132687104],"Flappy Bird","How to Clutterfunk",['Dead Device',117912123],"Shock",'Cycles','OuterSpace',"First Race","PowerX","Wavelength","Tiktok ahh song",['Everybody Bounce',28166800],["Breakpoint",117863163],[`Shiver Me Timbers`,116871532],["Level Easy",11940],["LETs  RUN",31280642],
+                "Nexus (Hard)","Explorers", [`Disco Dungeon`,97638770],"Sonar",['ReTray',6508283],"boogie","Free Stars","Destructive Auto","Auto Clubstep","Auto Electrodynamix",[`aUtO CycleS anD sam`,153233],["Auto Cycles",24453],["Cycles Auto (1)",158692],["Cycles Auto (2)",161116],["Cycles (Auto)",165024],["Grey World",114082],
                 "Youve been trolled (auto)","Autopilot","Hyperluminal","Dark Road"]
             const submissions=[
     "STEEP","STALEMATE","8o","Windy Landscape","Duelo Maestro","Acropolis","MikuMikuMikuMiku","hi","Poltergeist","Supersonic","Future Funk II","Ultimate Demon Mix","UltraSonic",
     "Dark Travel","BuTiTi II","How to platformer","Invisible Deadlocked","Deadlocked v3","ICE Carbon Diablo X","SlaughterHouse","Dream Travel","Trip","Magma Bound","Throat of the World",
     "Necropolis","Denouement","Game Time","love baba","pulsar","LightWave","Nine CircleX","Ultraviolet","I wanna be the guy","Kappa Boss Fight","Pyromaniac","ClubStep Nightmares","Beat Ninja",
     "Leyak"]
-            for(let j of submissions){
+            for(let j of submissions){ 
                 let k = document.createElement('p')
                 k.classList = 'btn'
                 k.innerHTML = j
@@ -132,7 +132,7 @@
             standardize=a=>Array.isArray(a)?a[0]:a
             const standardLevels=levels.map(j=>standardize(j))
             const difficulty={
-                "ExtremeDemon":['Cycles X','Acu','GRIEF',"Delightful Climb","Nautical Nightmares","Artemis 13","Society","Thinking Space II",'Amethyst','Flamewall',
+                "ExtremeDemon":['Abyss of Darkness','Tunnel of Despair','Kyouki','Sacrifice','Based After Based','cognitohazard','The Lightning Rod','Maniacal Chains','Slaughterhouse','Ultra Paracosm','Penumbral','Andromeda','KILLSTEALER','Subsuming Vortex','Anathema','Defeated Circles','Avernus','FOREST OF SPIKES','Acheron','Spectre','Menace','Cycles X','Acu','GRIEF',"Delightful Climb","Nautical Nightmares","Artemis 13","Society","Thinking Space II",'Amethyst','Flamewall',
                 'Bloodbath','Red World','Tidal Wave','Nullscapes','ORBIT','antarctic lights','green bullet','boobawamba','quanteuse processing','every end','the bloop','silent clubstep',
                 'ashley wave trials'],
                 "InsaneDemon":['CraZy II','CraZy III','STEEP','STALEMATE','8o','CraZy II','CraZy III','Windy Landscape','Duelo Maestro','Acropolis','MikuMikuMikuMiku','hi',
@@ -142,12 +142,12 @@
                 'Beat Ninja','Leyak'],
                 "HardDemon":['Nine Circles',"craZy"],
                 "MediumDemon":['Against the God','Beautiful Chaos','B','Living Open','starlit glacier'],
-                "EasyDemon":["green demon",'Platinum Adventure','iS','Wild West','Shiver'],
-                "Insane":['Robotic Nightmares','GD Randomizer','Defeat your gubbus (Plat)',`You've Been Trolled`,'Wave Wave','bussin'],
-                "Harder":['Cycles','Flappy Bird','Shock','First Race'],
-                "Hard":['PowerX','Wavelength','Tiktok ahh song','Nexus (Hard)','Free Stars',"How to clutterfunk","outerspace",'everybody bounce','shiver me timbers'],
+                "EasyDemon":['invisible clubstep',"green demon",'Platinum Adventure','iS','Wild West','Shiver','iSpyWithMyLittleEye','The Lightning Road'],
+                "Insane":['Flappy Bird','Shrimpire State','Eastside','Robotic Nightmares','GD Randomizer','Defeat your gubbus (Plat)',`You've Been Trolled`,'Wave Wave','bussin'],
+                "Harder":['Cycles','Shock','First Race'],
+                "Hard":['Dead Device','PowerX','Wavelength','Tiktok ahh song','Nexus (Hard)','Free Stars',"How to clutterfunk","outerspace",'everybody bounce','shiver me timbers'],
                 "Normal":['lets  run','Level Easy','Breakpoint'],
-                "Easy":['Explorers','Sonar','boogie','Disco dungeon'],
+                "Easy":['Explorers','Sonar','boogie','Disco dungeon','Retray'],
                 "Auto":["Auto Cycles and Sam","Auto Cycles","Cycles (Auto)","Destructive Auto","Auto Electrodynamix","Auto Clubstep","Cycles Auto (1)","Cycles Auto (2)","Grey World","Youve been trolled (auto)","Autopilot","hyperluminal","dark road"]
             }
             change=n=>{
@@ -159,7 +159,7 @@
             process=()=>{
                 let points=0
                 for(let i in standardLevels){
-                    points+=comp[standardLevels[i]]?(i==0?300:(i<5?150:(i<10?100:(i<25?75:(i<40?40:(i<80?10:(i<120?5:0.2))))))):0
+                    points+=comp[standardLevels[i]]?(i==0?500:(i<5?150:(i<10?100:(i<30?75:(i<60?40:(i<100?10:(i<150?5:0.2))))))):0
                 }
                 score.innerHTML=`${points}`
                 return points
