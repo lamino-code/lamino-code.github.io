@@ -4,6 +4,9 @@
         <title>All Rated Levels List</title>
         <link rel="icon" href="./SecretCoin.png">
         <style>
+            .arrow{
+                background:none;border:none;cursor:pointer;
+            }
             body{
                 font-family:'Pusab';
                 background-color:rgb(20,20,20);
@@ -74,19 +77,19 @@
             <p id="scoreTotal"><span id="score">0</span> points</p></div>
         <div id="pages" style="display:flex;flex-direction:row">
             <div class="vertical">
-                <button id="left" onclick="if(changePage('left'))audio();" style="background:none;border:none;cursor:pointer;">
-                    <img src="./triangle.png" style="transform:scaleX(-1)">
+                <button id="left" onclick="if(changePage('left'))audio();" class='arrow'>
+                    <img src="./triangle.png" style="transform:scaleX(-0.8) scaleY(0.8)">
                 </button>
-                <button id="left" onclick="if(changePage('left',!0))audio();" style="background:none;border:none;cursor:pointer;">
-                    <img src="./doubletriangle.png" style="transform:scaleX(-1)">
+                <button id="left" onclick="if(changePage('left',!0))audio();" class='arrow'>
+                    <img src="./doubletriangle.png" style="transform:scaleX(-0.8) scaleY(0.8)">
                 </button>
             </div>
             <div id="levels" style="height:fit-content;max-height:600px;overflow-y:auto;width:max-content;"></div>
             <div class="vertical">
-                <button id="right" onclick="if(changePage('right'))audio();" style="background:none;border:none;cursor:pointer;">
+                <button id="right" onclick="if(changePage('right'))audio();" class='arrow' style="transform:scale(0.8)">
                     <img src="./triangle.png">
                 </button>
-                <button id="right" onclick="if(changePage('right',!0))audio();" style="background:none;border:none;cursor:pointer;">
+                <button id="right" onclick="if(changePage('right',!0))audio();" class='arrow' style="transform:scale(0.8)">
                     <img src="./doubletriangle.png">
                 </button>
             </div>
