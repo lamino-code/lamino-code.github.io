@@ -68,6 +68,11 @@
                 <option value="a">A-Z</option>
                 <option value="z">Z-A</option>
             </select>
+            <select class="btn navbtn" onchange="selectBackup(this.value)">
+                <option value="0">Backup 0 (default)</option>
+                <option value="1">Backup 1</option>
+                <option value="2">Backup 2</option>
+            </select>
             <a href='./info'>
                 <button class="btn navbtn" style="width:70px;font-family:'Nunito';">i</button>
             </a>
@@ -261,6 +266,9 @@
                 if(i==0)document.querySelectorAll('.btn').forEach(j=>j.style.backgroundColor=bgColor)
                 updateColours()
                 return bgColor
+            }
+            selectBackup=i=>{
+                console.log(i)
             }
             let txtText=`--- LEVELS ---\n`
             txtText += levels.map(i=>`#${levels.indexOf(i)+1}. ${standardize(i)} - ID: ${Array.isArray(i)?i[1]:'N/A'} - DIFFICULTY - ${findLevel(standardize(i)) || 'Unknown'}`).join(`\n`)
