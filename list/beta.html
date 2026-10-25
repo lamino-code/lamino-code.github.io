@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>All Rated Levels List</title>
+        <link rel="icon" href="./SecretCoin.png">
+        <style>
+            .arrow{
+                background:none;border:none;cursor:pointer;width:fit-content;height:fit-content;padding:0px;margin:0px;
+            }
+            #levels button:nth-child(3n){transform:rotate(2deg)}
+            #levels button:nth-child(2n-1){transform:rotate(-2deg)}
+            body{
+                font-family:'Pusab';
+                background-color:rgb(20,20,20);
+                color:white;
+                text-align:center;
+                background-size:cover;
+                background-position-y:5%
+            }
+            @font-face {
+                font-family:'Pusab';
+                src:url('./PUSAB___.otf') format("opentype");
+                font-weight:20px;
+                font-style:normal;
+            }
+            .face{
+                width:30px;
+                align-self:bottom;
+                padding-left:10px;
+                padding-right:10px;
+            }
+            .wrap-around{
+                width:19%;
+                min-width:10vw;
+                text-overflow:ellipsis;
+                overflow:hidden;
+            }
+            #scoreTotal,#levelTotalFull{font-size:50px;font-family:"Pusab";margin:0px;}
+            #score{font-family:"Pusab";color:white;}
+            .navbtn{font-size:4em;}
+            .btn{border:2px solid white;font-size:30px;text-shadow:1px 1px 2px black;font-family:"Pusab";background-color:#a16d6d;
+            color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;
+            transition:all 0.2s ease-out;}
+            #levels, #queue{display:flex;flex-wrap:wrap;gap:6px 6px !important;margin:0px auto;justify-content:center;}
+            #levels{width:fit-content;max-width:75vw;padding:5px;}
+            .center{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:fit-content;height:fit-content;font-size:30px;font-family:'Pusab';border-radius:20px;z-index:2000;background:rgb(112, 176, 240);padding:30px;box-sizing:border-box;}
+            #nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+            .horizontal{display:flex;flex-direction:row;gap:10px;}
+            .vertical{display:flex;flex-direction:column;gap:10px;}
+        </style>
+    </head>
+    <body>
+        <h1 id="levelTotalFull">
+            <p style='font-size:0.8em'>All Rated Levels List (started october 16th)</p>
+            <span id="levelTotal2">0</span>/<span id='levelTotal'>0</span> completed
+        </h1>
+        <div id="nav">
+            <a id="downloader" download="AllRatedLevels.txt" style='text-decoration:none;' class="btn navbtn">Download List</a>
+            <div class="horizontal" style="background:white;border-radius:10px;padding:7px;align-items:center;">
+                <img src="https://www.freeiconspng.com/uploads/search-icon-png-18.png" style="height:55px;width:55px;filter:drop-shadow(1px 1px 2px black);">
+                <div style="width:5px;border-radius:3px;height:50px;background:rgb(109, 109, 109)"></div>
+                <input type="text" id="search" style="border:2px solid gray;padding-left:10px;height:50px;font-size:25px;border-radius:10px;font-family:'Pusab';width:270px;" placeholder="Search" oninput='display();updateColours()'>
+            </div>
+            <button id="selectAll" class="btn navbtn" style="height:70px;" onclick="invertColors()">invert</button>
+            <select class="btn navbtn" id="sort" style="width:200px;height:70px;" onchange="settings.sort=this.value;display();updateColours()">
+                <option value="h">Hardest</option>
+                <option value="e">Easiest</option>
+                <option value="a">A-Z</option>
+                <option value="z">Z-A</option>
+            </select>
+            <a href='./info'>
+                <button class="btn navbtn" style="width:70px;font-family:'Nunito';">i</button>
+            </a>
+            <button class="btn navbtn" style="height:70px;" onclick="document.querySelector('.center').style.display='block'">Theme</button>
+        <div class="horizontal" style="justify-content:center;gap:100px;margin:0px auto;">
+            <div>
+                <p style="font-size:30px;margin:0;">Page 
+                    <input style="cursor:pointer;height:60px;border-radius:10px;font-size:30px;font-family:'Pusab';width:70px;text-align:center" id='pageNo' type="number" value="1" maxlength="2" onchange="settings.page=this.value;display();updateColours();">
+                     of <span id="pageTotal">1</span></p>
+            </div>
+            <p id="scoreTotal"><span id="score">0</span> points</p>
+        </div>
+        <br>
+        <div id="pages" class="horizontal" style="justify-content:center;width:100%;">
+            <div class="vertical">
+                <button id="left" onclick="if(changePage('left'))audio();" class='arrow'>
+                    <img src="./triangle.png" style="transform:scaleX(-0.8) scaleY(0.8)">
+                </button>
+                <button id="left" onclick="if(changePage('left',!0))audio();" class='arrow'>
+                    <img src="./doubletriangle.png" style="transform:scaleX(-0.8) scaleY(0.8)">
+                </button>
+            </div>
+            <div id="levels" style="height:fit-content;max-height:600px;overflow-y:auto;width:max-content;"></div>
+            <div class="vertical">
+                <button id="right" onclick="if(changePage('right'))audio();" class='arrow' style="transform:scale(0.8)">
+                    <img src="./triangle.png">
+                </button>
+                <button id="right" onclick="if(changePage('right',!0))audio();" class='arrow' style="transform:scale(0.8)">
+                    <img src="./doubletriangle.png">
+                </button>
+            </div>
+    </div>
+        <h1 style="text-align:center;width:100%;">Submissions</h1>
+        <div id="queue" style="height:600px;overflow-y:auto;"></div>
+        <div class="center">
+            <button class="btn" style="width:80px;height:80px;position:absolute;top:30px;right:30px;font-size:40px;" onclick="document.querySelector('.center').style.display='none';audio();">X</button>
+            <h1 style="text-align:center;color:white;text-shadow:3px 3px 2px black;">Theme</h1>
+            <br>
+            <div class="horizontal" style="justify-content:center;">
+                <div class="vertical">
+                    <p style="color:white;text-shadow:3px 3px 2px black;font-size:30px;margin:0;">Uncompleted</p>
+                    <input type="color" id="bgColor1" style="height:370px;width:370px;border-radius:5px;padding:2px;" value="#a16d6d" onchange="changeTheme(0,this.value);audio();">
+                </div>
+                <div class="vertical">
+                    <p style="color:white;text-shadow:3px 3px 2px black;font-size:30px;margin:0;">Completed</p>
+                    <input type="color" id="bgColor2" style="height:370px;width:370px;border-radius:5px;padding:2px;" value="#239923" onchange="changeTheme(1,this.value);audio();">
+                </div>
+            </div>
+        </div>
+        <script src="../inject.js"></script>
+        <script>
+            document.querySelector('.center').style.display='none';
+            document.body.style.backgroundImage = 'url(./bg.jpg)'
+            sela=new Audio('./button.mp3')
+            let settings={sort:'h',page:1,theme:['#a16d6d','#239923']}
+            let filter=[]
+            let fullFilter=[]
+            let maxPage=0
+            let minPage=0
+            let downloader=document.getElementById('downloader')
+            let score=document.getElementById('score')
+            let div=document.getElementById('levels')
+            let nav=document.getElementById('nav') 
+            let levelTotal=document.getElementById('levelTotal')
+            let levelTotal2=document.getElementById('levelTotal2')
+            let queue = document.getElementById('queue')
+            const levels=[
+                 ["GRIEF",149992717],["Nautical Nightmares",138993732],"Artemis 13",[`delightful climb`,115206404],"Society","Thinking Space II","Amethyst","Flamewall",["Tidal Wave",86407629],'Green Bullet','ORBIT','Antarctic Lights',"Nullscapes",
+                 "Quanteuse processing",'BOOBAWAMBA','The Bloop','Every End','Ashley Wave Trials','Silent clubstep',['Ultra Paracosm',138704906],'Penumbral','Andromeda','KILLSTEALER','Subsuming Vortex','Anathema','Defeated Circles','Avernus','FOREST OF SPIKES','Acheron','Spectre','Menace','Abyss of Darkness','Tunnel of Despair','Kyouki','Sacrifice','Based After Based','cognitohazard','The Lightning Rod','Maniacal Chains','Slaughterhouse',["Cycles X",144087103],["Bloodbath",10565740],['Acu',61079355],["Red World",2374518],["CraZy III",73725400],["CraZy II",47620786],["CraZy",40945673],"Nine Circles","Against the God","Beautiful Chaos","B","Living Open","Wild West",
+                ['Green Demon',803536],["Starlit Glacier",59157925],["The Lightning Road",55520],"Platinum Adventure","Robotic Nightmares","Shiver","GD Randomizer",['invisible clubstep',1347537],"iS",["iSpyWithMyLittleEye",89886591],"Defeat your gubbus (Plat)","You've Been Trolled",["Shrimpire State",150769793],["BUSSIN",110715909],"Wave Wave",["Eastside",132687104],"Flappy Bird","How to Clutterfunk",['Dead Device',117912123],"Shock",'Cycles','OuterSpace',"First Race","PowerX","Wavelength","Tiktok ahh song",['Everybody Bounce',28166800],["Breakpoint",117863163],[`Shiver Me Timbers`,116871532],["Level Easy",11940],["LETs  RUN",31280642],
+                "Nexus (Hard)","Explorers", [`Disco Dungeon`,97638770],"Sonar",['ReTray',6508283],"boogie","Free Stars","Destructive Auto","Auto Clubstep","Auto Electrodynamix",[`aUtO CycleS anD sam`,153233],["Auto Cycles",24453],["Cycles Auto (1)",158692],["Cycles Auto (2)",161116],["Cycles (Auto)",165024],["Grey World",114082],
+                "Youve been trolled (auto)","Autopilot","Hyperluminal","Dark Road"]
+            const submissions=[
+    "STEEP","STALEMATE","8o","Windy Landscape","Duelo Maestro","Acropolis","MikuMikuMikuMiku","hi","Poltergeist","Supersonic","Future Funk II","Ultimate Demon Mix","UltraSonic",
+    "Dark Travel","BuTiTi II","How to platformer","Invisible Deadlocked","Deadlocked v3","ICE Carbon Diablo X","SlaughterHouse","Dream Travel","Trip","Magma Bound","Throat of the World",
+    "Necropolis","Denouement","Game Time","love baba","pulsar","LightWave","Nine CircleX","Ultraviolet","I wanna be the guy","Kappa Boss Fight","Pyromaniac","ClubStep Nightmares","Beat Ninja",
+    "Leyak"]
+            for(let j of submissions){ 
+                let k = document.createElement('p')
+                k.classList = 'btn'
+                k.innerHTML = j
+                queue.appendChild(k)
+            }
+            standardize=a=>Array.isArray(a)?a[0]:a
+            const standardLevels=levels.map(j=>standardize(j))
+            const difficulty={
+                "ExtremeDemon":['Abyss of Darkness','Tunnel of Despair','Kyouki','Sacrifice','Based After Based','cognitohazard','The Lightning Rod','Maniacal Chains','Slaughterhouse','Ultra Paracosm','Penumbral','Andromeda','KILLSTEALER','Subsuming Vortex','Anathema','Defeated Circles','Avernus','FOREST OF SPIKES','Acheron','Spectre','Menace','Cycles X','Acu','GRIEF',"Delightful Climb","Nautical Nightmares","Artemis 13","Society","Thinking Space II",'Amethyst','Flamewall',
+                'Bloodbath','Red World','Tidal Wave','Nullscapes','ORBIT','antarctic lights','green bullet','boobawamba','quanteuse processing','every end','the bloop','silent clubstep',
+                'ashley wave trials'],
+                "InsaneDemon":['CraZy II','CraZy III','STEEP','STALEMATE','8o','CraZy II','CraZy III','Windy Landscape','Duelo Maestro','Acropolis','MikuMikuMikuMiku','hi',
+                'Poltergeist','Supersonic','Future Funk II','Ultimate Demon Mix','UltraSonic','Dark Travel','BuTiTi II','How to platformer','Invisible Deadlocked',
+                'Deadlocked v3','ICE Carbon Diablo X','SlaughterHouse','Dream Travel','Trip','Magma Bound','Throat of the World','Necropolis','Denouement','Game Time',
+                'love baba','pulsar','LightWave','Nine CircleX','Ultraviolet','I wanna be the guy','Kappa Boss Fight','Pyromaniac','ClubStep Nightmares',
+                'Beat Ninja','Leyak'],
+                "HardDemon":['Nine Circles',"craZy"],
+                "MediumDemon":['Against the God','Beautiful Chaos','B','Living Open','starlit glacier'],
+                "EasyDemon":['invisible clubstep',"green demon",'Platinum Adventure','iS','Wild West','Shiver','iSpyWithMyLittleEye','The Lightning Road'],
+                "Insane":['Flappy Bird','Shrimpire State','Eastside','Robotic Nightmares','GD Randomizer','Defeat your gubbus (Plat)',`You've Been Trolled`,'Wave Wave','bussin'],
+                "Harder":['Cycles','Shock','First Race'],
+                "Hard":['Dead Device','PowerX','Wavelength','Tiktok ahh song','Nexus (Hard)','Free Stars',"How to clutterfunk","outerspace",'everybody bounce','shiver me timbers'],
+                "Normal":['lets  run','Level Easy','Breakpoint'],
+                "Easy":['Explorers','Sonar','boogie','Disco dungeon','Retray'],
+                "Auto":["Auto Cycles and Sam","Auto Cycles","Cycles (Auto)","Destructive Auto","Auto Electrodynamix","Auto Clubstep","Cycles Auto (1)","Cycles Auto (2)","Grey World","Youve been trolled (auto)","Autopilot","hyperluminal","dark road"]
+            }
+            change=n=>{
+                comp[n]^=1
+                process()
+                levelTotal2.innerHTML=`${Object.entries(comp).filter(i=>i[1]).length}`
+            }
+            findLevel=n=>Object.entries(difficulty).filter(j=>j[1].map(j=>j.toLowerCase()).includes(n.toLowerCase()))?.[0]?.[0]
+            process=()=>{
+                let points=0
+                for(let i in standardLevels){
+                    points+=comp[standardLevels[i]]?(i==0?500:(i<5?150:(i<10?100:(i<30?75:(i<60?40:(i<100?10:(i<150?5:0.2))))))):0
+                }
+                score.innerHTML=`${points}`
+                return points
+            }
+            audio=()=>{sela.currentTime=0;sela.play()}
+            invertColors=()=>{
+                for(let j of fullFilter.map(i=>standardize(i))){
+                change(j)
+                updateColours()
+                }
+                audio()
+            }
+            let comp=Object.fromEntries(standardLevels.map(i=>[i,!1]))
+            updateColours=()=>{
+                let children = div.children
+                for(let i of children){
+                    i.style.background=comp[standardize(i.id)]?settings.theme[1]:settings.theme[0]
+                }
+            }
+            display=()=>{
+                let search=document.getElementById('search').value.toLowerCase()
+                div.replaceChildren()
+                filter=levels.filter(i=>`${standardize(i)}`.toLowerCase().includes(search)||findLevel(standardize(i))?.toLowerCase()===search)
+                if(settings.sort=='a'){
+                    filter=filter.sort((a,b)=>standardize(a).localeCompare(standardize(b)))
+                }
+                if(settings.sort=='z'){
+                    filter=filter.sort((a,b)=>standardize(a).localeCompare(standardize(b))).toReversed()
+                }
+                if(settings.sort=='e'){
+                    filter=filter.toReversed()
+                }
+                maxPage=Math.ceil(filter.length/20)
+                minPage=Math.min(maxPage,settings.page)
+                pageTotal.innerHTML=`${maxPage}`
+                settings.page=minPage
+                if(minPage === 0 && maxPage > 0){settings.page=1}
+                pageNo.value=settings.page
+                fullFilter = filter
+                filter=filter.slice(settings.page*20-20,settings.page*20)
+                for(let i of filter){
+                    let b=document.createElement("button")
+                    let innerHTML=`${standardize(i)}<br><img src='./difficulty-faces/${findLevel(standardize(i))||'NA'}.png' class='face'>`
+                    if(Array.isArray(i)){innerHTML+=` <a style='color:white' href="https://gdbrowser.com/${i[1]}">#${levels.indexOf(i)+1}</a>`}else{innerHTML+=`#${levels.indexOf(i)+1}`}
+                    b.id=standardize(i)
+                    b.classList="btn wrap-around"
+                    b.innerHTML=innerHTML
+                    b.addEventListener("click",()=>{
+                        change(b.id)
+                        audio()
+                        updateColours()
+                    })
+                    div.appendChild(b)
+                }
+            }
+            changePage=(id,m)=>{
+                const oldPage=settings.page
+                if(id=='left'){
+                    if(!m){
+                    settings.page=Math.max(1,settings.page-1)
+                    }else{
+                        settings.page=1
+                    }
+                }else{
+                    if(m){
+                        settings.page=maxPage
+                    }else{
+                        settings.page=Math.min(maxPage,settings.page+1)
+                    }
+                }
+                display()
+                updateColours()
+                return oldPage!=settings.page
+            }
+            changeTheme=(i,bgColor)=>{
+                settings.theme[i] = bgColor
+                if(i==0)document.querySelectorAll('.btn').forEach(j=>j.style.backgroundColor=bgColor)
+                updateColours()
+                return bgColor
+            }
+            let txtText=`--- LEVELS ---\n`
+            txtText += levels.map(i=>`#${levels.indexOf(i)+1}. ${standardize(i)} - ID: ${Array.isArray(i)?i[1]:'N/A'} - DIFFICULTY - ${findLevel(standardize(i)) || 'Unknown'}`).join(`\n`)
+            levelTotal.innerHTML=`${standardLevels.length}`
+            txtText+=`\n--- SUBMISSIONS ---\n`
+            txtText += submissions.map(i=>`#${submissions.indexOf(i)+1}. ${i}`).join(`\n`)
+            downloader.href = URL.createObjectURL(new Blob([txtText], {type: 'text/plain'}));
+            display()
+        </script>
+    </body>
+</html>

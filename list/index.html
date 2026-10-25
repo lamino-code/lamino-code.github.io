@@ -5,8 +5,10 @@
         <link rel="icon" href="./SecretCoin.png">
         <style>
             .arrow{
-                background:none;border:none;cursor:pointer;
+                background:none;border:none;cursor:pointer;width:fit-content;height:fit-content;padding:0px;margin:0px;
             }
+            #levels button:nth-child(3n){transform:rotate(2deg)}
+            #levels button:nth-child(2n-1){transform:rotate(-2deg)}
             body{
                 font-family:'Pusab';
                 background-color:rgb(20,20,20);
@@ -40,7 +42,8 @@
             color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;
             transition:all 0.2s ease-out;}
             #levels, #queue{display:flex;flex-wrap:wrap;gap:6px 6px !important;margin:0px auto;justify-content:center;}
-            #levels{width:fit-content;}
+            #levels{width:fit-content;max-width:75vw;padding:5px;}
+            .center{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:fit-content;height:fit-content;font-size:30px;font-family:'Pusab';border-radius:20px;z-index:2000;background:rgb(112, 176, 240);padding:30px;box-sizing:border-box;}
             #nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
             .horizontal{display:flex;flex-direction:row;gap:10px;}
             .vertical{display:flex;flex-direction:column;gap:10px;}
@@ -49,12 +52,15 @@
     <body>
         <h1 id="levelTotalFull">
             <p style='font-size:0.8em'>All Rated Levels List (started october 16th)</p>
-            <span id='levelTotal'>0</span> levels in total ||
-            <span id="levelTotal2">0</span> completed
+            <span id="levelTotal2">0</span>/<span id='levelTotal'>0</span> completed
         </h1>
         <div id="nav">
             <a id="downloader" download="AllRatedLevels.txt" style='text-decoration:none;' class="btn navbtn">Download List</a>
-            <input type="text" id="search" style="height:70px;font-size:30px;border-radius:10px;width:400px;font-family:'Pusab'" placeholder="Search for a level..." oninput='display();updateColours()'>
+            <div class="horizontal" style="background:white;border-radius:10px;padding:7px;align-items:center;">
+                <img src="https://www.freeiconspng.com/uploads/search-icon-png-18.png" style="height:55px;width:55px;filter:drop-shadow(1px 1px 2px black);">
+                <div style="width:5px;border-radius:3px;height:50px;background:rgb(109, 109, 109)"></div>
+                <input type="text" id="search" style="border:2px solid gray;padding-left:10px;height:50px;font-size:25px;border-radius:10px;font-family:'Pusab';width:270px;" placeholder="Search" oninput='display();updateColours()'>
+            </div>
             <button id="selectAll" class="btn navbtn" style="height:70px;" onclick="invertColors()">invert</button>
             <select class="btn navbtn" id="sort" style="width:200px;height:70px;" onchange="settings.sort=this.value;display();updateColours()">
                 <option value="h">Hardest</option>
@@ -65,17 +71,17 @@
             <a href='./info'>
                 <button class="btn navbtn" style="width:70px;font-family:'Nunito';">i</button>
             </a>
-            <input type="color" id="bgColor1" style="height:70px;width:70px;border-radius:5px;padding:2px;" value="#a16d6d" onchange="changeTheme(0,this.value);audio();">
-            <input type="color" id="bgColor2" style="height:70px;width:70px;border-radius:5px;padding:2px;" value="#239923" onchange="changeTheme(1,this.value);audio();">
-        </div>
-        <div class="horizontal" style="justify-content:center;gap:100px;">
+            <button class="btn navbtn" style="height:70px;" onclick="document.querySelector('.center').style.display='block'">Theme</button>
+        <div class="horizontal" style="justify-content:center;gap:100px;margin:0px auto;">
             <div>
                 <p style="font-size:30px;margin:0;">Page 
                     <input style="cursor:pointer;height:60px;border-radius:10px;font-size:30px;font-family:'Pusab';width:70px;text-align:center" id='pageNo' type="number" value="1" maxlength="2" onchange="settings.page=this.value;display();updateColours();">
                      of <span id="pageTotal">1</span></p>
             </div>
-            <p id="scoreTotal"><span id="score">0</span> points</p></div>
-        <div id="pages" style="display:flex;flex-direction:row">
+            <p id="scoreTotal"><span id="score">0</span> points</p>
+        </div>
+        <br>
+        <div id="pages" class="horizontal" style="justify-content:center;width:100%;">
             <div class="vertical">
                 <button id="left" onclick="if(changePage('left'))audio();" class='arrow'>
                     <img src="./triangle.png" style="transform:scaleX(-0.8) scaleY(0.8)">
@@ -94,10 +100,26 @@
                 </button>
             </div>
     </div>
-        <h1>Submissions</h1>
+        <h1 style="text-align:center;width:100%;">Submissions</h1>
         <div id="queue" style="height:600px;overflow-y:auto;"></div>
+        <div class="center">
+            <button class="btn" style="width:80px;height:80px;position:absolute;top:30px;right:30px;font-size:40px;" onclick="document.querySelector('.center').style.display='none';audio();">X</button>
+            <h1 style="text-align:center;color:white;text-shadow:3px 3px 2px black;">Theme</h1>
+            <br>
+            <div class="horizontal" style="justify-content:center;">
+                <div class="vertical">
+                    <p style="color:white;text-shadow:3px 3px 2px black;font-size:30px;margin:0;">Uncompleted</p>
+                    <input type="color" id="bgColor1" style="height:370px;width:370px;border-radius:5px;padding:2px;" value="#a16d6d" onchange="changeTheme(0,this.value);audio();">
+                </div>
+                <div class="vertical">
+                    <p style="color:white;text-shadow:3px 3px 2px black;font-size:30px;margin:0;">Completed</p>
+                    <input type="color" id="bgColor2" style="height:370px;width:370px;border-radius:5px;padding:2px;" value="#239923" onchange="changeTheme(1,this.value);audio();">
+                </div>
+            </div>
+        </div>
         <script src="../inject.js"></script>
         <script>
+            document.querySelector('.center').style.display='none';
             document.body.style.backgroundImage = 'url(./bg.jpg)'
             sela=new Audio('./button.mp3')
             let settings={sort:'h',page:1,theme:['#a16d6d','#239923']}
@@ -250,3 +272,4 @@
         </script>
     </body>
 </html>
+    
