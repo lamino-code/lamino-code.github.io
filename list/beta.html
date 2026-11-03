@@ -3,24 +3,9 @@
     <head>
         <title>All Rated Levels List</title>
         <link rel="icon" href="./SecretCoin.png">
+        <link rel="stylesheet" href="./base.css">
+        <link rel="stylesheet" href="./index.css">
         <style>
-            .arrow{
-                background:none;border:none;cursor:pointer;width:fit-content;height:fit-content;padding:0px;margin:0px;
-            }
-            #levels button:nth-child(3n){transform:rotate(1deg)}
-            #levels button:nth-child(2n-1){transform:rotate(-1deg)}
-            @font-face {
-                font-family:'Pusab';
-                src:url('./PUSAB___.otf') format("opentype");
-                font-weight:normal;
-                font-style:normal;
-            }
-            @font-face {
-                font-family:'Aller';
-                src:url('./Aller.ttf') format("truetype");
-                font-weight:normal;
-                font-style:normal;
-            }
             body{
                 font-family:'Pusab';
                 background-color:rgb(20,20,20);
@@ -29,32 +14,6 @@
                 background-size:cover;
                 background-position-y:5%
             }
-            .face{
-                width:30px;
-                align-self:bottom;
-                padding-left:10px;
-                padding-right:10px;
-            }
-            .wrap-around{
-                width:32%;
-                min-width:10vw;
-                text-overflow:ellipsis;
-                overflow:hidden;
-            }
-            #scoreTotal,#levelTotalFull{font-size:50px;font-family:"Pusab";margin:0px;}
-            #score{font-family:"Pusab";color:white;}
-            .navbtn{font-size:4em;background-color:#a0baca;}
-            .btn{border:2px solid white;font-size:35px;text-shadow:1px 1px 2px black;font-family:"Pusab";
-            color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;
-            transition:all 0.2s ease-out;align-items:center;}
-            .aller{font-family:'Aller';}
-            #levels button{background-color:#a16d6d;}
-            #levels, #queue{display:flex;flex-wrap:wrap;gap:6px 6px !important;margin:0px auto;justify-content:center;}
-            #levels{width:fit-content;max-width:75vw;padding:5px;}
-            .center{position:fixed;top:50%;left:50%;padding:30px;padding-top:100px;transform:translate(-50%,-50%);width:fit-content;height:fit-content;font-size:30px;font-family:'Pusab';border-radius:20px;z-index:2000;box-sizing:border-box;}
-            #nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
-            .horizontal{display:flex;flex-direction:row;gap:10px;}
-            .vertical{display:flex;flex-direction:column;gap:10px;}
         </style>
     </head>
     <body>
@@ -63,8 +22,7 @@
             <span id="levelTotal2">0</span>/<span id='levelTotal'>0</span> completed
         </h1>
         <div id="nav">
-            <a id="downloader" download="AllRatedLevels.txt" style='text-decoration:none;' class="btn navbtn">Download List</a>
-            <div class="horizontal btn" style="border-radius:10px;padding:7px;align-items:center;background:#a0baca">
+            <div class="horizontal btn search" style="border-radius:10px;padding:7px;align-items:center;background:#a0baca">
                 <img src="https://www.freeiconspng.com/uploads/search-icon-png-18.png" style="height:55px;width:55px;filter:drop-shadow(1px 1px 2px black);">
                 <div style="width:5px;border-radius:3px;height:50px;background:rgb(109, 109, 109)"></div>
                 <input type="text" id="search" style="border:2px solid gray;padding-left:10px;height:50px;font-size:25px;border-radius:10px;font-family:'Pusab';width:270px;" placeholder="Search" oninput='display();updateColours()'>
@@ -78,7 +36,8 @@
             <button class="btn navbtn" style="height:70px;" onclick="document.querySelector('.center').style.display='block'">
                 <img src="./cog.png" style="height:50px;width:50px;filter:drop-shadow(1px 1px 2px black)">
             </button>
-            <button class="btn navbtn" style="width:70px;font-family:'Nunito';" onclick="window.open('./info','_blank')"><a style="text-decoration:none;color:white;" href="./info">i</a></button>
+            <button class="btn navbtn" style="width:70px;font-family:'Nunito';" onclick="window.open('./info','_blank')">i</button>
+            <a id="downloader" download="AllRatedLevels.txt" style='text-decoration:none;' class="btn navbtn">Download List</a>
         </div>
         <div class="horizontal" style="justify-content:center;gap:100px;margin:0px auto;">
             <div>
@@ -143,14 +102,30 @@
             let levelTotal2=document.getElementById('levelTotal2')
             let queue = document.getElementById('queue')
             let combinedLevels = [
-{"level":["GRIEF",149992717],"difficulty":"ExtremeDemon"},{"level":["Nautical Nightmares",138993732],"difficulty":"ExtremeDemon"},{"level":"Artemis 13","difficulty":"ExtremeDemon"},
-{"level":["delightful climb",115206404],"difficulty":"ExtremeDemon"},{"level":"Society","difficulty":"ExtremeDemon"},{"level":"Thinking Space II","difficulty":"ExtremeDemon"},
-{"level":"Amethyst","difficulty":"ExtremeDemon"},{"level":"Flamewall","difficulty":"ExtremeDemon"},{"level":["Tidal Wave",86407629],"difficulty":"ExtremeDemon"},
-{"level":"Green Bullet","difficulty":"ExtremeDemon"},{"level":"ORBIT","difficulty":"ExtremeDemon"},{"level":"Antarctic Lights","difficulty":"ExtremeDemon"},
-{"level":"Nullscapes","difficulty":"ExtremeDemon"},{"level":"Quanteuse processing","difficulty":"ExtremeDemon"},{"level":"BOOBAWAMBA","difficulty":"ExtremeDemon"},
-{"level":"The Bloop","difficulty":"ExtremeDemon"},{"level":"Every End","difficulty":"ExtremeDemon"},{"level":"Ashley Wave Trials","difficulty":"ExtremeDemon"},
-{"level":"Silent clubstep","difficulty":"ExtremeDemon"},{"level":["Ultra Paracosm",138704906],"difficulty":"ExtremeDemon"},{"level":"Penumbral","difficulty":"ExtremeDemon"},
-{"level":"Andromeda","difficulty":"ExtremeDemon"},{"level":"KILLSTEALER","difficulty":"ExtremeDemon"},{"level":"Subsuming Vortex","difficulty":"ExtremeDemon"},
+{"level":["GRIEF",149992717],"difficulty":"ExtremeDemon"},
+{"level":["Nautical Nightmares",138993732],"difficulty":"ExtremeDemon"},
+{"level":"Artemis 13","difficulty":"ExtremeDemon"},
+{"level":["delightful climb",115206404],"difficulty":"ExtremeDemon"},
+{"level":"Society","difficulty":"ExtremeDemon"},
+{"level":"Thinking Space II","difficulty":"ExtremeDemon"},
+{"level":"Amethyst","difficulty":"ExtremeDemon"},
+{"level":"Flamewall","difficulty":"ExtremeDemon"},
+{"level":["Tidal Wave",86407629],"difficulty":"ExtremeDemon"},
+{"level":"Green Bullet","difficulty":"ExtremeDemon"},
+{"level":"ORBIT","difficulty":"ExtremeDemon"},
+{"level":"Antarctic Lights","difficulty":"ExtremeDemon"},
+{"level":"Nullscapes","difficulty":"ExtremeDemon"},
+{"level":"Quanteuse processing","difficulty":"ExtremeDemon"},
+{"level":"BOOBAWAMBA","difficulty":"ExtremeDemon"},
+{"level":"The Bloop","difficulty":"ExtremeDemon"},
+{"level":"Every End","difficulty":"ExtremeDemon"},
+{"level":"Ashley Wave Trials","difficulty":"ExtremeDemon"},
+{"level":"Silent clubstep","difficulty":"ExtremeDemon"},
+{"level":["Ultra Paracosm",138704906],"difficulty":"ExtremeDemon"},
+{"level":"Penumbral","difficulty":"ExtremeDemon"},
+{"level":"Andromeda","difficulty":"ExtremeDemon"},
+{"level":"KILLSTEALER","difficulty":"ExtremeDemon"},
+{"level":"Subsuming Vortex","difficulty":"ExtremeDemon"},
 {"level":"Anathema","difficulty":"ExtremeDemon"},
 {"level":"Defeated Circles","difficulty":"ExtremeDemon"},
 {"level":"Avernus","difficulty":"ExtremeDemon"},
@@ -206,6 +181,7 @@
 {"level":"OuterSpace","difficulty":"Hard"},
 {"level":"First Race","difficulty":"Harder"},
 {"level":"PowerX","difficulty":"Hard"},
+{"level":['BNUN',77117125],"difficulty":"Normal"},
 {"level":"Wavelength","difficulty":"Hard"},
 {"level":"Tiktok ahh song","difficulty":"Hard"},
 {"level":["Everybody Bounce",28166800],"difficulty":"Hard"},
@@ -220,14 +196,9 @@
 {"level":"Sonar","difficulty":"Easy"},
 {"level":["ReTray",6508283],"difficulty":"Easy"},
 {"level":"boogie","difficulty":"Easy"},
-{"level":"Free Stars","difficulty":"Hard"},
-{"level":"Destructive Auto","difficulty":"Auto"},
-{"level":"Auto Clubstep","difficulty":"Auto"},
-{"level":"Auto Electrodynamix","difficulty":"Auto"},
-{"level":["aUtO CycleS anD sam",153233],"difficulty":"Auto"},
-{"level":["Auto Cycles",24453],"difficulty":"Auto"},
-{"level":["Cycles Auto (1)",158692],"difficulty":"Auto"},
-{"level":["Cycles Auto (2)",161116],"difficulty":"Auto"},
+{"level":"Free Stars","difficulty":"Hard"},{"level":"Destructive Auto","difficulty":"Auto"},
+{"level":"Auto Clubstep","difficulty":"Auto"},{"level":"Auto Electrodynamix","difficulty":"Auto"},{"level":["aUtO CycleS anD sam",153233],"difficulty":"Auto"},
+{"level":["Auto Cycles",24453],"difficulty":"Auto"},{"level":["Cycles Auto (1)",158692],"difficulty":"Auto"},{"level":["Cycles Auto (2)",161116],"difficulty":"Auto"},
 {"level":["Cycles (Auto)",165024],"difficulty":"Auto"},{"level":["Grey World",114082],"difficulty":"Auto"},{"level":"Youve been trolled (auto)","difficulty":"Auto"},
 {"level":["GD QUIZLER",36135138],"difficulty":"Auto"},{"level":["Jirachi Ultimate",148079342],"difficulty":"Auto"},{"level":["Space Travel",28750],"difficulty":"Auto"},
 {"level":["top 10 weirdest kids",104168656],"difficulty":"Auto"},{"level":["Le Doigt",100423205],"difficulty":"Auto"},{"level":["code name TrueSpike",97276318],"difficulty":"Auto"},
@@ -253,31 +224,12 @@
             }
             standardize=a=>Array.isArray(a)?a[0]:a
             const standardLevels=combinedLevels.map(j=>standardize(j.level))
-            const difficulty={
-                "ExtremeDemon":['Abyss of Darkness','Tunnel of Despair','Kyouki','Sacrifice','Based After Based','cognitohazard','The Lightning Rod','Maniacal Chains','Slaughterhouse','Ultra Paracosm','Penumbral','Andromeda','KILLSTEALER','Subsuming Vortex','Anathema','Defeated Circles','Avernus','FOREST OF SPIKES','Acheron','Spectre','Menace','Cycles X','Acu','GRIEF',"Delightful Climb","Nautical Nightmares","Artemis 13","Society","Thinking Space II",'Amethyst','Flamewall',
-                'Bloodbath','Red World','Tidal Wave','Nullscapes','ORBIT','antarctic lights','green bullet','boobawamba','quanteuse processing','every end','the bloop','silent clubstep',
-                'ashley wave trials'],
-                "InsaneDemon":['CraZy II','CraZy III','STEEP','STALEMATE','8o','CraZy II','CraZy III','Windy Landscape','Duelo Maestro','Acropolis','MikuMikuMikuMiku','hi',
-                'Poltergeist','Supersonic','Future Funk II','Ultimate Demon Mix','UltraSonic','Dark Travel','BuTiTi II','How to platformer','Invisible Deadlocked',
-                'Deadlocked v3','ICE Carbon Diablo X','SlaughterHouse','Dream Travel','Trip','Magma Bound','Throat of the World','Necropolis','Denouement','Game Time',
-                'love baba','pulsar','LightWave','Nine CircleX','Ultraviolet','I wanna be the guy','Kappa Boss Fight','Pyromaniac','ClubStep Nightmares',
-                'Beat Ninja','Leyak'],
-                "HardDemon":['Nine Circles',"craZy"],
-                "MediumDemon":['Against the God','Beautiful Chaos','B','Living Open','starlit glacier'],
-                "EasyDemon":['invisible clubstep',"green demon",'Platinum Adventure','iS','Wild West','Shiver','iSpyWithMyLittleEye','The Lightning Road'],
-                "Insane":['Flappy Bird','Shrimpire State','Eastside','Robotic Nightmares','GD Randomizer','Defeat your gubbus (Plat)',`You've Been Trolled`,'Wave Wave','bussin'],
-                "Harder":['sunshine','Cycles','Shock','First Race'],
-                "Hard":['Dead Device','PowerX','Wavelength','Tiktok ahh song','Nexus (Hard)','Free Stars',"How to clutterfunk","outerspace",'everybody bounce','shiver me timbers'],
-                "Normal":['is normal','lets  run','Level Easy','Breakpoint'],
-                "Easy":['Explorers','Sonar','boogie','Disco dungeon','Retray'],
-                "Auto":['le doigt','hardcore block auto','geometty dash','unfailable','fury x','jirachi ultimate','code name truespike','bats fruit facts','top 10 weirdest kids','space travel','mang game','dear pet rock','gd quizler','1','mathymbol epsilon','auto play area',"Auto Cycles and Sam","Auto Cycles","Cycles (Auto)","Destructive Auto","Auto Electrodynamix","Auto Clubstep","Cycles Auto (1)","Cycles Auto (2)","Grey World","asdfmovie16",'asdfmovie15','auto play arena',"Youve been trolled (auto)","Autopilot","hyperluminal","dark road"]
-            }
             change=n=>{
                 comp[n]^=1
                 process()
                 levelTotal2.innerHTML=`${Object.entries(comp).filter(i=>i[1]).length}`
             }
-            findLevel=n=>Object.entries(difficulty).filter(j=>j[1].map(j=>j.toLowerCase()).includes(n.toLowerCase()))?.[0]?.[0]
+            findLevel=n=>combinedLevels.find(i=>standardize(i.level).toLowerCase()==n.toLowerCase()).difficulty
             process=()=>{
                 let points=0
                 for(let i in standardLevels){
@@ -328,7 +280,8 @@
                     v.className="vertical"
                     v.style="text-align:left;width:max-content;display:inline-block"
                     let n=standardize(i.level)
-                    v.innerHTML=`#${combinedLevels.indexOf(i)+1}\n` + (Array.isArray(i.level)?`<a style='color:white' href="https://gdbrowser.com/${i.level[1]}">${n}</a>`:`${n}`)
+                    v.style.color="rgb(200,250,250)"
+                    v.innerHTML=`#${combinedLevels.indexOf(i)+1}\n` + (Array.isArray(i.level)?`<a style='color:white' href="https://gdbrowser.com/${i.level[1]}">${n}</a>`:`<span style="color:white;">${n}</span>`)
                     b.id=standardize(i.level)
                     b.classList="btn level wrap-around horizontal"
                     b.addEventListener("click",()=>{change(b.id);audio();updateColours();})
@@ -369,6 +322,7 @@
             txtText+=submissions.map(i=>`#${submissions.indexOf(i)+1}. ${i}`).join(`\n`)
             downloader.href=URL.createObjectURL(new Blob([txtText],{type:'text/plain'}));
             display()
+            updateColours()
         </script>
     </body>
 </html>

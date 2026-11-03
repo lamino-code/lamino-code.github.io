@@ -1,0 +1,15 @@
+.link{
+    color:white;
+}
+@font-face {
+    font-family:'Pusab';
+    src:url('./PUSAB___.otf') format("opentype");
+    font-weight:normal;
+    font-style:normal;
+}
+@font-face {
+    font-family:'Aller';
+    src:url('./Aller.ttf') format("truetype");
+    font-weight:normal;
+    font-style:normal;
+}

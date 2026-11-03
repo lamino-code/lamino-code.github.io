@@ -1,0 +1,33 @@
+.arrow{
+    background:none;border:none;cursor:pointer;width:fit-content;height:fit-content;padding:0px;margin:0px;
+}
+#levels button:nth-child(3n){transform:rotate(1deg)}
+#levels button:nth-child(2n-1){transform:rotate(-1deg)}
+.search{transition:all 0.7s ease-out;}
+.search:hover{width:400px;transition:all 0.7s ease-out;}
+.face{
+    width:30px;
+    align-self:bottom;
+    padding-left:10px;
+    padding-right:10px;
+}
+.wrap-around{
+    width:32%;
+    min-width:10vw;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+#scoreTotal,#levelTotalFull{font-size:50px;font-family:"Pusab";margin:0px;}
+#score{font-family:"Pusab";color:white;}
+.navbtn{font-size:4em;background-color:#a0baca;}
+.btn{border:2px solid white;font-size:35px;text-shadow:1px 1px 2px black;font-family:"Pusab";
+color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;
+transition:all 0.2s ease-out;align-items:center;}
+.aller{font-family:'Aller';}
+#levels button{background-color:#a16d6d;}
+#levels, #queue{display:flex;flex-wrap:wrap;gap:6px 6px !important;margin:0px auto;justify-content:center;}
+#levels{width:fit-content;max-width:75vw;padding:5px;}
+.center{position:fixed;top:50%;left:50%;padding:30px;padding-top:100px;transform:translate(-50%,-50%);width:fit-content;height:fit-content;font-size:30px;font-family:'Pusab';border-radius:20px;z-index:2000;box-sizing:border-box;}
+#nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;padding-left:30px;}
+.horizontal{display:flex;flex-direction:row;gap:10px;}
+.vertical{display:flex;flex-direction:column;gap:10px;}
