@@ -999,6 +999,7 @@
                 for(let i in standardLevels){
                     points+=comp[standardLevels[i]]?(i==0?500:(i<5?150:(i<10?100:(i<30?75:(i<60?40:(i<100?10:(i<150?5:0.2))))))):0
                 }
+                points=Number(points.toFixed(5))
                 score.innerHTML=`${points}`
                 return points
             }
