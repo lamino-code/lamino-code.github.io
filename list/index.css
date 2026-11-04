@@ -31,3 +31,6 @@ transition:all 0.2s ease-out;align-items:center;}
 #nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;padding-left:30px;}
 .horizontal{display:flex;flex-direction:row;gap:10px;}
 .vertical{display:flex;flex-direction:column;gap:10px;}
+body{
+    text-align:center;
+}
