@@ -17,11 +17,11 @@ s.textContent=`
         font-weight: 700;
         font-family: "Nunito", sans-serif, system-ui;
         color: rgb(13, 25, 35);
-        font-size: 2vw;
+        font-size: 30px;
         border-radius: 0.5em;
         transition: transform 0.5s ease;
         border: 3px solid brown;
-        padding:8px;
+        padding:13px;
         height:50px;
     }
     .row{
@@ -62,5 +62,6 @@ document.body.insertAdjacentHTML("afterbegin",`
         <a class="b" href="/aga.html">AGA</a>
         <a class="b" href="/featured.html">Featured Projects</a>
         <a class="b" href="/list/index.html">GD List</a>
+        <a class="b" href="/list/addlevels.html">GD List Submissions</a>
     </div>
 `);

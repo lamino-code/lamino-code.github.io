@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add levels</title>
+    <link rel="icon" href="./SecretCoin.png">
+        <link rel="stylesheet" href="./base.css">
+        <link rel="stylesheet" href="./index.css">
+    <style>
+        input{border-radius:15px;padding:15px;}
+    </style>
+</head>
+<body>
+    <script src="/inject.js"></script>
+    <div style="padding-top:50px;">
+        <input id="name" type="text" placeholder="Enter name" style="font-family:Pusab;font-size:2em;">
+        <input id="id" type="number" placeholder="ID" style="font-family:Pusab;font-size:2em;">
+        <div id='difficulties' style="place-items:center;display:grid;padding:50px;grid-template-columns:repeat(7,1fr);grid-template-rows:1fr;max-width:90vw;width:fit-content;gap:10px;position:relative;left:50%;transform:translateX(-50%);">
+        </div>
+        <button onclick="copyText()" style="font-family:Pusab;font-size:2em;padding:15px;border-radius:15px;" class="btn">Copy Code</button>
+    </div>
+    <script>
+        sela=new Audio('./button.mp3');
+        play=function(sel){
+            sel.play()
+            sel.currentTime = 0
+        }
+        copyText=()=>{
+            name=document.getElementById('name').value;
+            id=document.getElementById('id').value;
+            let levelData=id?[name,id]:name;
+            const clipboardData={
+                level:levelData,
+                difficulty:selectedDifficulty
+            };
+            navigator.clipboard.writeText(JSON.stringify(clipboardData));
+            play(sela);
+        }
+
+       let difficulties = document.getElementById('difficulties');
+    let selectedDifficulty;
+    let diffs = ['Auto','Easy','Normal','Hard','Harder','Insane','EasyDemon','MediumDemon','HardDemon','InsaneDemon','ExtremeDemon'];
+    select=d=>{
+        selectedDifficulty=d;
+        play(sela);
+        ([...difficulties.children]).forEach(c=>{
+        if(c.id===d){c.style.outline='5px solid green'}else{c.style.outline='none'}
+        })
+    }
+    for(let i of diffs){
+        let button=document.createElement('button');
+        button.id=i
+        button.style='width:fit-content'
+        button.classList='btn'
+        button.innerHTML=`<img style='width:5vw;' src="./difficulty-faces/${i}.png">`;
+        button.onclick=()=>select(button.id)
+        difficulties.appendChild(button)
+    }
+    </script>
+</body>
+</html>
