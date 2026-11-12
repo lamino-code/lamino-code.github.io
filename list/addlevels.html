@@ -9,16 +9,24 @@
         <link rel="stylesheet" href="./index.css">
     <style>
         input{border-radius:15px;padding:15px;}
+        .btn{background:'#566666';}
+        .difficulty-button{
+            width:200px;
+            height:200px;
+        }
     </style>
 </head>
 <body>
+    <!-- WHAT THE HECK DO I DO NOW -->
     <script src="/inject.js"></script>
-    <div style="padding-top:50px;">
-        <input id="name" type="text" placeholder="Enter name" style="font-family:Pusab;font-size:2em;">
-        <input id="id" type="number" placeholder="ID" style="font-family:Pusab;font-size:2em;">
-        <div id='difficulties' style="place-items:center;display:grid;padding:50px;grid-template-columns:repeat(7,1fr);grid-template-rows:1fr;max-width:90vw;width:fit-content;gap:10px;position:relative;left:50%;transform:translateX(-50%);">
+    <div style="padding-top:50px;" class="vertical">
+        <div class="horizontal">
+            <input id="name" type="text" placeholder="Enter name" style="font-family:Pusab;font-size:2em;width:1fr;">
+            <input id="id" type="number" placeholder="ID" style="font-family:Pusab;font-size:2em;width:1fr;">
+            <button onclick="copyText()" style="font-family:Pusab;font-size:2em;border-radius:15px;width:1fr;" class="btn">Copy Code</button>
         </div>
-        <button onclick="copyText()" style="font-family:Pusab;font-size:2em;padding:15px;border-radius:15px;" class="btn">Copy Code</button>
+        <div id='difficulties' class="horizontal" style="padding:10px;width:90%;gap:10px;"></div>
+        <iframe src="https://gdbrowser.com" style="box-sizing:border-box;width:100%;max-width:100%;padding:25px;border-radius:25px;aspect-ratio:18/7;"></iframe>
     </div>
     <script>
         sela=new Audio('./button.mp3');
@@ -51,12 +59,14 @@
     for(let i of diffs){
         let button=document.createElement('button');
         button.id=i
-        button.style='width:fit-content'
-        button.classList='btn'
-        button.innerHTML=`<img style='width:5vw;' src="./difficulty-faces/${i}.png">`;
+        button.style='width:fit-content;height:125px;'
+        button.classList='btn difficulty-button'
+        button.innerHTML=`<img style='width:100px;' src="./difficulty-faces/${i}.png">`;
         button.onclick=()=>select(button.id)
         difficulties.appendChild(button)
     }
+    // THIS IS HOW YOU CONVERT API DATA
+    // converted=JSON.stringify({"level":dummy.id?[dummy.name,dummy.id]:dummy.name,"difficulty":dummy.difficulty});console.log(converted)
     </script>
 </body>
 </html>

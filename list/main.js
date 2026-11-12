@@ -1,3 +1,4 @@
+let params = new URLSearchParams(window.location.search);
 let combinedLevels = [
 {"level":["GRIEF",149992717],"difficulty":"ExtremeDemon"},
 {"level":["Nautical Nightmares",138993732],"difficulty":"ExtremeDemon"},
@@ -75,6 +76,7 @@ let combinedLevels = [
 {"level":["Eastside",132687104],"difficulty":"Insane"},
 {"level":"Flappy Bird","difficulty":"Insane"},
 {"level":"How to Clutterfunk","difficulty":"Hard"},
+{"level":['AntiPixel',133532978],"difficulty":"Harder"},
 {"level":['Polaris',142691517],"difficulty":"Harder"},
 {"level":["Moving Obstacles II","21087247"],"difficulty":"Hard"},
 {"level":['Edge Of The Universe',151920312],'difficulty':"Harder"},
