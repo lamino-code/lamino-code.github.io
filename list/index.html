@@ -170,7 +170,7 @@
                     v.style="text-align:left;width:max-content;display:inline-block"
                     let n=standardize(i.level)
                     v.style.color="rgb(200,250,250)"
-                    v.innerHTML=`#${combinedLevels.indexOf(i)+1}\n` + (Array.isArray(i.level)?`<a style='color:white' href="https://gdbrowser.com/${Number(i.level[1])}">${n}</a>`:`<span style="color:white;">${n}</span>`)
+                    v.innerHTML=(Array.isArray(i.level)?`<a style='color:white' href="https://gdbrowser.com/${Number(i.level[1])}">${n}</a>`:`<span style="color:white;">${n}</span>`) + `\n#${combinedLevels.indexOf(i)+1}`
                     b.id=standardize(i.level)
                     b.classList="btn level wrap-around horizontal"
                     b.addEventListener("click",()=>{change(b.id);audio();updateColours();})
