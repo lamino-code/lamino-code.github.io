@@ -3,8 +3,6 @@
 }
 #levels button:nth-child(3n){transform:rotate(1deg)}
 #levels button:nth-child(2n-1){transform:rotate(-1deg)}
-.search{transition:all 0.7s ease-out;}
-.search:hover{width:400px;transition:all 0.7s ease-out;}
 .face{
     width:30px;
     align-self:bottom;
@@ -19,7 +17,7 @@
 }
 #scoreTotal,#levelTotalFull{font-size:50px;font-family:"Pusab";margin:0px;}
 #score{font-family:"Pusab";color:white;}
-.navbtn{font-size:4em;background-color:#a0baca;}
+.navbtn{font-size:4em;background-color:#82c2de;}
 .btn{border:2px solid white;font-size:35px;text-shadow:1px 1px 2px black;font-family:"Pusab";
 color:white;padding:10px;border-radius:8px;box-shadow:3px 3px 4px rgb(109, 109, 109);cursor:pointer;
 transition:all 0.2s ease-out;align-items:center;}
@@ -33,4 +31,7 @@ transition:all 0.2s ease-out;align-items:center;}
 .vertical{display:flex;flex-direction:column;gap:10px;}
 body{
     text-align:center;
+}
+input{
+   appearance:none; 
 }

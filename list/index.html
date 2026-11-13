@@ -17,10 +17,10 @@
             <span id="levelTotal2">0</span>/<span id='levelTotal'>0</span> completed
         </h1>
         <div id="nav">
-            <div class="horizontal btn search" style="border-radius:10px;padding:7px;align-items:center;background:#a0baca">
+            <div class="horizontal btn search" style="border-radius:10px;padding:7px;align-items:center;background:#82c2de">
                 <img src="https://www.freeiconspng.com/uploads/search-icon-png-18.png" style="height:55px;width:55px;filter:drop-shadow(1px 1px 2px black);">
                 <div style="width:5px;border-radius:3px;height:50px;background:rgb(109, 109, 109)"></div>
-                <input type="text" id="search" style="border:2px solid gray;padding-left:10px;height:50px;font-size:25px;border-radius:10px;font-family:'Pusab';width:270px;" placeholder="Search" oninput='display();updateColours()'>
+                <input type="search" id="search" style="border:2px solid gray;padding-left:10px;height:50px;font-size:25px;border-radius:10px;font-family:'Pusab';width:270px;" placeholder="Search" oninput='display();updateColours()'>
             </div>
             <select class="btn navbtn" id="sort" style="width:200px;height:70px;" onchange="settings.sort=this.value;display();updateColours()">
                 <option value="h">Hardest</option>
@@ -32,7 +32,9 @@
                 <img src="./cog.png" style="height:50px;width:50px;filter:drop-shadow(1px 1px 2px black)">
             </button>
             <button class="btn navbtn" style="width:70px;font-family:'Nunito';" onclick="window.open('./info','_blank')">i</button>
-            <a id="downloader" download="AllRatedLevels.txt" style='text-decoration:none;' class="btn navbtn">Download List</a>
+            <a id="downloader" download="AllRatedLevels.txt" style='text-decoration:none;' class="btn navbtn">
+                <img src="./download.png" style="height:50px;width:50px;filter:drop-shadow(1px 1px 2px black)">
+            </a>
         </div>
         <div class="horizontal" style="justify-content:center;gap:100px;margin:0px auto;">
             <div>
@@ -71,10 +73,10 @@
             <div class="horizontal" style="justify-content:center;">
                 <div class="vertical">
                     <p class="aller" style="font-size:30px;margin:0px;text-shadow:3px 3px 2px black;">Theme Colors</p>
-                    <div class="horizontal">
+                    <div class="horizontal" id="colors">
                         <input type="color" id="bgColor1" style="height:100px;width:100px;border-radius:5px;padding:2px;" value="#a16d6d" onchange="changeTheme(0,this.value);audio();">
                         <input type="color" id="bgColor2" style="height:100px;width:100px;border-radius:5px;padding:2px;" value="#239923" onchange="changeTheme(1,this.value);audio();">
-                        <input type="color" id="bgColor2" style="height:100px;width:100px;border-radius:5px;padding:2px;" value="#a0baca" onchange="changeTheme(2,this.value);audio();">
+                        <input type="color" id="bgColor2" style="height:100px;width:100px;border-radius:5px;padding:2px;" value="#82c2de" onchange="changeTheme(2,this.value);audio();">
                     </div>
                 </div>
             </div>
@@ -85,7 +87,8 @@
             document.querySelector('.center').style.display='none';
             document.body.style.backgroundImage = 'url(./bg.jpg)'
             sela=new Audio('./button.mp3')
-            let settings={sort:'h',page:1,theme:['#a16d6d','#239923','#bbbbbb']}
+            let colors = document.getElementById('colors')
+            let settings={sort:'h',page:1,theme:JSON.parse(localStorage.getItem("theme"))||['#a16d6d','#239923','#82c2de']}
             let filter=[]
             let fullFilter=[]
             let maxPage=0
@@ -97,6 +100,7 @@
             let levelTotal=document.getElementById('levelTotal')
             let levelTotal2=document.getElementById('levelTotal2')
             let queue = document.getElementById('queue')
+            Array.from(colors.children).forEach((v,i)=>v.value=settings.theme[i])
             const submissions=[
     "STEEP","STALEMATE","8o","Windy Landscape","Duelo Maestro","Acropolis","MikuMikuMikuMiku","hi","Poltergeist","Supersonic","Future Funk II","Ultimate Demon Mix","UltraSonic",
     "Dark Travel","BuTiTi II","How to platformer","Invisible Deadlocked","Deadlocked v3","ICE Carbon Diablo X","SlaughterHouse","Dream Travel","Trip","Magma Bound","Throat of the World",
@@ -116,6 +120,7 @@
                 comp[n]^=1
                 process()
                 levelTotal2.innerHTML=`${Object.entries(comp).filter(i=>i[1]).length}`
+                localStorage.setItem('completed',JSON.stringify(comp))
             }
             findLevel=n=>combinedLevels.find(i=>standardize(i.level).toLowerCase()==n.toLowerCase()).difficulty
             process=()=>{
@@ -128,7 +133,7 @@
                 return points
             }
             audio=()=>{sela.currentTime=0;sela.play()}
-            let comp=Object.fromEntries(standardLevels.map(i=>[i,!1]))
+            let comp=JSON.parse(localStorage.getItem('completed'))||Object.fromEntries(standardLevels.map(i=>[i,!1]))
             updateColours=()=>{
                 for(let i of document.querySelectorAll('.level')){
                     i.style.background=comp[standardize(i.id)]?settings.theme[1]:settings.theme[0]
@@ -136,6 +141,7 @@
                 for(let i of document.querySelector("#nav").children){
                     i.style.background=settings.theme[2]
                 }
+                localStorage.setItem('theme',JSON.stringify(settings.theme))
             }
             display=()=>{
                 let search=document.getElementById('search').value.toLowerCase()
@@ -170,7 +176,10 @@
                     v.style="text-align:left;width:max-content;display:inline-block"
                     let n=standardize(i.level)
                     v.style.color="rgb(200,250,250)"
-                    v.innerHTML=(Array.isArray(i.level)?`<a style='color:white' href="https://gdbrowser.com/${Number(i.level[1])}">${n}</a>`:`<span style="color:white;">${n}</span>`) + `\n#${combinedLevels.indexOf(i)+1}`
+                    v.innerHTML= `#${combinedLevels.indexOf(i)+1}\n` +
+                        (Array.isArray(i.level)?
+                        `<a style='color:white;font-size:80%;' class='wrap-around' href="https://gdbrowser.com/${Number(i.level[1])}">${n}</a>`
+                        :`<span style="color:white;font-size:80%;" class='wrap-around'>${n}</span>`)
                     b.id=standardize(i.level)
                     b.classList="btn level wrap-around horizontal"
                     b.addEventListener("click",()=>{change(b.id);audio();updateColours();})
@@ -211,6 +220,7 @@
             txtText+=submissions.map(i=>`#${submissions.indexOf(i)+1}. ${i}`).join(`\n`)
             downloader.href=URL.createObjectURL(new Blob([txtText],{type:'text/plain'}));
             display()
+            process()
             updateColours()
         </script>
     </body>
